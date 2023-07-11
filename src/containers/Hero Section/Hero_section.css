@@ -24,6 +24,7 @@ h1 {
 .ow_gpt3_hero-section-content{
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .ow_gpt3_hero-section-content h1{
@@ -43,7 +44,9 @@ h1 {
 }
 
 .ow_hero-section-monitor {
-    margin-left: 2rem; /* Adjust the margin as needed */
+    margin-left: 2rem;
+    position: relative;
+    z-index: 2; /* Adjust the margin as needed */
   }
 
   .ow_hero-section-monitor img {
@@ -52,3 +55,13 @@ h1 {
     width: 70%;
     height: 70%; /* Ensure the image doesn't exceed its container */
   }
+
+.ow_hero-section-monitor-images img {
+    position: absolute;
+    margin-top: -190px;
+    margin-left: 50px;
+    z-index: -1;
+    width: 47%;
+    height: 47%;
+}
+
