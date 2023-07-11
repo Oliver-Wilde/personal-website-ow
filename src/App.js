@@ -7,7 +7,7 @@ import { Hero_section, About_me  } from './containers';
 const App = () => {
   return (
     <div className='App'>
-       <div className='background_colour'>
+       <div className='background-colour'>
         <Navbar/>
        </div>
 

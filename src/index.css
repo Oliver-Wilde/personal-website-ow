@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Titan One';
+    src: url('./fonts/TitanOne-Regular.ttf') format('truetype');
+}
+
+:root{
+    --colour-bg: #101419
+}
