@@ -1,6 +1,6 @@
 h1 {
-  font-family: var(--font-family);
-  /* Other styles for the main text */
+    font-family: var(--font-family);
+    /* Other styles for the main text */
 }
 
 .small-text {
@@ -9,11 +9,12 @@ h1 {
     font-size: 2rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 130%; /* Color for the smaller text */
-  /* Other styles for the smaller text */
+    line-height: 130%;
+    /* Color for the smaller text */
+    /* Other styles for the smaller text */
 }
 
-.big-text{
+.big-text {
     color: #fdca40;
     font-size: 5rem;
     font-style: normal;
@@ -21,13 +22,13 @@ h1 {
     line-height: 130%;
 }
 
-.ow_gpt3_hero-section-content{
+.ow_gpt3_hero-section-content {
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.ow_gpt3_hero-section-content h1{
+.ow_gpt3_hero-section-content h1 {
     display: flex;
     width: 24.125rem;
     height: 24rem;
@@ -37,7 +38,7 @@ h1 {
     margin-left: 7rem !important;
 }
 
-.subheading{
+.subheading {
     font-weight: 100;
     color: #FFF;
     margin-top: -2.5rem;
@@ -46,15 +47,17 @@ h1 {
 .ow_hero-section-monitor {
     margin-left: 2rem;
     position: relative;
-    z-index: 2; /* Adjust the margin as needed */
-  }
+    z-index: 2;
+    /* Adjust the margin as needed */
+}
 
-  .ow_hero-section-monitor img {
+.ow_hero-section-monitor img {
     margin-left: 7rem;
     max-width: 100%;
     width: 70%;
-    height: 70%; /* Ensure the image doesn't exceed its container */
-  }
+    height: 70%;
+    /* Ensure the image doesn't exceed its container */
+}
 
 .ow_hero-section-monitor-images img {
     position: absolute;
@@ -64,4 +67,6 @@ h1 {
     width: 47%;
     height: 47%;
 }
+
+
 
