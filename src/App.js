@@ -8,7 +8,6 @@ const App = () => {
   return (
     <div className='App'>
        <div className='background-colour'>
-        
         <Navbar/>
        </div>
         <Hero_section></Hero_section>
