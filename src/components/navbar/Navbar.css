@@ -1,18 +1,41 @@
-.logo{
-    width: 8.74731rem;
-height: 8.32875rem;
-transform: rotate(-0deg);
-flex-shrink: 0; 
-}
-
-
-
-
-
-.nav-links{
+.logo-image {
+    width: 4.75rem;
+    height: 4.33rem;
+    border-radius: 110%;
+    margin-left: 1.5rem;
+    margin-top: 0.68rem;
+  }
+  
+  .ow_navbar-links {
+    flex: 1;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .ow_navbar-links-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
     width: 50%;
     list-style: none;
-}
-
+    margin-left: 25rem;
+  }
+  
+  .ow_navbar-links-container p {
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .ow_navbar-links-container a {
+    text-decoration: none;
+    color: #fff;
+  }
+  

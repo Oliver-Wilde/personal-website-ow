@@ -5,17 +5,20 @@ import logojpg from '../../assets/logo.jpg';
 
 const Navbar = () => {
   return (
-    <nav>
-    <div className="logo">
-      <img src={logojpg} alt="Logo" />
+   <div className='ow_navbar'>
+    <div className='ow_navbar-links'>
+      <div className='ow_navbar-links-logo'>
+        <img src={logojpg} alt='logo' className='logo-image' />
+      </div>
+      <div className='ow_navbar-links-container'>
+      <p><a href='#portfolio'>.portfolio</a></p>
+      <p><a href='#about'>.about</a></p>
+      <p><a href='#skills'>.skills</a></p>
+      <p><a href='#experience'>.experience</a></p>
+      <p><a href='#contact'>.contacts</a></p>
+      </div>
     </div>
-    <ul className="nav-links">
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+   </div>
 );
 };
   
