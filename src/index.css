@@ -4,5 +4,6 @@
 }
 
 :root{
-    --colour-bg: #101419
+    --colour-bg: #101419;
+    --font-family: 'Titan One';
 }
