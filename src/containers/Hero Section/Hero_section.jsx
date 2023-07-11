@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
+// import monitorimage from '../../assets/blob1.svg'
+
 
 const Hero_section = () => {
   return (
@@ -13,9 +15,13 @@ const Hero_section = () => {
           <br/>
           <span className='subheading'> Aspring Student@NCL University</span>
         </h1>
+        {/* <div className='ow_hero-section-monitor-images'>
+          <img src = {monitorimage} alt='monitorimage' className='monitor-image'></img>
+        </div> */}
         <div className='ow_hero-section-monitor'>
           <img src={monitor} alt='monitor' class="monitor-image"/>
         </div>
+        
         
       </div>
     </div>

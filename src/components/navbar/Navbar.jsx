@@ -4,6 +4,9 @@ import './Navbar.css';
 import logojpg from '../../assets/logo.jpg';
 import gradientImage from '../../assets/gradient.png';
 const Navbar = () => {
+
+  const [isNavbarHovered, setIsNavbarHovered] = useState(false);
+
   const handleNavbarHover = () => {
     setIsNavbarHovered(true);
   };
@@ -28,6 +31,7 @@ const Navbar = () => {
       </div>
       <div className='background'>
         <img src={gradientImage} alt='Gradient' className='gradient-image' />
+        
       </div>
     </div>
    </div>
