@@ -21,12 +21,12 @@
     justify-content: flex-start;
     width: 50%;
     list-style: none;
-    margin-left: 25rem;
+    margin-left: 35rem;
 }
 
 .ow_navbar-links-container p {
     font-family: var(--font-family);
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #fff;
     margin-left: 2rem;
