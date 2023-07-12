@@ -55,7 +55,7 @@ h1 {
 .ow_hero-section-monitor img {
     max-width: 100%;
     width: 105;
-    height: 105%;
+    height: auto;
     /* Ensure the image doesn't exceed its container */
 }
 
@@ -97,6 +97,7 @@ h1 {
     line-height: 1.71875rem;
     width: 15.5625em !important;
     height: 7.26906rem;
+    cursor: pointer;
 
 
 }
@@ -112,6 +113,9 @@ h1 {
     line-height: 1.71875rem;
     width: 15.5625em !important;
     height: 7.26906rem;
+    cursor: pointer;
 
 
 }
+
+
