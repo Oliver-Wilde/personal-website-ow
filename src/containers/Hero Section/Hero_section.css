@@ -5,7 +5,7 @@ h1 {
     /* Other styles for the main text */
 }
 
-.ow_gpt3_hero-section-content {
+.ow_hero-section-content {
     display: flex;
     align-items: center;
     position: relative;
@@ -24,7 +24,7 @@ h1 {
     /* Other styles for the smaller text */
 }
 
-.ow_gpt3_hero-section-content h1 {
+.ow_hero-section-content h1 {
     display: flex;
     width: 24.125rem;
     height: 24rem;
@@ -77,22 +77,41 @@ h1 {
     margin-top: -2.5rem;
 }
 
+
+.resume_button_container {
+    display: flex;
+    width: 40rem;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 1.4rem;
+}
+
 .resume_button_container button {
-    display: flexbox;
-    flex-direction: row;
-    align-items: last baseline;
-    margin: 20px;
     border-radius: 4.375rem;
     background: #FF7477;
-    width: 17.5625rem;
-    height: 7.26906rem;
-    flex-shrink: 0;
     color: #000;
     font-family: Titan One;
-    font-size: 3.375rem;
+    font-size: 2.3rem;
     font-style: normal;
     font-weight: 400;
     line-height: 1.71875rem;
-    transform: translateX(-2rem);
+    width: 15.5625em !important;
+    height: 7.26906rem;
+
+
+}
+
+.contact_button {
+    border-radius: 4.375rem;
+    background: #F1CFD0 !important;
+    color: #000;
+    font-family: Titan One;
+    font-size: 2.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.71875rem;
+    width: 15.5625em !important;
+    height: 7.26906rem;
+
 
 }
