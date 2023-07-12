@@ -1,25 +1,8 @@
 h1 {
+    position: relative;
     font-family: var(--font-family);
+    
     /* Other styles for the main text */
-}
-
-.small-text {
-    color: #FFF;
-    font-family: Titan One;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%;
-    /* Color for the smaller text */
-    /* Other styles for the smaller text */
-}
-
-.big-text {
-    color: #fdca40;
-    font-size: 5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%;
 }
 
 .ow_gpt3_hero-section-content {
@@ -27,16 +10,62 @@ h1 {
     align-items: center;
     position: relative;
 }
-
+.small-text {
+    color: #FFF;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    padding-top: none;
+    padding-bottom: 2rem;
+    
+    /* Color for the smaller text */
+    /* Other styles for the smaller text */
+}
 .ow_gpt3_hero-section-content h1 {
     display: flex;
     width: 24.125rem;
     height: 24rem;
     flex-direction: column;
     flex-shrink: 0;
-    margin: 5.6rem;
-    margin-left: 7rem !important;
+    margin-top: -2rem;
+    margin-left: 7.8rem;
+    margin-right: 22.5rem !important;
+    
 }
+.ow_hero-section-monitor-padding {
+    display: flexbox;
+    transform: translateX(-0.5rem);
+    transform: translateY(3rem);
+    margin-right: none;
+        
+}
+
+
+.ow_hero-section-monitor {
+    position: relative;
+    z-index: 2;
+    /* Adjust the margin as needed */
+}
+
+.ow_hero-section-monitor img {
+    max-width: 100%;
+    width: 105;
+    height: 105%;
+    /* Ensure the image doesn't exceed its container */
+}
+
+
+.big-text {
+    color: #fdca40;
+    font-size: 7rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 130%;
+    margin-top: -5rem;
+}
+
+
 
 .subheading {
     font-weight: 100;
@@ -44,29 +73,7 @@ h1 {
     margin-top: -2.5rem;
 }
 
-.ow_hero-section-monitor {
-    margin-left: 2rem;
-    position: relative;
-    z-index: 2;
-    /* Adjust the margin as needed */
-}
 
-.ow_hero-section-monitor img {
-    margin-left: 7rem;
-    max-width: 100%;
-    width: 70%;
-    height: 70%;
-    /* Ensure the image doesn't exceed its container */
-}
-
-.ow_hero-section-monitor-images img {
-    position: absolute;
-    margin-top: -190px;
-    margin-left: 50px;
-    z-index: -1;
-    width: 47%;
-    height: 47%;
-}
 
 
 
