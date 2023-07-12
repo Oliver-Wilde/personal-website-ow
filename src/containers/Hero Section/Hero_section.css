@@ -1,7 +1,7 @@
 h1 {
     position: relative;
     font-family: var(--font-family);
-    
+
     /* Other styles for the main text */
 }
 
@@ -10,6 +10,7 @@ h1 {
     align-items: center;
     position: relative;
 }
+
 .small-text {
     color: #FFF;
     font-size: 2rem;
@@ -18,10 +19,11 @@ h1 {
     line-height: 130%;
     padding-top: none;
     padding-bottom: 2rem;
-    
+
     /* Color for the smaller text */
     /* Other styles for the smaller text */
 }
+
 .ow_gpt3_hero-section-content h1 {
     display: flex;
     width: 24.125rem;
@@ -31,14 +33,16 @@ h1 {
     margin-top: -2rem;
     margin-left: 7.8rem;
     margin-right: 22.5rem !important;
-    
+
 }
+
 .ow_hero-section-monitor-padding {
     display: flexbox;
     transform: translateX(-0.5rem);
     transform: translateY(3rem);
     margin-right: none;
-        
+    flex-direction: column;
+
 }
 
 
@@ -73,7 +77,22 @@ h1 {
     margin-top: -2.5rem;
 }
 
+.resume_button_container button {
+    display: flexbox;
+    flex-direction: row;
+    align-items: last baseline;
+    margin: 20px;
+    border-radius: 4.375rem;
+    background: #FF7477;
+    width: 17.5625rem;
+    height: 7.26906rem;
+    flex-shrink: 0;
+    color: #000;
+    font-family: Titan One;
+    font-size: 3.375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.71875rem;
+    transform: translateX(-2rem);
 
-
-
-
+}
