@@ -3,7 +3,7 @@ import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
 import '../../animations/animation.js' // Import the animation file
 // import monitorimage from '../../assets/blob1.svg'
-
+import about from '../../assets/About_me.gif'
 
 const Hero_section = () => {
   return (
@@ -16,12 +16,10 @@ const Hero_section = () => {
           <br />
           <span className='subheading'> Aspiring Student@NCL University</span>
           <div className='resume_button_container'>
-          <button type='button'>Resume</button>
-          <button className='contact_button' type='button'>Contact</button>
-        </div>
+            <button type='button'>Resume</button>
+            <button className='contact_button' type='button'>Contact</button>
+          </div>
         </h1>
-        
-        
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>
             <img src={monitor} alt='monitor' class="monitor-image" />
