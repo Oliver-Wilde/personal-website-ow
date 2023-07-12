@@ -14,21 +14,21 @@ const Hero_section = () => {
           <br />
           <span className='big-text'> Oliver Wilde</span>
           <br />
-          <span className='subheading'> Aspring Student@NCL University</span>
+          <span className='subheading'> Aspiring Student@NCL University</span>
+          <div className='resume_button_container'>
+          <button type='button'>Resume</button>
+        </div>
         </h1>
-        {/* <div className='ow_hero-section-monitor-images'>
-          <img src = {monitorimage} alt='monitorimage' className='monitor-image'></img>
-        </div> */}
+        <br />
+        
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>
             <img src={monitor} alt='monitor' class="monitor-image" />
           </div>
         </div>
-
-
-
       </div>
     </div>
-  )
-}
-export default Hero_section
+  );
+};
+
+export default Hero_section;
