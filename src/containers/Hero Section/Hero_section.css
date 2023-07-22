@@ -1,6 +1,7 @@
 h1 {
     position: relative;
     font-family: var(--font-family);
+    transform: translateY(-7rem);
 
     /* Other styles for the main text */
 }
@@ -13,15 +14,24 @@ h1 {
 
 .small-text {
     color: #FFF;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: 130%;
     padding-top: none;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+    
 
     /* Color for the smaller text */
     /* Other styles for the smaller text */
+}
+.big-text {
+    color: #fdca40;
+    font-size: 6.5rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 130%;
+    margin-top: -5rem;
 }
 
 .ow_hero-section-content h1 {
@@ -30,44 +40,42 @@ h1 {
     height: 24rem;
     flex-direction: column;
     flex-shrink: 0;
-    margin-top: -2rem;
+    margin-top: 9rem;
     margin-left: 7.8rem;
-    margin-right: 22.5rem !important;
+    margin-right: 22.5rem ;
 
 }
 
 .ow_hero-section-monitor-padding {
     display: flexbox;
-    transform: translateX(-0.5rem);
-    transform: translateY(3rem);
-    margin-right: none;
     flex-direction: column;
 
 }
 
 
-.ow_hero-section-monitor {
-    position: relative;
+.ow_hero-section-monitor img{
+    position: absolute;
     z-index: 2;
+    max-width: 50%;
+    flex-shrink: 0;
+    transform: translateY(-18rem);
+    transform: translateX(-5rem);
+    
     /* Adjust the margin as needed */
 }
-
-.ow_hero-section-monitor img {
+/* .about-gif {
+    position: absolute;
+    z-index: 2;
     max-width: 100%;
     width: 105;
     height: auto;
-    /* Ensure the image doesn't exceed its container */
-}
+    
+
+} */
 
 
-.big-text {
-    color: #fdca40;
-    font-size: 7rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 130%;
-    margin-top: -5rem;
-}
+
+
 
 
 
@@ -117,5 +125,8 @@ h1 {
 
 
 }
+
+
+
 
 
