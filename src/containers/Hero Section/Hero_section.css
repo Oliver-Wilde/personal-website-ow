@@ -56,6 +56,8 @@ h1 {
     z-index: -1 !important;
 }
 
+
+
 .ow_hero-section-monitor img{
     position: absolute;
     z-index: 2;
@@ -71,7 +73,7 @@ h1 {
     position: absolute;
     top: 100px; /* Adjust the top position as needed */
     left: 50%; /* To horizontally center the content */
-    transform: translateX(-50%); /* To center the content */
+    transform: translateX(25%) translateY(60%);
     z-index: 1; /* i dont want it to overlap over my monitor image lol */
 }
 /* .about-gif {
