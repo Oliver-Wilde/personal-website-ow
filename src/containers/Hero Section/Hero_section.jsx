@@ -24,10 +24,11 @@ const Hero_section = ({ hoverContent }) => {
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>
           {hoverContent ? (
-              <img src={hoverContent} alt='about' className="about-gif" />
+              <img src={hoverContent} alt='hover-content' className="hover-content" />
             ) : (
-              <img src={defaultimage} alt='deafult' className="default" />
+              <img src={defaultimage} alt='default-image' className="default-image" />
             )}
+            <img src={monitor} alt='monitor' className='monitor' />
           </div>
         </div>
       </div>
