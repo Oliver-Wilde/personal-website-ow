@@ -1,15 +1,24 @@
 h1 {
     position: relative;
     font-family: var(--font-family);
-    transform: translateY(-7rem);
-
-    /* Other styles for the main text */
 }
+
+
 
 .ow_hero-section-content {
     display: flex;
     align-items: center;
-    position: relative;
+    justify-content: center;
+    position: absolute;
+    height: 80%;
+}
+.ow_hero-section-content h1 {
+    display: flex;
+    width: 42.125rem;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-left: 5rem;
+    margin-top: 5rem;
 }
 
 .small-text {
@@ -20,46 +29,31 @@ h1 {
     line-height: 130%;
     padding-top: none;
     padding-bottom: 1rem;
-    
+} 
 
-    /* Color for the smaller text */
-    /* Other styles for the smaller text */
-}
 .big-text {
     color: #fdca40;
-    font-size: 6.5rem;
+    font-size: 7rem;
     font-style: normal;
     font-weight: 300;
     line-height: 130%;
-    margin-top: -5rem;
+    transform: translateY(-5rem);
+}
+.subheading {
+    font-weight: 100;
+    font-size: 1.5rem;
+    color: #FFF;
+    margin-top: -7.5rem;
 }
 
-.ow_hero-section-content h1 {
-    display: flex;
-    width: 24.125rem;
-    height: 24rem;
-    flex-direction: column;
-    flex-shrink: 0;
-    margin-top: 9rem;
-    margin-left: 7.8rem;
-    margin-right: 22.5rem ;
-
-}
-
-.ow_hero-section-monitor-padding {
-    display: flexbox;
-    flex-direction: column;
-
-}
 
 
 .ow_hero-section-monitor img{
     position: absolute;
     z-index: 2;
-    max-width: 50%;
+    max-width: 80%;
     flex-shrink: 0;
-    transform: translateY(-18rem);
-    transform: translateX(-5rem);
+    transform: translateY(-14rem);
     
     /* Adjust the margin as needed */
 }
@@ -76,21 +70,11 @@ h1 {
 
 
 
-
-
-
-.subheading {
-    font-weight: 100;
-    color: #FFF;
-    margin-top: -2.5rem;
-}
-
-
 .resume_button_container {
     display: flex;
-    width: 40rem;
+    width: 30rem;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 1.4rem;
 }
 
@@ -106,8 +90,6 @@ h1 {
     width: 15.5625em !important;
     height: 7.26906rem;
     cursor: pointer;
-
-
 }
 
 .contact_button {
@@ -122,8 +104,6 @@ h1 {
     width: 15.5625em !important;
     height: 7.26906rem;
     cursor: pointer;
-
-
 }
 
 
