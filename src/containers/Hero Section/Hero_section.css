@@ -51,7 +51,7 @@ h1 {
     
     width: 304px;
     height: 244px;
-    z-index: -1 !important;
+    z-index: 0 !important;
 }
 
 
