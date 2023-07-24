@@ -17,7 +17,7 @@ h1 {
     width: 42.125rem;
     flex-direction: column;
     flex-shrink: 0;
-    margin-left: 5rem;
+    margin-left: 7.5rem;
     margin-top: 5rem;
 }
 
@@ -47,12 +47,10 @@ h1 {
 }
 
 .default-image{
-    transform: translateX(7rem) !important;
-    transform: translateY(-10rem) !important;
-    margin-left: 4rem;
-    margin-top: 1rem;
-    width: 400px;
-    height: 270px;
+    transform: translateX(6rem) translateY(-10rem) !important;
+    
+    width: 304px;
+    height: 244px;
     z-index: -1 !important;
 }
 
@@ -61,9 +59,9 @@ h1 {
 .ow_hero-section-monitor img{
     position: absolute;
     z-index: 2;
-    max-width: 80%;
+    max-width: 78%;
     flex-shrink: 0;
-    transform: translateY(-14rem);
+    transform: translateY(-16rem);
     
     
     /* Adjust the margin as needed */
@@ -71,11 +69,15 @@ h1 {
 
 .hover-content-container {
     position: absolute;
+    width: 310px;
+    height: 245px;
     top: 100px; /* Adjust the top position as needed */
     left: 50%; /* To horizontally center the content */
-    transform: translateX(25%) translateY(60%);
+    transform: translateX(45%) translateY(45%);
     z-index: 1; /* i dont want it to overlap over my monitor image lol */
 }
+
+
 /* .about-gif {
     position: absolute;
     z-index: 2;
