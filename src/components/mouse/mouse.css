@@ -30,7 +30,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: linear-gradient(to right, aquamarine, mediumpurple);
+    background: linear-gradient(to right, rgb(204, 144, 201), rgb(14, 111, 238));
     animation: rotate 20s infinite;
     opacity: 0.8;
     z-index: -1;
