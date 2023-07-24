@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Navbar, mouse } from './components';
+import  { Navbar,Mouse } from './components';
 import { Hero_section, About_me  } from './containers';
 import './App.css';
 
@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className='App'>
       <div className='background-colour'>
-        <mouse/>
+        <Mouse></Mouse>
         <Navbar/>
         
       </div>
