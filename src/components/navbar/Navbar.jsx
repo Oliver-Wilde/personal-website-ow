@@ -7,7 +7,7 @@ import skills from '../../assets/skills.gif';
 import experience from '../../assets/Experience_hover.gif';
 import contact from '../../assets/contact_hover.gif';
 import about from '../../assets/About_me.gif'
-import Hero_section from '../../containers/Hero Section/Hero_section';
+
 
 const Navbar = () => {
   const [hoverContent, setHoverContent] = useState(null);

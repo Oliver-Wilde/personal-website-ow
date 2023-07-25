@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
 import '../../animations/animation.js';
