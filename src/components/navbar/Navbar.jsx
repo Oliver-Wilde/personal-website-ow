@@ -9,6 +9,7 @@ import contact from '../../assets/contact_hover.gif';
 import about from '../../assets/About_me.gif'
 
 
+
 const Navbar = () => {
   const [hoverContent, setHoverContent] = useState(null);
 
