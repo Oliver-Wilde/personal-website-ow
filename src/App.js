@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Mouse, ScrollBar } from './components';
 import { Hero_section, About_me, Project_section } from './containers';
 import './App.css';
-import { Scrollbars } from 'react-custom-scrollbars-2';
+
 
 const App = () => {
   return (
@@ -13,8 +13,9 @@ const App = () => {
         <ScrollBar >
           <Hero_section />
           {/* Add other content here */}
-          {/* <About_me /> */}
+          
           <Project_section />
+          <About_me />
         </ScrollBar>
       </div>
     </div>

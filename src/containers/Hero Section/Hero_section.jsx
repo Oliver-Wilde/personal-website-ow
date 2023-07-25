@@ -2,7 +2,6 @@ import React  from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
 import '../../animations/animation.js';
-import about from '../../assets/About_me.gif';
 import defaultimage from '../../assets/default.gif';
 
 const Hero_section = ({ hoverContent }) => {
