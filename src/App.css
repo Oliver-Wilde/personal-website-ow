@@ -16,3 +16,7 @@ body {
     
 }
 
+.custom-thumb {
+    background-image: linear-gradient(to bottom, #888888, #f0f0f0); /* Replace with your desired gradient colors */
+    border-radius: 10px; /* Adjust the value to control the smoothness */
+  }
