@@ -57,3 +57,26 @@
     z-index: -1;
 }
 
+.ow_navbar-links-container p a {
+    color: #ffffff; /* Set your desired link color */
+    text-decoration: none; /* Remove default underline */
+    position: relative; /* Required to make the pseudo-elements work */
+    display: inline-block; /* Required to create an underline */
+    padding-bottom: 4px; /* Add some spacing between the link text and the underline */
+  }
+  
+  /* Add the underline effect for hover animation */
+  .ow_navbar-links-container p a::before {
+    content: ''; /* Required for pseudo-element */
+    position: absolute; /* Position the underline absolutely */
+    bottom: 0; /* Position the underline at the bottom of the link */
+    width: 0; /* Initially set the width to 0 */
+    height: 2px; /* Set the height of the underline */
+    background-color: #fff9f9; /* Set the color of the underline */
+    transition: width 0.45s ease; /* Add transition for smooth animation */
+  }
+  
+  /* Add the hover animation */
+  .ow_navbar-links-container p a:hover::before {
+    width: 100%; /* Expand the width of the underline on hover */
+  }
