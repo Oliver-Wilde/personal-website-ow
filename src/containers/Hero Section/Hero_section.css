@@ -73,7 +73,7 @@ h1 {
     height: 245px;
     top: 100px; /* Adjust the top position as needed */
     left: 50%; /* To horizontally center the content */
-    transform: translateX(45%) translateY(45%);
+    transform: translateX(37.5%) translateY(45%);
     z-index: 1; /* i dont want it to overlap over my monitor image lol */
 }
 

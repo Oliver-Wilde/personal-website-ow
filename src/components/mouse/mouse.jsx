@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Mouse.css';
 import 'animate.css';
 
 const Mouse = () => {
+    const blobRef = useRef(null);
+
     useEffect(() => {
-        const blob = document.getElementById("blob");
-        const blobRect = blob.getBoundingClientRect();
-
         const updateBlobPosition = (event) => {
-            const { clientX, clientY } = event;
+            const blob = blobRef.current;
+            if (!blob) return;
 
-            const left = clientX - blobRect.width / 2;
-            const top = clientY - blobRect.height / 2;
+            const { clientX, clientY } = event;
+            const blobRect = blob.getBoundingClientRect();
+
+            // Calculate the scroll offsets
+            const scrollX = window.scrollX || window.pageXOffset;
+            const scrollY = window.scrollY || window.pageYOffset;
+
+            const left = clientX - blobRect.width / 2 + scrollX;
+            const top = clientY - blobRect.height / 2 + scrollY;
 
             blob.animate(
                 {
@@ -35,7 +42,7 @@ const Mouse = () => {
     return (
         <>
             <div className="blur"></div>
-            <div className="blob animate__slower" id="blob"></div>
+            <div className="blob animate__slower" id="blob" ref={blobRef}></div>
         </>
     );
 };
