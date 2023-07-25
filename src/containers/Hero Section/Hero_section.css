@@ -12,6 +12,7 @@ h1 {
     position: absolute;
     height: 80%;
 }
+
 .ow_hero-section-content h1 {
     display: flex;
     width: 42.125rem;
@@ -29,7 +30,7 @@ h1 {
     line-height: 130%;
     padding-top: none;
     padding-bottom: 1rem;
-} 
+}
 
 .big-text {
     color: #fdca40;
@@ -39,6 +40,7 @@ h1 {
     line-height: 130%;
     transform: translateY(-5rem);
 }
+
 .subheading {
     font-weight: 100;
     font-size: 1.5rem;
@@ -46,9 +48,9 @@ h1 {
     margin-top: -7.5rem;
 }
 
-.default-image{
+.default-image {
     transform: translateX(6rem) translateY(-10rem) !important;
-    
+
     width: 304px;
     height: 244px;
     z-index: 0 !important;
@@ -56,14 +58,14 @@ h1 {
 
 
 
-.ow_hero-section-monitor img{
+.ow_hero-section-monitor img {
     position: absolute;
     z-index: 2;
     max-width: 78%;
     flex-shrink: 0;
     transform: translateY(-16rem);
-    
-    
+
+
     /* Adjust the margin as needed */
 }
 
@@ -71,10 +73,13 @@ h1 {
     position: absolute;
     width: 310px;
     height: 245px;
-    top: 100px; /* Adjust the top position as needed */
-    left: 50%; /* To horizontally center the content */
+    top: 100px;
+    /* Adjust the top position as needed */
+    left: 50%;
+    /* To horizontally center the content */
     transform: translateX(37.5%) translateY(45%);
-    z-index: 1; /* i dont want it to overlap over my monitor image lol */
+    z-index: 1;
+    /* i dont want it to overlap over my monitor image lol */
 }
 
 
@@ -99,9 +104,9 @@ h1 {
     margin-top: 1.4rem;
 }
 
-.resume_button_container button {
+.resume_button_container button,
+.resume_button_container button.contact_button {
     border-radius: 4.375rem;
-    background: #FF7477;
     color: #000;
     font-family: Titan One;
     font-size: 2.3rem;
@@ -111,23 +116,26 @@ h1 {
     width: 15.5625em !important;
     height: 7.26906rem;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+
+    border: none;
+}
+
+.resume_button_container button {
+    background: #FF7477;
 }
 
 .contact_button {
-    border-radius: 4.375rem;
     background: #F1CFD0 !important;
-    color: #000;
-    font-family: Titan One;
-    font-size: 2.3rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.71875rem;
-    width: 15.5625em !important;
-    height: 7.26906rem;
-    cursor: pointer;
 }
 
-
-
-
-
+/* Add hover styles for the buttons */
+.resume_button_container button:hover,
+.resume_button_container button.contact_button:hover {
+    color: #fff;
+    /* Change text color to white on hover */
+    background: #000;
+    /* Change background color to black on hover */
+    transform: scale(1.1);
+    /* Slightly scale up the button on hover */
+}
