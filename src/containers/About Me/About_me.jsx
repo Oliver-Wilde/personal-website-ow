@@ -5,6 +5,7 @@ import wave1 from '../../assets/wave1.png'
 import wave2 from '../../assets/wave2.png'
 
 const About_me = () => {
+  
   return (
     <div className='ow_about-section-padding'>
       <div className='ow_about-section-content'>
