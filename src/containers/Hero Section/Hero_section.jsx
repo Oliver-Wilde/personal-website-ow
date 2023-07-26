@@ -7,7 +7,7 @@ import defaultimage from '../../assets/default.gif';
 const Hero_section = ({ hoverContent }) => {
   
   return (
-    <div className='ow_hero-section-padding'>
+    <div className='ow_hero-section-padding' >
       <div className='ow_hero-section-content'>
         <h1>
           <span className='small-text'>Hi, I'm</span>
@@ -21,7 +21,7 @@ const Hero_section = ({ hoverContent }) => {
           </div>
           
         </h1>
-        <div className='ow_hero-section-monitor-padding'>
+        <div className='ow_hero-section-monitor-padding' >
           <div className='ow_hero-section-monitor'>
           {hoverContent ? (
               <img src={hoverContent} alt='hover-content' className="hover-content" />

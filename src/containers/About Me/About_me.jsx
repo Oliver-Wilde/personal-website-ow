@@ -7,7 +7,7 @@ import wave2 from '../../assets/wave2.png'
 const About_me = () => {
   
   return (
-    <div className='ow_about-section-padding'>
+    <div id="about" className='ow_about-section-padding' data-aos="fade-up" data-aos-offset="700">
       <div className='ow_about-section-content'>
         <h1>
           <img src={info} alt='info' className='info-image' />

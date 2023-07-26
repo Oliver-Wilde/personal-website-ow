@@ -57,7 +57,6 @@ h1 {
 
 .default-image {
     transform: translateX(6.5rem) translateY(4.9rem) !important;
-
     width: 304px;
     height: 244px;
     z-index: 0 !important;
@@ -89,7 +88,7 @@ h1 {
     left: 50%;
     /* To horizontally center the content */
     transform: translateX(40.5%) translateY(50%);
-    z-index: 1;
+    z-index: 1 ;
     /* i dont want it to overlap over my monitor image lol */
 }
 
