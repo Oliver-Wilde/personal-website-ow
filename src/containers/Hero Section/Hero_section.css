@@ -2,15 +2,19 @@ h1 {
     position: relative;
     font-family: var(--font-family);
 }
+.ow_hero-section-padding{
+    margin: 2rem;
+}
 
 
 
 .ow_hero-section-content {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    height: 80%;
+    align-items:center;
+    justify-content:center;
+    
+    
+    
 }
 
 .ow_hero-section-content h1 {
@@ -18,8 +22,11 @@ h1 {
     width: 42.125rem;
     flex-direction: column;
     flex-shrink: 0;
-    margin-left: 7.5rem;
-    margin-top: 5rem;
+    transform: translateY(-10rem);
+    margin-left: 5rem;
+    margin-top: 4rem;
+    
+    
 }
 
 .small-text {
@@ -49,19 +56,23 @@ h1 {
 }
 
 .default-image {
-    transform: translateX(6rem) translateY(-10rem) !important;
+    transform: translateX(6.5rem) translateY(4.9rem) !important;
 
     width: 304px;
     height: 244px;
     z-index: 0 !important;
 }
 
-
+.ow_hero-section-monitor-padding{
+    float: right;
+    padding: 1rem;
+}
 
 .ow_hero-section-monitor img {
-    position: absolute;
+    position: relative;
+    align-items:flex-end;
     z-index: 2;
-    max-width: 78%;
+    max-width: 90%;
     flex-shrink: 0;
     transform: translateY(-16rem);
 
@@ -77,7 +88,7 @@ h1 {
     /* Adjust the top position as needed */
     left: 50%;
     /* To horizontally center the content */
-    transform: translateX(37.5%) translateY(45%);
+    transform: translateX(40.5%) translateY(50%);
     z-index: 1;
     /* i dont want it to overlap over my monitor image lol */
 }

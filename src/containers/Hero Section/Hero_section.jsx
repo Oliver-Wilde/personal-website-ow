@@ -19,6 +19,7 @@ const Hero_section = ({ hoverContent }) => {
             <button type='button'>Resume</button>
             <button className='contact_button' type='button'>Contact</button>
           </div>
+          
         </h1>
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>

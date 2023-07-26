@@ -1,8 +1,9 @@
 .ow_about-section-padding {
     display: flex;
     justify-content: center;
-    transform: translateY(50rem);
+    margin-top: 0rem;
     position: relative;
+    
     
     
 }
@@ -56,10 +57,7 @@
   }
   
 
-.wave-divider {
-    aspect-ratio: 1500/600;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* Add any other styles you need for the wave divider */
-}
+
+
+
+  
