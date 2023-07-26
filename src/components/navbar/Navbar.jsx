@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='ow_navbar'>
+    <div className='ow_navbar' >
       <div className='ow_navbar-links'>
         <div className='ow_navbar-links-logo'>
           <img src={logojpg} alt='logo' className='logo-image' />
