@@ -1,0 +1,34 @@
+.card-padding {
+    padding: 10rem;
+  }
+  
+  .card {
+    overflow: hidden;
+    position: relative;
+    width: 580px;
+    aspect-ratio: 3/2;
+    
+    z-index: 3;
+    cursor: pointer;
+    
+  }
+  
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  @keyframes le-pulse {
+    0%, 100% {
+      transform: scale(1); /* Set the initial and final scale value (original size) */
+    }
+    50% {
+      transform: scale(1.1); /* Set the scale value for the pulse effect */
+    }
+  }
+  
+  .card:hover img {
+    animation: le-pulse 0.8s ease-in-out; /* Apply the pulse animation on hover */
+  }
+  
