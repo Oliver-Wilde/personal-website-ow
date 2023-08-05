@@ -1,34 +1,63 @@
 .card-padding {
-    padding: 10rem;
-  }
+  transform: translateY(2rem);
+  padding-top: 5rem;
+  padding-left: 8rem;
+}
+
+.card-container {
+  padding-top:1rem ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Adjust the spacing between columns */
+}
+
+.card {
+  padding-left: 4rem;
+  padding-top: 2rem;
+  overflow: visible;
+  position: relative;
+  width: 400px;
+  height: 290px;
+  z-index: 3;
+  cursor: pointer;
   
-  .card {
-    overflow: hidden;
-    position: relative;
-    width: 580px;
-    aspect-ratio: 3/2;
-    
-    z-index: 3;
-    cursor: pointer;
-    
-  }
   
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+
+}
+
+.card img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.card-background-bloo {
+  width: 80.06919rem;
+  height: 40.83269rem;
+  transform: rotate(-0.328deg);
+  flex-shrink: 0;
+  border-radius: 4.375rem;
+  background: rgba(102, 228, 235, 0.623);;
   
-  @keyframes le-pulse {
-    0%, 100% {
-      transform: scale(1); /* Set the initial and final scale value (original size) */
-    }
-    50% {
-      transform: scale(1.1); /* Set the scale value for the pulse effect */
-    }
+}
+
+
+@keyframes le-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    /* Set the initial and final scale value (original size) */
   }
-  
-  .card:hover img {
-    animation: le-pulse 0.8s ease-in-out; /* Apply the pulse animation on hover */
+
+  50% {
+    transform: scale(1.1);
+    /* Set the scale value for the pulse effect */
   }
-  
+}
+
+.card:hover img {
+  animation: le-pulse 0.8s ease-in-out;
+  /* Apply the pulse animation on hover */
+}
