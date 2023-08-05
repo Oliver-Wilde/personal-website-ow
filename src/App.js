@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Navbar, Mouse, ScrollBar } from './components';
-import { Hero_section, About_me, Project_section } from './containers';
+import { Hero_section, About_me, Project_section, Skills_section } from './containers';
 import './App.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
@@ -19,8 +19,9 @@ const App = () => {
           <Hero_section />
           {/* Add other content here */}
           
-          <Project_section />
+          {/* <Project_section /> */}
           <About_me />
+          <Skills_section/>
         </ScrollBar>
       </div>
     </div>
