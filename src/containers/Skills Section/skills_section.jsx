@@ -11,8 +11,8 @@ import Card from '../../components/card/card'; // Import the Card component
 const Skills_section = () => {
   return (
     <div id="skills" className='card-padding'>
-      <div className='card-background-bloo'>
-        <div className='card-container'>
+      <div className='card-container'>
+        <div className='card-background-bloo'>
           <Card image={python} />
           <Card image={java} />
           <Card image={react}/>
