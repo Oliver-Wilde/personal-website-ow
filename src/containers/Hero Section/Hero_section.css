@@ -46,8 +46,8 @@ h1 {
 }
 
 .default-image {
-    width: 250px;
-    height: 244px;
+    max-width: 89%;
+
 }
 
 .ow_hero-section-monitor-padding {
@@ -56,20 +56,28 @@ h1 {
     z-index: 3;
 }
 
-.ow_hero-section-monitor img {
-    max-width: 89%;
-    z-index: 3;
+.ow_hero-section-monitor{
+    position: relative;
+    
 }
 
+.ow_hero-section-monitor img {
+    position: relative;
+    width: 600.55px;
+    height: 520.99px;
+    z-index: 3;
+}
 .hover-content-container {
     position: absolute;
     width: 304px;
     height: 244px;
-    top: 14rem;
-    left: 56rem;
-    
+    top: 50%; /* Set the top position to 50% to center vertically */
+    left: 50%; /* Set the left position to 50% to center horizontally */
+    transform: translate(55%, 76%) !important; /* Center the container properly */
     z-index: 1;
-}
+  }
+
+
 
 .resume_button_container {
     display: flex;
