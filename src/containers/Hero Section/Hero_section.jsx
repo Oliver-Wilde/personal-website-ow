@@ -1,11 +1,9 @@
-import React  from 'react';
+import React from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
 import '../../animations/animation.js';
-import defaultimage from '../../assets/default.gif';
 
 const Hero_section = ({ hoverContent }) => {
-  
   return (
     <div className='ow_hero-section-padding' >
       <div className='ow_hero-section-content'>
@@ -23,10 +21,8 @@ const Hero_section = ({ hoverContent }) => {
         </h1>
         <div className='ow_hero-section-monitor-padding' >
           <div className='ow_hero-section-monitor'>
-          {hoverContent ? (
+            {hoverContent && (
               <img src={hoverContent} alt='hover-content' className="hover-content" />
-            ) : (
-              <img src={defaultimage} alt='default-image' className="default-image" />
             )}
             <img src={monitor} alt='monitor' className='monitor' />
           </div>
@@ -35,6 +31,5 @@ const Hero_section = ({ hoverContent }) => {
     </div>
   );
 };
-
 
 export default Hero_section;
