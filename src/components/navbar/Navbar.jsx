@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logojpg from '../../assets/logo.jpg';
 import gradientImage from '../../assets/gradient.png';
@@ -19,6 +19,8 @@ const Navbar = () => {
   const resetContent = () => {
     setHoverContent(null);
   };
+
+  
 
   return (
     <div className='ow_navbar'>
