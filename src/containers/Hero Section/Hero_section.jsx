@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
-import portfolio from '../../assets/Portfolio_hover.gif';
-import about from '../../assets/About_me.gif';
-import skills from '../../assets/skills.gif';
-import experience from '../../assets/Experience_hover.gif';
-import contact from '../../assets/contact_hover.gif';
-import defaultimage from '../../assets/default.gif';
+
 
 const Hero_section = () => {
-  const [hoverContent, setHoverContent] = useState(null);
+  const [hoverContent] = useState(null);
 
-  const switchImage = (newContent) => {
-    setHoverContent(newContent);
-  };
 
-  const resetContent = () => {
-    setHoverContent(null);
-  };
 
   return (
     <div className='ow_hero-section-padding'>
