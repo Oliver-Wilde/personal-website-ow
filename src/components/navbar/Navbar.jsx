@@ -6,9 +6,8 @@ import portfolio from '../../assets/Portfolio_hover.gif';
 import skills from '../../assets/skills.gif';
 import experience from '../../assets/Experience_hover.gif';
 import contact from '../../assets/contact_hover.gif';
-import about from '../../assets/About_me.gif'
-
-
+import about from '../../assets/About_me.gif';
+import defaultimage from '../../assets/default.gif';
 
 const Navbar = () => {
   const [hoverContent, setHoverContent] = useState(null);
@@ -22,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='ow_navbar' >
+    <div className='ow_navbar'>
       <div className='ow_navbar-links'>
         <div className='ow_navbar-links-logo'>
           <img src={logojpg} alt='logo' className='logo-image' />
@@ -48,6 +47,13 @@ const Navbar = () => {
           <img src={gradientImage} alt='Gradient' className='gradient-image' />
         </div>
       </div>
+      {/* Conditionally render the default GIF container */}
+      {!hoverContent && (
+        <div className="hover-content-container">
+          <img src={defaultimage} alt="default-image" />
+        </div>
+      )}
+      {/* Render the hoverContent when it's not null */}
       {hoverContent && (
         <div className="hover-content-container">
           {hoverContent}
