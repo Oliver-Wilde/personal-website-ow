@@ -1,35 +1,29 @@
 .card-padding {
   transform: translateY(2rem);
-  padding-top: 5rem;
-  padding-left: 8rem;
 }
 
 .card-container {
-  padding-top:1rem ;
+  margin: 2rem auto; /* Add margin to center the container */
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Adjust the spacing between columns */
+  justify-content: center; /* Center the cards within the container */
 }
 
 .card {
-  padding-left: 4rem;
-  padding-top: 2rem;
+  padding: 2rem;
   overflow: visible;
-  position: relative;
   width: 400px;
   height: 290px;
   z-index: 3;
   cursor: pointer;
-  
-  
-
 }
 
 .card img {
   width: 250px;
   height: 250px;
   object-fit: contain;
-  justify-content: center;
+  display: block; /* Add display: block to remove extra space below images */
+  margin: 0 auto; /* Center the images within the cards */
 }
 
 .card-background-bloo {
@@ -39,25 +33,18 @@
   flex-shrink: 0;
   border-radius: 4.375rem;
   background: rgba(102, 228, 235, 0.623);
-  
+
 }
 
-
 @keyframes le-pulse {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
-    /* Set the initial and final scale value (original size) */
   }
-
   50% {
     transform: scale(1.1);
-    /* Set the scale value for the pulse effect */
   }
 }
 
 .card:hover img {
   animation: le-pulse 0.8s ease-in-out;
-  /* Apply the pulse animation on hover */
 }
