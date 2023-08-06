@@ -3,11 +3,19 @@
 }
 
 .card-container {
-  margin: 2rem auto; /* Add margin to center the container */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center the cards within the container */
+  position: relative;
+  width: 80.06919rem;
+  height: 40.83269rem;
+  transform: rotate(-0.328deg);
+  flex-shrink: 0;
+  border-radius: 4.375rem;
+  background: rgba(173, 217, 244, 0.402);
+  justify-content: center;
+
+  /* Center the container horizontally */
+  margin: 0 auto;
 }
+
 
 .card {
   padding: 2rem;
@@ -16,6 +24,7 @@
   height: 290px;
   z-index: 3;
   cursor: pointer;
+  justify-content: center;
 }
 
 .card img {
@@ -27,12 +36,10 @@
 }
 
 .card-background-bloo {
-  width: 80.06919rem;
-  height: 40.83269rem;
-  transform: rotate(-0.328deg);
-  flex-shrink: 0;
-  border-radius: 4.375rem;
-  background: rgba(102, 228, 235, 0.623);
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1rem;
 
 }
 
