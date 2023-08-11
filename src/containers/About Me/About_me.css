@@ -55,3 +55,12 @@
     transform: translateX(-2rem);
     margin-top: 4rem;
 }
+
+
+@media screen and (max-width: 769px) {
+    .ow_about-section-content{
+        transform: translateY(65rem);
+
+    }
+
+}
