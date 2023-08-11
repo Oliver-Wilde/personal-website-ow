@@ -55,3 +55,7 @@
 .card:hover img {
   animation: le-pulse 0.8s ease-in-out;
 }
+
+
+
+@media screen and (max-width: 769px) {}
