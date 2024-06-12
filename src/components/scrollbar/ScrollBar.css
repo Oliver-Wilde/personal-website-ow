@@ -1,17 +1,13 @@
-
-
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 5px;
-    
+
 }
 
-::-webkit-scrollbar-track {
-	background: none;
+.scroll-bar {
+    height: 100vh;
+    overflow-y: auto;
 }
 
-::-webkit-scrollbar-thumb {
-    background: -webkit-linear-gradient(bottom , #28e5bf, #280254);
-    border: 1px solid #1f0202;
-    border-radius: 100; /* Set border-radius to 0 for smooth edge rectangle */
-    height: 10px;
+.scroll-bar-content {
+    padding: 1rem;
 }
