@@ -56,6 +56,30 @@
   animation: le-pulse 0.8s ease-in-out;
 }
 
+@media screen and (max-width: 769px) {
+  .card-padding {
+    transform: translateY(2rem);
+  }
 
+  .card-container {
+    width: 40.83269rem; /* Swap width and height */
+    height: 30.06919rem;
+    transform: rotate(90deg) translateY(-36rem) translateX(60rem); /* Rotate by 90 degrees */
+    transform-origin: top left; /* Set rotation pivot point */
+    
+  }
 
-@media screen and (max-width: 769px) {}
+  .card {
+    width: 290px; /* Adjust width and height accordingly */
+    height: 200px;
+  }
+
+  .card img {
+    width: 150px; /* Adjust width and height accordingly */
+    height: 140px;
+    transform: rotate(90deg);
+    transform-origin: top left !important;
+    /* Other styles */
+  }
+}
+

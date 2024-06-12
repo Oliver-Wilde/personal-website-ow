@@ -124,7 +124,7 @@ h1 {
 
 
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1085px) {
     .ow_hero-section-content h1 {
         margin-top: 5rem;
         display: flex;
@@ -141,9 +141,9 @@ h1 {
         transform: translateY(30rem) translateX(-15rem);
     }
 
-    .hover-content-container {
+    .hover-content-container  {
         position: absolute;
-        transform: translateX(-9rem) translateY(40rem) !important;
+        transform: translateX(-18rem) translateY(29rem) !important;
     }
 
 }

@@ -57,7 +57,7 @@
 }
 
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1024px) {
     .ow_about-section-content{
         transform: translateY(65rem);
 
