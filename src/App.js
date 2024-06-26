@@ -20,7 +20,7 @@ const App = () => {
         <ScrollBar>
           <Hero_section />
           {/* Add Portfolio component */}
-          <Portfolio />
+          
           {/* <Project_section /> */}
         </ScrollBar>
       </div>

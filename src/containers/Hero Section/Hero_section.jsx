@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
 
-
 const Hero_section = () => {
-  const [hoverContent] = useState(null);
-
-
-
   return (
     <div className='ow_hero-section-padding'>
       <div className='ow_hero-section-content'>
@@ -25,12 +20,6 @@ const Hero_section = () => {
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>
             <img src={monitor} alt='monitor' className='monitor' />
-            {/* Conditionally render the hover content container */}
-            {hoverContent && (
-              <div className="hover-content-container">
-                {hoverContent}
-              </div>
-            )}
           </div>
         </div>
       </div>
