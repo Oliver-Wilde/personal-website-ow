@@ -1,6 +1,7 @@
 import React from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
+import defaultgif from '../../assets/default.gif'
 
 const Hero_section = () => {
   return (
@@ -20,6 +21,9 @@ const Hero_section = () => {
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>
             <img src={monitor} alt='monitor' className='monitor' />
+            <div className='hover-content-container'>
+              <img src={defaultgif} alt= "defaultGIF" className='default-gif'></img>
+            </div>
           </div>
         </div>
       </div>
