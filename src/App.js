@@ -21,7 +21,7 @@ const App = () => {
         <ScrollBar>
           <Hero_section hoverGif={hoverGif}/>
           {/* Add Portfolio component */}
-          
+          <Portfolio/>
           {/* <Project_section /> */}
         </ScrollBar>
       </div>
