@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Hero_section.css';
 import monitor from '../../assets/monitor.png';
-import defaultgif from '../../assets/default.gif'
+import defaultimage from '../../assets/default.gif';
 
-const Hero_section = () => {
+const Hero_section = ({ hoverGif }) => {
   return (
     <div className='ow_hero-section-padding'>
       <div className='ow_hero-section-content'>
@@ -21,8 +21,8 @@ const Hero_section = () => {
         <div className='ow_hero-section-monitor-padding'>
           <div className='ow_hero-section-monitor'>
             <img src={monitor} alt='monitor' className='monitor' />
-            <div className='hover-content-container'>
-              <img src={defaultgif} alt= "defaultGIF" className='default-gif'></img>
+            <div className="hover-content-container">
+              <img src={hoverGif || defaultimage} alt="content" className="default-gif" />
             </div>
           </div>
         </div>

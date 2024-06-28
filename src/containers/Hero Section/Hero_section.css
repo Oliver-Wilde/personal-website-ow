@@ -66,8 +66,8 @@ h1 {
 
 .hover-content-container {
     position: absolute;
-    width: 152px; /* Reduced width */
-    height: 122px; /* Reduced height */
+    width: 155px; /* Reduced width */
+    height: 125px; /* Reduced height */
     
     
 }
@@ -77,8 +77,8 @@ h1 {
     height: 250px !important;  /* Adjust the width to make the GIF smaller */
     height: auto;  /* Maintain aspect ratio */
     position: absolute;
-    top: 15%;
-    left: 10%;
+    top: 13%;
+    left: 15%;
     transform: translate(-50%, -50%);
 }
 

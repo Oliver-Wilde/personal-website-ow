@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import { Navbar, Mouse, ScrollBar } from './components';
 import { Hero_section, About_me, Project_section, Skills_section } from './containers';
 import Portfolio from '../src/containers/Portfolio/portfolio'; // Import the Portfolio component
@@ -8,6 +8,7 @@ import AOS from 'aos';
 import Slider from './components/slider/Slider';
 
 const App = () => {
+  const [hoverGif, setHoverGif] = useState(null);
   useEffect(() => {
     AOS.init(); // Initialize AOS library when the component mounts
   }, []);
@@ -16,9 +17,9 @@ const App = () => {
     <div className='App'>
       <div className='background-colour'>
         <Mouse />
-        <Navbar />
+        <Navbar setHoverGif={setHoverGif} />
         <ScrollBar>
-          <Hero_section />
+          <Hero_section hoverGif={hoverGif}/>
           {/* Add Portfolio component */}
           
           {/* <Project_section /> */}
