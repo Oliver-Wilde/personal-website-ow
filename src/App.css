@@ -5,13 +5,14 @@
     scroll-behavior: smooth;
     
     
+    
 }
 
 
 
 body {
     background: #180933;
-    
+    overflow-y: auto;
     
     
 }

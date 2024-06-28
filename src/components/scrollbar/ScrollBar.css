@@ -4,8 +4,8 @@
 }
 
 .scroll-bar {
-    height: 100vh;
-    overflow-y: auto;
+    height: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .scroll-bar-content {
