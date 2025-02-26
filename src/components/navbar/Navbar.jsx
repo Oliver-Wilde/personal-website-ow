@@ -9,7 +9,7 @@ import experience from '../../assets/Experience_hover.gif';
 import contact from '../../assets/contact_hover.gif';
 import about from '../../assets/About_me.gif';
 
-const Navbar = ({ setHoverGif }) => {
+const Navbar = ({ setHoverGif, setActiveSection }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleMouseEnter = (gif) => {
@@ -20,6 +20,11 @@ const Navbar = ({ setHoverGif }) => {
     setHoverGif(null);
   };
 
+  const handleClick = (section) => {
+    setActiveSection(section);
+    setToggleMenu(false);
+  };
+
   return (
     <div className='ow_navbar'>
       <div className='ow_navbar-links'>
@@ -27,19 +32,19 @@ const Navbar = ({ setHoverGif }) => {
           <img src={logojpg} alt='logo' className='logo-image' />
         </div>
         <div className='ow_navbar-links-container'>
-          <p onMouseEnter={() => handleMouseEnter(portfolio)} onMouseLeave={handleMouseLeave}>
+          <p onMouseEnter={() => handleMouseEnter(portfolio)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('portfolio')}>
             <a href='#portfolio'>.portfolio</a>
           </p>
-          <p onMouseEnter={() => handleMouseEnter(about)} onMouseLeave={handleMouseLeave}>
+          <p onMouseEnter={() => handleMouseEnter(about)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('about')}>
             <a href='#about'>.about</a>
           </p>
-          <p onMouseEnter={() => handleMouseEnter(skills)} onMouseLeave={handleMouseLeave}>
+          <p onMouseEnter={() => handleMouseEnter(skills)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('skills')}>
             <a href='#skills'>.skills</a>
           </p>
-          <p onMouseEnter={() => handleMouseEnter(experience)} onMouseLeave={handleMouseLeave}>
+          <p onMouseEnter={() => handleMouseEnter(experience)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('experience')}>
             <a href='#experience'>.experience</a>
           </p>
-          <p onMouseEnter={() => handleMouseEnter(contact)} onMouseLeave={handleMouseLeave}>
+          <p onMouseEnter={() => handleMouseEnter(contact)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('contact')}>
             <a href='#contact'>.contacts</a>
           </p>
         </div>
@@ -53,19 +58,19 @@ const Navbar = ({ setHoverGif }) => {
           {toggleMenu && (
             <div className='ow_navbar-menu-container scale-up-centre '>
               <div className='ow_navbar-menu-container-links scale-up-centre'>
-                <p onMouseEnter={() => handleMouseEnter(portfolio)} onMouseLeave={handleMouseLeave}>
+                <p onMouseEnter={() => handleMouseEnter(portfolio)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('portfolio')}>
                   <a href='#portfolio'>.portfolio</a>
                 </p>
-                <p onMouseEnter={() => handleMouseEnter(about)} onMouseLeave={handleMouseLeave}>
+                <p onMouseEnter={() => handleMouseEnter(about)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('about')}>
                   <a href='#about'>.about</a>
                 </p>
-                <p onMouseEnter={() => handleMouseEnter(skills)} onMouseLeave={handleMouseLeave}>
+                <p onMouseEnter={() => handleMouseEnter(skills)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('skills')}>
                   <a href='#skills'>.skills</a>
                 </p>
-                <p onMouseEnter={() => handleMouseEnter(experience)} onMouseLeave={handleMouseLeave}>
+                <p onMouseEnter={() => handleMouseEnter(experience)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('experience')}>
                   <a href='#experience'>.experience</a>
                 </p>
-                <p onMouseEnter={() => handleMouseEnter(contact)} onMouseLeave={handleMouseLeave}>
+                <p onMouseEnter={() => handleMouseEnter(contact)} onMouseLeave={handleMouseLeave} onClick={() => handleClick('contact')}>
                   <a href='#contact'>.contacts</a>
                 </p>
               </div>
