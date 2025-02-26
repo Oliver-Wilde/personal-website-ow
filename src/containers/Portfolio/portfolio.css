@@ -12,7 +12,7 @@
 }
 
 .portfolio-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     /* Adjust min width for smaller cards */
     gap: 1rem;

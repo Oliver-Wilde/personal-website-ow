@@ -6,6 +6,7 @@ h1 {
 
 .ow_hero-section-padding {
     margin: 2rem;
+    transition: filter 0.3s ease-in-out;
 }
 
 .ow_hero-section-content {
@@ -51,6 +52,18 @@ h1 {
     float: right;
     padding: 1rem;
     z-index: 3;
+    transition: transform 0.5s ease-in-out;
+    /* Add smooth zoom transition */
+}
+
+.ow_hero-section-monitor-padding.zoomed {
+    transform: scale(1);
+    /* Adjust scale to zoom in */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    /* Center the zoomed image */
 }
 
 .ow_hero-section-monitor {
@@ -66,22 +79,27 @@ h1 {
 
 .hover-content-container {
     position: absolute;
-    width: 155px; /* Reduced width */
-    height: 125px; /* Reduced height */
-    
-    
+    width: 155px;
+    /* Reduced width */
+    height: 125px;
+    /* Reduced height */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .default-gif {
     width: 299px !important;
-    height: 250px !important;  /* Adjust the width to make the GIF smaller */
-    height: auto;  /* Maintain aspect ratio */
+    height: 250px !important;
+    /* Adjust the width to make the GIF smaller */
+    height: auto;
+    /* Maintain aspect ratio */
     position: absolute;
     top: 13%;
     left: 15%;
     transform: translate(-50%, -50%);
 }
-
 
 .resume_button_container {
     display: flex;

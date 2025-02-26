@@ -1,0 +1,20 @@
+.monitor-transition {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    /* Full width */
+    height: 100vh;
+    /* Full height */
+    background: #000;
+    /* Black background for monitor */
+    transform: translateX(-50%);
+    border: 2px solid #61dafb;
+    /* Border color for the monitor */
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
