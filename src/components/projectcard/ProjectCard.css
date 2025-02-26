@@ -4,9 +4,10 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 16px;
-    margin: 16px;
-    width: 500px;
-    /* Increase the width */
+    margin: 16px 0;
+    /* Adjust margin to handle spacing between rows */
+    width: 100%;
+    /* Make the card take full width */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: var(--font-family);
 }

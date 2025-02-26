@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import '../../components/contactform/contactformmodal.css';
+import './contactformmodal.css'; // Updated styles
 
-const ContactFormModal = ({ isOpen, onClose }) => {
+const ContactFormModal = ({ onClose }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -11,49 +11,84 @@ const ContactFormModal = ({ isOpen, onClose }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData((prevData) => ({
+            ...prevData,
             [name]: value
-        });
+        }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Replace these with your own values from EmailJS
         emailjs.send(
-            'service_kn5578x', // Replace with your EmailJS service ID
-            'template_1mg867v', // Replace with your EmailJS template ID
-            formData,
-            'A-pEaxFyfvjyIC14X' // Replace with your EmailJS user ID
-        ).then((result) => {
-            console.log(result.text);
-            onClose();
-        }, (error) => {
-            console.log(error.text);
-        });
+            'YOUR_SERVICE_ID',
+            'YOUR_TEMPLATE_ID',
+            {
+                to_name: 'Oliver Wilde',
+                from_name: formData.name,
+                message: formData.message,
+                reply_to: formData.email
+            },
+            'YOUR_USER_ID'
+        ).then(
+            (result) => {
+                console.log(result.text);
+                onClose();
+            },
+            (error) => {
+                console.log(error.text);
+            }
+        );
     };
 
-    if (!isOpen) return null;
+    // Click outside the modal card to close
+    const handleOverlayClick = (e) => {
+        if (e.target.classList.contains('modal-overlay')) {
+            onClose();
+        }
+    };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal">
-                <button className="modal-close" onClick={onClose}>X</button>
-                <h2>Contact Me</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Name:
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-                    </label>
-                    <label>
-                        Email:
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-                    </label>
-                    <label>
-                        Message:
-                        <textarea name="message" value={formData.message} onChange={handleChange} required />
-                    </label>
-                    <button type="submit">Send</button>
+        <div className="modal-overlay" onClick={handleOverlayClick}>
+            <div className="modal-container">
+                <button className="modal-close-button" onClick={onClose}>×</button>
+                <h2 className="modal-title">Get in Touch</h2>
+                <form onSubmit={handleSubmit} className="modal-form">
+                    <div className="modal-form-group">
+                        <label htmlFor="name">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="modal-form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="modal-form-group">
+                        <label htmlFor="message">Message</label>
+                        <textarea
+                            name="message"
+                            id="message"
+                            rows="5"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="submit-button">Send</button>
                 </form>
             </div>
         </div>

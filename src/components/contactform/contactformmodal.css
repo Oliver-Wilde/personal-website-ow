@@ -1,85 +1,134 @@
-/* Modal overlay and blur effect */
+/* Variables / Root defaults */
+:root {
+    --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+    /* The dark overlay behind the modal */
+    --modal-bg-color: #ffffff;
+    /* The card background color */
+    --modal-accent-color: #FDCA40;
+    /* Accent color for buttons/links */
+    --modal-text-color: #333333;
+    /* Base text color */
+    --modal-font-family: 'Titan One', sans-serif;
+}
+
+/* The overlay that covers the screen */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    /* Add blur effect */
+    background-color: var(--modal-overlay-bg);
+    backdrop-filter: blur(8px);
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 1000;
+    justify-content: center;
+    z-index: 9999;
+    /* Make sure the modal is above other elements */
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    /* Simple fade-in animation */
 }
 
-/* Modal styling */
-.modal {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+/* The modal "card" container */
+.modal-container {
     position: relative;
+    background-color: var(--modal-bg-color);
+    border-radius: 10px;
+    padding: 2rem;
     width: 90%;
-    /* Responsive width */
-    max-width: 500px;
-    /* Maximum width */
-    font-family: var(--font-family);
-    /* Match font family */
+    max-width: 450px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out forwards;
+    /* Slide up for a subtle effect */
 }
 
-/* Close button */
-.modal-close {
+/* Title */
+.modal-title {
+    font-family: var(--modal-font-family);
+    font-size: 1.8rem;
+    color: var(--modal-text-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Close button in the top-right corner */
+.modal-close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 1rem;
+    right: 1rem;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
-    color: #333;
-    /* Match style with website */
+    color: var(--modal-text-color);
+    transition: color 0.3s;
+}
+
+.modal-close-button:hover {
+    color: var(--modal-accent-color);
 }
 
 /* Form styling */
-form {
+.modal-form {
     display: flex;
     flex-direction: column;
 }
 
-label {
-    margin-bottom: 1rem;
-    color: #333;
-    /* Match text color with website */
+.modal-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
 }
 
-input,
-textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
+.modal-form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-family: var(--modal-font-family);
+    color: var(--modal-text-color);
+}
+
+.modal-form-group input,
+.modal-form-group textarea {
+    padding: 0.6rem;
+    border-radius: 6px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: var(--font-family);
-    /* Match font family */
+    font-family: var(--modal-font-family);
+    font-size: 1rem;
 }
 
-/* Submit button styling */
-button[type="submit"] {
-    background: #fdca40;
-    /* Match button color with website */
-    color: black;
-    /* Match text color */
+.submit-button {
+    background-color: var(--modal-accent-color);
+    color: #000000;
+    font-family: var(--modal-font-family);
+    font-size: 1rem;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-family: var(--font-family);
-    /* Match font family */
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
-    background: #ffaf00;
-    /* Slightly darker hover effect */
+.submit-button:hover {
+    background-color: #ffd866;
+}
+
+/* Animations for overlay and modal content */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
