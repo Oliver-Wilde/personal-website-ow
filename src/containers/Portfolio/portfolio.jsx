@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProjectCard from '../../components/projectcard/ProjectCard';
 import './portfolio.css';
 import torahimage from '../../assets/projects/torah.png';
@@ -38,6 +38,12 @@ const projects = [
 ];
 
 const Portfolio = () => {
+    const [activeProject, setActiveProject] = useState(null);
+
+    const handleProjectClick = (index) => {
+        setActiveProject(activeProject === index ? null : index);
+    };
+
     return (
         <div className="portfolio-section">
             <h2 className="portfolio-title">My Projects</h2>
@@ -45,18 +51,26 @@ const Portfolio = () => {
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={index}
-                        title={project.title}
-                        description={project.description}
                         image={project.image}
-                        link={project.link}
-                        role={project.role}
-                        teamSize={project.teamSize}
-                        engine={project.engine}
-                        responsibilities={project.responsibilities}
-                        projectType={project.projectType}
+                        onClick={() => handleProjectClick(index)}
                     />
                 ))}
             </div>
+            {activeProject !== null && (
+                <div className="project-details">
+                    <h3>{projects[activeProject].title}</h3>
+                    <p>{projects[activeProject].description}</p>
+                    <p><strong>Role:</strong> {projects[activeProject].role}</p>
+                    <p><strong>Team Size:</strong> {projects[activeProject].teamSize}</p>
+                    <p><strong>Engine:</strong> {projects[activeProject].engine}</p>
+                    <ul>
+                        {projects[activeProject].responsibilities.map((responsibility, index) => (
+                            <li key={index}>{responsibility}</li>
+                        ))}
+                    </ul>
+                    <a href={projects[activeProject].link} target="_blank" rel="noopener noreferrer">View Project</a>
+                </div>
+            )}
         </div>
     );
 };
