@@ -1,5 +1,5 @@
 import React from 'react';
-import './Contact_section.css';
+import './Contact_section.css'; // Ensure this path is correct
 
 const Contact_section = () => {
     return (

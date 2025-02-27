@@ -1,7 +1,6 @@
 .portfolio-section {
     padding: 2rem;
     z-index: 6;
-    
 }
 
 .portfolio-title {
@@ -13,8 +12,41 @@
 
 .portfolio-grid {
     display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    /* Adjust min width for smaller cards */
+    flex-wrap: wrap;
     gap: 1rem;
-    /* Adjust gap between cards */
+    justify-content: center;
+}
+
+.project-card {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+}
+
+.project-card:hover {
+    transform: scale(1.1);
+}
+
+.project-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Ensure the image does not block the click */
+}
+
+.project-details {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
