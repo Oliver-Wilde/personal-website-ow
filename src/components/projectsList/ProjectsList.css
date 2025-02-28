@@ -1,13 +1,9 @@
-.projects-list-container {
+/* src/components/ProjectsList/ProjectsList.css */
+
+.projects-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
     justify-content: center;
-    margin: 2rem 0;
-}
-
-@media screen and (max-width: 768px) {
-    .projects-list-container {
-        gap: 1rem;
-    }
+    margin: 2rem auto;
+    max-width: 1200px;
 }

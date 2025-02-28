@@ -1,24 +1,17 @@
 import React from 'react';
-import ProjectCard from '../projectcard/ProjectCard';
+import ProjectCard from '../ProjectCard/ProjectCard';
 import './ProjectsList.css';
 
-const ProjectsList = ({ projects, filter }) => {
-    // Filter projects based on criteria if filter is provided
-    const displayedProjects = filter
-        ? projects.filter(project => filter(project))
-        : projects;
-
+const ProjectsList = ({ projects }) => {
     return (
-        <div className="projects-list-container">
-            {displayedProjects.map(project => (
+        <div className="projects-list">
+            {projects.map((project, idx) => (
                 <ProjectCard
-                    key={project.id}
+                    key={idx}
                     title={project.title}
                     description={project.description}
                     image={project.image}
-                    skills={project.skills}
-                    githubLink={project.githubLink}
-                    liveLink={project.liveLink}
+                    link={project.link}
                 />
             ))}
         </div>
