@@ -1,25 +1,37 @@
+// src/components/Navbar/Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onHoverNavItem }) => {
     return (
         <nav className="nav-container">
             <div className="nav-logo">
-                {/* Replace with your own logo or text */}
                 <Link to="/">MyLogo</Link>
             </div>
             <ul className="nav-links">
-                <li>
+                <li
+                    onMouseEnter={() => onHoverNavItem('Home')}
+                    onMouseLeave={() => onHoverNavItem('')}
+                >
                     <Link to="/">Home</Link>
                 </li>
-                <li>
+                <li
+                    onMouseEnter={() => onHoverNavItem('About')}
+                    onMouseLeave={() => onHoverNavItem('')}
+                >
                     <Link to="/about">About</Link>
                 </li>
-                <li>
+                <li
+                    onMouseEnter={() => onHoverNavItem('Projects')}
+                    onMouseLeave={() => onHoverNavItem('')}
+                >
                     <Link to="/projects">Projects</Link>
                 </li>
-                <li>
+                <li
+                    onMouseEnter={() => onHoverNavItem('Contact')}
+                    onMouseLeave={() => onHoverNavItem('')}
+                >
                     <Link to="/contact">Contact</Link>
                 </li>
             </ul>
