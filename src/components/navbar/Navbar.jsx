@@ -11,26 +11,26 @@ const Navbar = ({ onHoverNavItem }) => {
             </div>
             <ul className="nav-links">
                 <li
-                    onMouseEnter={() => onHoverNavItem('Home')}
-                    onMouseLeave={() => onHoverNavItem('')}
+                    onMouseEnter={() => onHoverNavItem("Home")}
+                    onMouseLeave={() => onHoverNavItem("")}
                 >
                     <Link to="/">Home</Link>
                 </li>
                 <li
-                    onMouseEnter={() => onHoverNavItem('About')}
-                    onMouseLeave={() => onHoverNavItem('')}
+                    onMouseEnter={() => onHoverNavItem("About")}
+                    onMouseLeave={() => onHoverNavItem("")}
                 >
                     <Link to="/about">About</Link>
                 </li>
                 <li
-                    onMouseEnter={() => onHoverNavItem('Projects')}
-                    onMouseLeave={() => onHoverNavItem('')}
+                    onMouseEnter={() => onHoverNavItem("Projects")}
+                    onMouseLeave={() => onHoverNavItem("")}
                 >
                     <Link to="/projects">Projects</Link>
                 </li>
                 <li
-                    onMouseEnter={() => onHoverNavItem('Contact')}
-                    onMouseLeave={() => onHoverNavItem('')}
+                    onMouseEnter={() => onHoverNavItem("Contact")}
+                    onMouseLeave={() => onHoverNavItem("")}
                 >
                     <Link to="/contact">Contact</Link>
                 </li>

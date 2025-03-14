@@ -1,18 +1,17 @@
 // src/pages/Home/Home.jsx
 import React from 'react';
-import './Home.css';
 import CellularAutomata from '../../components/cellularAutomata/CellularAutomata';
+import './Home.css';
 
-const Home = () => {
+const Home = ({ hoveredText }) => {
     return (
         <div className="home-container">
             <h1>Welcome to My Website</h1>
             <p>
-                This is the Home page. Check out the cellular automata below!
+                Hover over the Navbar to see the CA form the hovered text.
             </p>
-            
-            {/* Include the CA component */}
-            <CellularAutomata />
+
+            <CellularAutomata hoveredText={hoveredText} />
         </div>
     );
 };
