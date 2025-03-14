@@ -1,5 +1,5 @@
-export { default as Navbar } from './navbar/Navbar';
-export { default as Mouse } from './mouse/Mouse';
+export { default as Navbar } from './Navbar/Navbar';
+export { default as Mouse } from './mouse/mouse';
 export { default as ScrollBar } from './scrollbar/ScrollBar';
 export { default as Slider } from './slider/Slider';
 export { default as ProjectCard } from './projectcard/ProjectCard';

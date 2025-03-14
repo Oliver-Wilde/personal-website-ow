@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './Mouse.css';
+import './mouse.css';
 import 'animate.css';
 
 const Mouse = () => {
