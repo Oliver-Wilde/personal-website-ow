@@ -6,7 +6,7 @@ import react from '../../assets/react hover.png';
 import js from '../../assets/js hover.png';
 import html from '../../assets/html hover.png';
 import css from '../../assets/css hover.png';
-import Card from '../../components/card/card'; // Import the Card component
+import Card from '../../components/card/Card'; // Import the Card component
 
 const Skills_section = () => {
   return (
