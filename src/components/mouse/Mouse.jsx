@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './mouse.css';
+import './Mouse.css';
 
 const Mouse = () => {
     const blobRef = useRef(null);
