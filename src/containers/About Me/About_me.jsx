@@ -1,8 +1,6 @@
 import React from 'react';
 import info from '../../assets/info.png';
 import './About_me.css';
-import wave1 from '../../assets/wave1.png'
-import wave2 from '../../assets/wave2.png'
 
 const About_me = () => {
   

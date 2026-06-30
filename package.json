@@ -1,10 +1,4 @@
 {
-  "plugins": [
-    "jquery"
-  ],
-  "rules": {
-    "jquery/no-global-selector": 2
-  },
   "name": "personal-website-ow",
   "version": "0.1.0",
   "private": true,
