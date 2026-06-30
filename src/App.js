@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Mouse, ScrollBar } from './components';
 import {
   HeroSection,
@@ -9,8 +9,6 @@ import {
 } from './containers';
 import Portfolio from './containers/Portfolio/portfolio';
 import './App.css';
-import 'aos/dist/aos.css';
-import AOS from 'aos';
 
 const SECTION_COMPONENTS = {
   portfolio: Portfolio,
@@ -23,10 +21,6 @@ const SECTION_COMPONENTS = {
 const App = () => {
   const [hoverWord, setHoverWord] = useState('');
   const [activeSection, setActiveSection] = useState('hero');
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   const ActiveSection = SECTION_COMPONENTS[activeSection];
 
