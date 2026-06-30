@@ -77,29 +77,34 @@ h1 {
     z-index: 3;
 }
 
-.hover-content-container {
-    position: absolute;
-    width: 155px;
-    /* Reduced width */
-    height: 125px;
-    /* Reduced height */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+/* === Monitor "screen" alignment (tune these 4 values) === */
+.ow_hero-section-monitor {
+  /* These are relative to the monitor image box */
+  --screen-left:     278px;   /* move right (+) / left (-) */
+  --screen-top:     215px;    /* move down (+) / up (-) */
+  --screen-width: 299px; /* screen width */
+  --screen-height: 250px;/* screen height */
 }
 
-.default-gif {
-    width: 299px !important;
-    height: 250px !important;
-    /* Adjust the width to make the GIF smaller */
-    height: auto;
-    /* Maintain aspect ratio */
-    position: absolute;
-    top: 13%;
-    left: 15%;
-    transform: translate(-50%, -50%);
+.hover-content-container {
+  position: absolute;
+  left: var(--screen-left);
+  top: var(--screen-top);
+  width: var(--screen-width);
+  height: var(--screen-height);
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 12px;
 }
+
+/* Ensure the canvas fills the screen box exactly */
+.hover-content-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
 
 .resume_button_container {
     display: flex;
