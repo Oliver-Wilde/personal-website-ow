@@ -1,7 +1,6 @@
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Mouse } from './mouse/mouse';
 export { default as ScrollBar } from './scrollbar/ScrollBar';
-export { default as Slider } from './slider/Slider';
 export { default as ProjectCard } from './projectcard/ProjectCard';
 export { default as ProjectsList } from './projectsList/ProjectsList';
 export { default as ContactFormModal } from './contactform/contactformmodal';
