@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import './mouse.css';
-import 'animate.css';
 
 const Mouse = () => {
     const blobRef = useRef(null);
@@ -13,7 +12,6 @@ const Mouse = () => {
             const { clientX, clientY } = event;
             const blobRect = blob.getBoundingClientRect();
 
-            // Calculate the scroll offsets
             const scrollX = window.scrollX || window.pageXOffset;
             const scrollY = window.scrollY || window.pageYOffset;
 
@@ -27,7 +25,7 @@ const Mouse = () => {
                 },
                 {
                     duration: 3000,
-                    fill: "forwards"
+                    fill: 'forwards'
                 }
             );
         };
@@ -42,7 +40,7 @@ const Mouse = () => {
     return (
         <>
             <div className="blur"></div>
-            <div className="blob animate__slower" id="blob" ref={blobRef}></div>
+            <div className="blob" id="blob" ref={blobRef}></div>
         </>
     );
 };
