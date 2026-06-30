@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import './monitortransition.css';
-import ContactFormModal from '../../components/contactform/contactformmodal';
+import './MonitorTransition.css';
+import ContactFormModal from '../contactform/ContactFormModal';
 
 const MonitorTransition = ({ isOpen, onClose }) => {
     return (

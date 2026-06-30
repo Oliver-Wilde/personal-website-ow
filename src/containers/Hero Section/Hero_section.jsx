@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Hero_section.css";
 import monitor from "../../assets/monitor.png";
-import MonitorTransition from "../../components/monitortransition/monitortransition";
-import ContactFormModal from "../../components/contactform/contactformmodal";
+import MonitorTransition from "../../components/monitortransition/MonitorTransition";
+import ContactFormModal from "../../components/contactform/ContactFormModal";
 import CellularAutomata from "../../components/cellularAutomata/CellularAutomata";
 
 const Hero_section = (props) => {

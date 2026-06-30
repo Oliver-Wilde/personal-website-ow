@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import './contactformmodal.css'; // Updated styles
+import './ContactFormModal.css'; // Updated styles
 
 const ContactFormModal = ({ onClose }) => {
     const [formData, setFormData] = useState({
