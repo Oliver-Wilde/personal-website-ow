@@ -1,63 +1,92 @@
-import React, { useState } from "react";
-import "./Hero_section.css";
-import monitor from "../../assets/monitor.png";
-import MonitorTransition from "../../components/monitortransition/MonitorTransition";
-import ContactFormModal from "../../components/contactform/ContactFormModal";
-import CellularAutomata from "../../components/cellularAutomata/CellularAutomata";
+import React from 'react';
+import './Hero_section.css';
+import monitor from '../../assets/monitor.png';
+import CellularAutomata from '../../components/cellularAutomata/CellularAutomata';
 
-const Hero_section = (props) => {
-  const hoverWord = (props && props.hoverWord) ? props.hoverWord : "";
+const HeroSection = ({ hoverWord = '', setActiveSection }) => {
+  const handleViewWork = () => {
+    if (typeof setActiveSection !== 'function') {
+      return;
+    }
 
-  const [isZoomed, setIsZoomed] = useState(false);
-  const closeModal = () => setIsZoomed(false);
+    setActiveSection('portfolio');
 
-  const [showContactForm, setShowContactForm] = useState(false);
-  const openContactForm = () => setShowContactForm(true);
-  const closeContactForm = () => setShowContactForm(false);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const portfolioSection = document.querySelector('.portfolio-section');
 
-  // IMPORTANT: keep this as a normal JS string; no template literals
-  const rootClass = "ow_hero-section-padding" + (isZoomed ? " blur-background" : "");
+        if (portfolioSection) {
+          portfolioSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      });
+    });
+  };
 
   return (
-    <div className={rootClass}>
+    <section
+      className="ow_hero-section-padding"
+      aria-labelledby="hero-title"
+    >
       <div className="ow_hero-section-content">
-        <h1>
-          <span className="small-text">Hi, I'm</span>
-          <br />
-          <span className="big-text">Oliver Wilde</span>
-          <br />
-          <span className="subheading">Aspiring Game Engineering Student @ NCL University</span>
+        <div className="ow_hero-section-copy">
+          <p className="small-text">Hi, I&apos;m</p>
+
+          <h1 id="hero-title" className="big-text">
+            Oliver Wilde
+          </h1>
+
+          <p className="subheading">
+            Software engineer building reliable systems and technically
+            demanding products.
+          </p>
+
+          <p className="hero-summary">
+            First Class MComp Computer Science graduate focused on backend
+            engineering, systems programming, databases, performance, and
+            maintainable software.
+          </p>
 
           <div className="resume_button_container">
-            <button type="button">
-              <a href="/cv.jpg" download style={{ color: "inherit", textDecoration: "none" }}>
-                Resume
-              </a>
-            </button>
+            <a
+              className="hero-cta hero-cta-primary"
+              href="/cv.jpg"
+              download
+            >
+              Resume
+            </a>
 
-            <button className="contact_button" type="button" onClick={openContactForm}>
-              Contact
+            <button
+              className="hero-cta hero-cta-secondary"
+              type="button"
+              onClick={handleViewWork}
+            >
+              View work
             </button>
           </div>
-        </h1>
+        </div>
 
-        <div className="ow_hero-section-monitor-padding">
+        <div
+          className="ow_hero-section-monitor-padding"
+          aria-hidden="true"
+        >
           <div className="ow_hero-section-monitor">
-            <img src={monitor} alt="monitor" className="monitor" />
+            <img
+              src={monitor}
+              alt=""
+              className="monitor"
+            />
 
-            {/* Screen area inside the monitor */}
-            <div className="hover-content-container" aria-label="monitor-sim">
+            <div className="hero-monitor-screen">
               <CellularAutomata targetText={hoverWord} />
             </div>
           </div>
         </div>
       </div>
-
-      <MonitorTransition isOpen={isZoomed} onClose={closeModal} />
-
-      {showContactForm && <ContactFormModal onClose={closeContactForm} />}
-    </div>
+    </section>
   );
 };
 
-export default Hero_section;
+export default HeroSection;

@@ -11,6 +11,9 @@
 # production
 /build
 
+# generated repository inspection
+/PERSONAL_WEBSITE_CONTEXT.txt
+
 # misc
 .DS_Store
 .env.local

@@ -1,39 +1,37 @@
 import React, { useState } from 'react';
-import { Navbar, Mouse, ScrollBar } from './components';
-import {
-  HeroSection,
-  AboutSection,
-  ProjectsSection,
-  SkillsSection,
-  ContactSection,
-} from './containers';
-import Portfolio from './containers/Portfolio/portfolio';
+import Navbar from './components/navbar/Navbar';
+import WorkspaceContent from './components/workspace/WorkspaceContent';
 import './App.css';
 
-const SECTION_COMPONENTS = {
-  portfolio: Portfolio,
-  about: AboutSection,
-  skills: SkillsSection,
-  experience: ProjectsSection,
-  contact: ContactSection,
-};
-
 const App = () => {
-  const [hoverWord, setHoverWord] = useState('');
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
 
-  const ActiveSection = SECTION_COMPONENTS[activeSection];
+  const handleSelectSection = (section) => {
+    setActiveSection(section);
+
+    window.requestAnimationFrame(() => {
+      const workspace = document.getElementById('workspace-main');
+
+      if (workspace) {
+        workspace.focus();
+      }
+    });
+  };
 
   return (
-    <div className="App">
-      <div className="background-colour">
-        <Mouse />
-        <Navbar setHoverWord={setHoverWord} setActiveSection={setActiveSection} />
-        <ScrollBar>
-          <HeroSection hoverWord={hoverWord} />
-          {ActiveSection && <ActiveSection />}
-        </ScrollBar>
-      </div>
+    <div className="portfolio-shell">
+      <Navbar
+        activeSection={activeSection}
+        onSelectSection={handleSelectSection}
+      />
+
+      <main
+        id="workspace-main"
+        className="workspace-main"
+        tabIndex="-1"
+      >
+        <WorkspaceContent activeSection={activeSection} />
+      </main>
     </div>
   );
 };

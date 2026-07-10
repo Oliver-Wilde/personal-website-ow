@@ -1,126 +1,81 @@
-import React, { useState } from 'react';
-import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+import React from 'react';
 import './Navbar.css';
-import logojpg from '../../assets/logo.jpg';
-import gradientImage from '../../assets/gradient.png';
 
-const Navbar = ({ setHoverWord, setActiveSection }) => {
-  const [toggleMenu, setToggleMenu] = useState(false);
+const NAVIGATION_ITEMS = [
+  { id: 'home', label: 'Home', number: '01' },
+  { id: 'work', label: 'Work', number: '02' },
+  { id: 'experience', label: 'Experience', number: '03' },
+  { id: 'about', label: 'About', number: '04' },
+  { id: 'contact', label: 'Contact', number: '05' },
+];
 
-  const handleMouseEnter = (word) => setHoverWord(word);
-  const handleMouseLeave = () => setHoverWord('');
-
-  const handleClick = (section) => {
-    setActiveSection(section);
-    setToggleMenu(false);
+const Navbar = ({ activeSection, onSelectSection }) => {
+  const selectSection = (section) => {
+    if (typeof onSelectSection === 'function') {
+      onSelectSection(section);
+    }
   };
 
   return (
-    <div className='ow_navbar'>
-      <div className='ow_navbar-links'>
-        <div className='ow_navbar-links-logo'>
-          <img src={logojpg} alt='logo' className='logo-image' />
-        </div>
+    <aside className="site-sidebar">
+      <div className="sidebar-identity">
+        <button
+          className="sidebar-logo"
+          type="button"
+          aria-label="Open home panel"
+          onClick={() => selectSection('home')}
+        >
+          OW
+        </button>
 
-        <div className='ow_navbar-links-container'>
-          <p
-            onMouseEnter={() => handleMouseEnter('portfolio')}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick('portfolio')}
-          >
-            <a href='#portfolio'>.portfolio</a>
-          </p>
-
-          <p
-            onMouseEnter={() => handleMouseEnter('about')}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick('about')}
-          >
-            <a href='#about'>.about</a>
-          </p>
-
-          <p
-            onMouseEnter={() => handleMouseEnter('skills')}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick('skills')}
-          >
-            <a href='#skills'>.skills</a>
-          </p>
-
-          <p
-            onMouseEnter={() => handleMouseEnter('experience')}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick('experience')}
-          >
-            <a href='#experience'>.experience</a>
-          </p>
-
-          <p
-            onMouseEnter={() => handleMouseEnter('contact')}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick('contact')}
-          >
-            <a href='#contact'>.contacts</a>
-          </p>
-        </div>
-
-        <div className='background'>
-          <img src={gradientImage} alt='Gradient' className='gradient-image' />
-        </div>
-
-        <div className='ow_navbar-menu'>
-          {toggleMenu
-            ? <RiCloseLine color='#fff' size={27} onClick={() => setToggleMenu(false)} />
-            : <RiMenu3Line color='#fff' size={27} onClick={() => setToggleMenu(true)} />}
-
-          {toggleMenu && (
-            <div className='ow_navbar-menu-container scale-up-centre '>
-              <div className='ow_navbar-menu-container-links scale-up-centre'>
-                <p
-                  onMouseEnter={() => handleMouseEnter('portfolio')}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick('portfolio')}
-                >
-                  <a href='#portfolio'>.portfolio</a>
-                </p>
-
-                <p
-                  onMouseEnter={() => handleMouseEnter('about')}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick('about')}
-                >
-                  <a href='#about'>.about</a>
-                </p>
-
-                <p
-                  onMouseEnter={() => handleMouseEnter('skills')}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick('skills')}
-                >
-                  <a href='#skills'>.skills</a>
-                </p>
-
-                <p
-                  onMouseEnter={() => handleMouseEnter('experience')}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick('experience')}
-                >
-                  <a href='#experience'>.experience</a>
-                </p>
-
-                <p
-                  onMouseEnter={() => handleMouseEnter('contact')}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick('contact')}
-                >
-                  <a href='#contact'>.contacts</a>
-                </p>
-              </div>
-            </div>
-          )}
+        <div className="sidebar-name">
+          <strong>Oliver Wilde</strong>
+          <span>Software engineer</span>
         </div>
       </div>
-    </div>
+
+      <nav className="sidebar-navigation" aria-label="Primary navigation">
+        {NAVIGATION_ITEMS.map((item) => {
+          const isActive = activeSection === item.id;
+
+          return (
+            <button
+              key={item.id}
+              className={`sidebar-navigation-item${isActive ? ' is-active' : ''}`}
+              type="button"
+              aria-current={isActive ? 'page' : undefined}
+              onClick={() => selectSection(item.id)}
+            >
+              <span className="sidebar-navigation-number">
+                {item.number}
+              </span>
+
+              <span>{item.label}</span>
+
+              <span className="sidebar-navigation-arrow" aria-hidden="true">
+                →
+              </span>
+            </button>
+          );
+        })}
+      </nav>
+
+      <div className="sidebar-footer">
+        <p className="sidebar-status">
+          <span className="sidebar-status-dot" aria-hidden="true" />
+          Preparing for 2027 graduate roles
+        </p>
+
+        <a
+          className="sidebar-resume-link"
+          href="/cv.jpg"
+          download
+        >
+          Download résumé
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </aside>
   );
 };
 
