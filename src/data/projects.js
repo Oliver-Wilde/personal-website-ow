@@ -6,6 +6,7 @@ const projects = [
     status: 'Flagship case study',
     period: 'MComp dissertation',
     role: 'Sole developer',
+    repositoryUrl: 'https://github.com/Oliver-Wilde/VulkanProject',
     summary:
       'A performance-focused voxel renderer exploring resource management, chunk streaming, staging uploads, and explicit GPU architecture.',
     technologies: ['C++', 'Vulkan', 'GLSL', 'GPU profiling'],
@@ -30,6 +31,7 @@ const projects = [
     status: 'Active production project',
     period: 'Independent project',
     role: 'Frontend and product engineer',
+    repositoryUrl: 'https://github.com/Oliver-Wilde/headless-shopify-art-store',
     summary:
       'A custom headless commerce experience built around a real artist, production constraints, maintainable frontend architecture, and a distinctive interaction system.',
     technologies: [
@@ -91,6 +93,7 @@ const projects = [
     status: 'Planned project',
     period: 'Portfolio project',
     role: 'Backend engineer',
+    hidden: true,
     summary:
       'A planned Java backend centred on balanced postings, transaction boundaries, idempotency, immutable history, testing, and correctness under failure.',
     technologies: [

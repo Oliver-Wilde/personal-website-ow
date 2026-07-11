@@ -55,7 +55,6 @@ const ContactControl = ({
         {...sharedProps}
         type="button"
         aria-pressed={isActive}
-        aria-describedby="contact-email-note"
         onClick={onActivate}
       >
         {content}
@@ -128,8 +127,8 @@ const ContactPanel = () => {
         </h1>
 
         <p className="workspace-lead">
-          Hover, focus, or tap a channel to update the displays. Use the
-          selected link to view my work, professional profile, or resume.
+          Hover, focus, or tap a channel to update the displays. Open my
+          professional profiles or contact me directly by email.
         </p>
       </header>
 
@@ -205,11 +204,6 @@ const ContactPanel = () => {
         </article>
       </div>
 
-      <p id="contact-email-note" className="contact-email-note">
-        Email is intentionally marked as pending rather than displaying an
-        unconfirmed address. It can be connected as soon as the final
-        professional email is supplied.
-      </p>
     </section>
   );
 };

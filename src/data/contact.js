@@ -20,19 +20,9 @@ export const contactMethods = [
   {
     id: 'email',
     label: 'Email',
-    value: 'Address pending',
-    detail: 'Professional email will be connected once confirmed',
+    value: 'oregwilde@gmail.com',
+    detail: 'Graduate opportunities and professional enquiries',
     icon: 'email',
-    href: null,
-    pending: true,
-  },
-  {
-    id: 'resume',
-    label: 'Resume',
-    value: 'Download CV',
-    detail: 'Education, experience, projects, and technical profile',
-    icon: 'resume',
-    href: '/cv.jpg',
-    download: true,
+    href: 'mailto:oregwilde@gmail.com',
   },
 ];

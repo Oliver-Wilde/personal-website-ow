@@ -50,13 +50,47 @@ const HomePanel = () => (
         <p>Advanced Computer Science, 2026-2027.</p>
       </article>
 
-      <article className="workspace-card">
+      <article className="workspace-card workspace-card-featured home-launchpad">
         <p className="workspace-card-label">Selected work</p>
-        <h2>Four project files</h2>
+        <h2>Three completed project files</h2>
         <p>
-          Systems, product engineering, collaboration, and backend
-          reliability.
+          Systems programming, product engineering, simulation, and
+          evidence-led technical work.
         </p>
+
+        <div
+          className="home-project-links"
+          aria-label="Featured projects"
+        >
+          <a
+            className="home-project-link"
+            href="#work/voxel-engine"
+          >
+            <span>Vulkan Voxel Engine</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a
+            className="home-project-link"
+            href="#work/stnly-storefront"
+          >
+            <span>STNLY Storefront</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a
+            className="home-project-link"
+            href="#work/ipd"
+          >
+            <span>Iterated Prisoner&apos;s Dilemma</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <a className="home-contact-link" href="#contact">
+          Contact and profiles
+          <span aria-hidden="true">→</span>
+        </a>
       </article>
     </div>
   </section>
@@ -120,6 +154,45 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
       </div>
     </dl>
 
+    {(project.repositoryUrl || project.liveUrl || project.reportUrl) && (
+      <div className="case-study-actions" aria-label="Project links">
+        {project.repositoryUrl && (
+          <a
+            className="case-study-action"
+            href={project.repositoryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View repository
+            <span aria-hidden="true">↗</span>
+          </a>
+        )}
+
+        {project.liveUrl && (
+          <a
+            className="case-study-action"
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View live project
+            <span aria-hidden="true">↗</span>
+          </a>
+        )}
+
+        {project.reportUrl && (
+          <a
+            className="case-study-action"
+            href={project.reportUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read report
+            <span aria-hidden="true">↗</span>
+          </a>
+        )}
+      </div>
+    )}
     <div className="case-study-content">
       <section className="case-study-section">
         <p className="workspace-card-label">Problem</p>
@@ -240,7 +313,7 @@ const WorkPanel = ({
         />
       ) : (
         <div className="project-file-grid">
-          {projects.map((project, index) => (
+          {projects.filter((project) => !project.hidden).map((project, index) => (
             <button
               key={project.id}
               ref={(element) => {

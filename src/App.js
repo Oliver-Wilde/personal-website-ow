@@ -13,7 +13,7 @@ const SECTION_IDS = new Set([
 ]);
 
 const PROJECT_IDS = new Set(
-  projects.map((project) => project.id)
+  projects.filter((project) => !project.hidden).map((project) => project.id)
 );
 
 const HOME_ROUTE = {
