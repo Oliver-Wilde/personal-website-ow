@@ -142,17 +142,17 @@
 }
 
 .sidebar-navigation-arrow {
-    opacity: 0;
+    clip-path: inset(0 100% 0 0);
     font-size: 1.15rem;
     transform: translateX(-0.35rem);
     transition:
-        opacity 150ms ease,
+        clip-path 150ms ease,
         transform 150ms ease;
 }
 
 .sidebar-navigation-item:hover .sidebar-navigation-arrow,
 .sidebar-navigation-item.is-active .sidebar-navigation-arrow {
-    opacity: 1;
+    clip-path: inset(0 0 0 0);
     transform: translateX(0);
 }
 

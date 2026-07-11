@@ -12,20 +12,63 @@ const FileIcon = () => (
 );
 
 const HomePanel = () => (
-  <section className="workspace-panel" aria-labelledby="home-panel-title">
-    <header className="workspace-heading workspace-heading-large">
-      <p className="workspace-eyebrow">01 / Home</p>
+  <section
+    className="workspace-panel home-panel"
+    aria-labelledby="home-panel-title"
+  >
+    <header className="home-hero">
+      <div className="workspace-heading workspace-heading-large home-hero-copy">
+        <p className="workspace-eyebrow">01 / Home &mdash; Oliver Wilde</p>
 
-      <h1 id="home-panel-title">
-        Hello World!
-        <br />
-        I&apos;m Oliver Wilde.
-      </h1>
+        <h1 id="home-panel-title">
+          <span className="motion-mask-line">
+            <span>Software engineer.</span>
+          </span>
+          <span className="motion-mask-line">
+            <span>Systems-minded builder.</span>
+          </span>
+        </h1>
 
-      <p className="workspace-lead">
-        I am Oliver Wilde, a First Class MComp Computer Science graduate
-        building reliable systems and technically demanding products.
-      </p>
+        <p className="workspace-lead">
+          First Class MComp Computer Science graduate focused on backend
+          engineering, systems, performance, and reliable software. Incoming
+          MSc Advanced Computer Science student at Durham University.
+        </p>
+
+        <div className="home-hero-actions" aria-label="Primary actions">
+          <a className="home-hero-action home-hero-action-primary" href="#work">
+            View selected work
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a className="home-hero-action" href="#contact">
+            Contact and profiles
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <figure
+        className="home-hero-media"
+        aria-labelledby="home-hero-media-caption"
+      >
+        <div className="home-hero-media-toolbar">
+          <span>MEDIA SLOT / 01</span>
+          <span>RESERVED</span>
+        </div>
+
+        <div className="home-hero-media-frame">
+          <div className="home-hero-media-message">
+            <strong>Project image reserved</strong>
+            <span>1600 &times; 1000 recommended</span>
+          </div>
+        </div>
+
+        <figcaption id="home-hero-media-caption">
+          <span>Future project evidence</span>
+          <span>Landscape / monochrome</span>
+        </figcaption>
+      </figure>
     </header>
 
     <div className="workspace-grid workspace-grid-home">
@@ -67,7 +110,7 @@ const HomePanel = () => (
             href="#work/voxel-engine"
           >
             <span>Vulkan Voxel Engine</span>
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
 
           <a
@@ -75,7 +118,7 @@ const HomePanel = () => (
             href="#work/stnly-storefront"
           >
             <span>STNLY Storefront</span>
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
 
           <a
@@ -83,13 +126,13 @@ const HomePanel = () => (
             href="#work/ipd"
           >
             <span>Iterated Prisoner&apos;s Dilemma</span>
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
 
         <a className="home-contact-link" href="#contact">
           Contact and profiles
-          <span aria-hidden="true">→</span>
+          <span aria-hidden="true">&rarr;</span>
         </a>
       </article>
     </div>
@@ -164,7 +207,7 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
             rel="noopener noreferrer"
           >
             View repository
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">â†&mdash;</span>
           </a>
         )}
 
@@ -176,7 +219,7 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
             rel="noopener noreferrer"
           >
             View live project
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">â†&mdash;</span>
           </a>
         )}
 
@@ -188,7 +231,7 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
             rel="noopener noreferrer"
           >
             Read report
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">â†&mdash;</span>
           </a>
         )}
       </div>

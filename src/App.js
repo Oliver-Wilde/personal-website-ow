@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import WorkspaceContent from './components/workspace/WorkspaceContent';
 import projects from './data/projects';
@@ -21,6 +21,9 @@ const HOME_ROUTE = {
   projectId: null,
   hash: 'home',
 };
+const TRANSITION_BAND_COUNT = 7;
+const TRANSITION_SWAP_DELAY_MS = 430;
+const TRANSITION_END_DELAY_MS = 920;
 
 const readRouteFromHash = () => {
   const rawHash = window.location.hash
@@ -66,13 +69,50 @@ const focusWorkspace = () => {
   });
 };
 
+
+const PageTransition = ({ phase }) => (
+  <div
+    className={`page-transition${phase !== 'idle' ? ` is-${phase}` : ''}`}
+    aria-hidden="true"
+  >
+    {Array.from({ length: TRANSITION_BAND_COUNT }, (_, index) => (
+      <span
+        className="page-transition-band"
+        key={index}
+        style={{
+          '--transition-delay': `${index * 24}ms`,
+          '--transition-reverse-delay':
+            `${(TRANSITION_BAND_COUNT - index - 1) * 24}ms`,
+        }}
+      />
+    ))}
+  </div>
+);
 const App = () => {
   const [route, setRoute] = useState(
     () => readRouteFromHash()
   );
+  const [transitionPhase, setTransitionPhase] = useState('idle');
+  const transitionTimersRef = useRef([]);
 
   useEffect(() => {
-    const synchroniseRoute = (shouldFocus) => {
+    const clearTransitionTimers = () => {
+      transitionTimersRef.current.forEach((timerId) => {
+        window.clearTimeout(timerId);
+      });
+
+      transitionTimersRef.current = [];
+    };
+
+    const commitRoute = (nextRoute, shouldFocus) => {
+      setRoute(nextRoute);
+
+      if (shouldFocus) {
+        focusWorkspace();
+      }
+    };
+
+    const synchroniseRoute = (shouldFocus, shouldAnimate) => {
       const nextRoute = readRouteFromHash();
       const canonicalHash = `#${nextRoute.hash}`;
 
@@ -84,17 +124,39 @@ const App = () => {
         );
       }
 
-      setRoute(nextRoute);
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
 
-      if (shouldFocus) {
-        focusWorkspace();
+      clearTransitionTimers();
+
+      if (!shouldAnimate || prefersReducedMotion) {
+        setTransitionPhase('idle');
+        commitRoute(nextRoute, shouldFocus);
+        return;
       }
+
+      setTransitionPhase('covering');
+
+      const swapTimer = window.setTimeout(() => {
+        commitRoute(nextRoute, shouldFocus);
+        setTransitionPhase('revealing');
+      }, TRANSITION_SWAP_DELAY_MS);
+
+      const endTimer = window.setTimeout(() => {
+        setTransitionPhase('idle');
+      }, TRANSITION_END_DELAY_MS);
+
+      transitionTimersRef.current = [
+        swapTimer,
+        endTimer,
+      ];
     };
 
-    synchroniseRoute(false);
+    synchroniseRoute(false, false);
 
     const handleHashChange = () => {
-      synchroniseRoute(true);
+      synchroniseRoute(true, true);
     };
 
     window.addEventListener(
@@ -107,6 +169,8 @@ const App = () => {
         'hashchange',
         handleHashChange
       );
+
+      clearTransitionTimers();
     };
   }, []);
 
@@ -135,25 +199,30 @@ const App = () => {
   };
 
   return (
-    <div className="portfolio-shell">
-      <Navbar
-        activeSection={route.section}
-        onSelectSection={handleSelectSection}
-      />
-
-      <main
-        id="workspace-main"
-        className="workspace-main"
-        tabIndex="-1"
-      >
-        <WorkspaceContent
+    <>
+      <div className="portfolio-shell">
+        <Navbar
           activeSection={route.section}
-          activeProjectId={route.projectId}
-          onOpenProject={handleOpenProject}
-          onCloseProject={handleCloseProject}
+          onSelectSection={handleSelectSection}
         />
-      </main>
-    </div>
+
+        <main
+          id="workspace-main"
+          className="workspace-main"
+          tabIndex="-1"
+          aria-busy={transitionPhase !== 'idle'}
+        >
+          <WorkspaceContent
+            activeSection={route.section}
+            activeProjectId={route.projectId}
+            onOpenProject={handleOpenProject}
+            onCloseProject={handleCloseProject}
+          />
+        </main>
+      </div>
+
+      <PageTransition phase={transitionPhase} />
+    </>
   );
 };
 
