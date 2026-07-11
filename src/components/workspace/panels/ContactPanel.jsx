@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  FiFileText,
   FiGithub,
   FiLinkedin,
   FiMail,
@@ -12,7 +11,6 @@ const ICONS = {
   email: FiMail,
   github: FiGithub,
   linkedin: FiLinkedin,
-  resume: FiFileText,
 };
 
 const ContactControl = ({
@@ -47,6 +45,7 @@ const ContactControl = ({
       `${method.pending ? ' is-pending' : ''}`,
     onMouseEnter: onActivate,
     onFocus: onActivate,
+    onPointerDown: onActivate,
   };
 
   if (!method.href) {

@@ -416,3 +416,13 @@
         text-align: left;
     }
 }
+/* ABOUT OVERFLOW SAFETY START */
+.about-panel h1,
+.about-panel h2,
+.about-panel h3,
+.about-panel blockquote,
+.about-panel p,
+.about-panel li {
+    overflow-wrap: anywhere;
+}
+/* ABOUT OVERFLOW SAFETY END */

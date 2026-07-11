@@ -308,3 +308,41 @@
         display: none;
     }
 }
+/* CONTACT RESPONSIVE ACCESSIBILITY START */
+.contact-channel-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contact-channel {
+    min-width: 0;
+    min-height: 5.5rem;
+    touch-action: manipulation;
+}
+
+.contact-channel:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: -7px;
+}
+
+.contact-channel-copy strong,
+.contact-channel-copy > span {
+    overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 1120px) {
+    .contact-channel-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .contact-channel-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-monitor-screen {
+        min-height: 12rem;
+        padding: 1.25rem;
+    }
+}
+/* CONTACT RESPONSIVE ACCESSIBILITY END */

@@ -294,3 +294,13 @@
         min-height: auto;
     }
 }
+/* EXPERIENCE OVERFLOW SAFETY START */
+.experience-panel h1,
+.experience-panel h2,
+.experience-panel h3,
+.experience-panel p,
+.experience-panel li,
+.experience-entry-rail span {
+    overflow-wrap: anywhere;
+}
+/* EXPERIENCE OVERFLOW SAFETY END */

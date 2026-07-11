@@ -67,9 +67,9 @@ const Navbar = ({ activeSection, onSelectSection }) => {
 
         <a
           className="sidebar-navigation-item sidebar-resume-link"
-          href="/cv.jpg"
+          href={`${process.env.PUBLIC_URL}/cv.jpg`}
           download
-          aria-label="Download resume"
+          aria-label="Download current resume draft"
         >
           <span className="sidebar-navigation-number">
             06
@@ -82,8 +82,7 @@ const Navbar = ({ activeSection, onSelectSection }) => {
           <span className="sidebar-navigation-arrow" aria-hidden="true">
             &rarr;
           </span>
-        </a>
-      </nav>
+        </a>      </nav>
     </aside>
   );
 };
