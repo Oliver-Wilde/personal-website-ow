@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './WorkspaceContent.css';
 import ExperiencePanel from './panels/ExperiencePanel';
 import AboutPanel from './panels/AboutPanel';
@@ -400,6 +400,134 @@ const WorkPanel = ({
   );
 };
 
+const SCROLL_REVEAL_SELECTOR = [
+  '.home-hero-media',
+  '.workspace-grid-home > .workspace-card',
+  '.project-file',
+  '.case-study-toolbar',
+  '.case-study-hero',
+  '.case-study-meta > div',
+  '.case-study-actions',
+  '.case-study-section',
+  '.experience-snapshot-card',
+  '.experience-group-heading',
+  '.experience-entry',
+  '.experience-interest',
+  '.about-manifesto',
+  '.about-story',
+  '.about-section-heading',
+  '.about-route-list > li',
+  '.about-role-card',
+  '.about-principles-grid > article',
+  '.about-now-status',
+  '.about-focus',
+  '.about-interest-grid > article',
+  '.contact-monitor',
+  '.contact-channel',
+  '.contact-status-card',
+].join(', ');
+
+const useScrollReveal = (
+  activeSection,
+  activeProjectId,
+  isTransitioning
+) => {
+  useLayoutEffect(() => {
+    if (isTransitioning) {
+      return undefined;
+    }
+
+    const panel = document.querySelector(
+      '#workspace-main .workspace-panel'
+    );
+
+    if (!panel) {
+      return undefined;
+    }
+
+    const targets = Array.from(
+      panel.querySelectorAll(SCROLL_REVEAL_SELECTOR)
+    );
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    const canObserve =
+      typeof window.IntersectionObserver === 'function';
+
+    targets.forEach((target, index) => {
+      const delayMs = (index % 4) * 55;
+
+      target.classList.add('scroll-reveal-target');
+
+      target.style.setProperty(
+        '--scroll-reveal-delay',
+        `${delayMs}ms`
+      );
+
+      target.dataset.scrollRevealDelay = String(delayMs);
+    });
+
+    if (prefersReducedMotion || !canObserve) {
+      targets.forEach((target) => {
+        target.classList.add('is-scroll-revealed');
+        target.removeAttribute('inert');
+      });
+
+      return undefined;
+    }
+
+    targets.forEach((target) => {
+      target.setAttribute('inert', '');
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const target = entry.target;
+          const delayMs = Number(
+            target.dataset.scrollRevealDelay || 0
+          );
+
+          target.classList.add('is-scroll-revealed');
+
+          window.setTimeout(() => {
+            if (target.isConnected) {
+              target.removeAttribute('inert');
+            }
+          }, delayMs + 340);
+
+          observer.unobserve(target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -8% 0px',
+      }
+    );
+
+    targets.forEach((target) => {
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+
+      targets.forEach((target) => {
+        target.removeAttribute('inert');
+      });
+    };
+  }, [
+    activeSection,
+    activeProjectId,
+    isTransitioning,
+  ]);
+};
 const PANELS = {
   home: HomePanel,
   work: WorkPanel,
@@ -413,7 +541,14 @@ const WorkspaceContent = ({
   activeProjectId,
   onOpenProject,
   onCloseProject,
+  isTransitioning,
 }) => {
+  useScrollReveal(
+    activeSection,
+    activeProjectId,
+    isTransitioning
+  );
+
   if (activeSection === 'work') {
     return (
       <WorkPanel
