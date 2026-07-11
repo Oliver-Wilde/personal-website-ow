@@ -80,7 +80,10 @@ const PageTransition = ({ phase }) => (
         className="page-transition-band"
         key={index}
         style={{
-          '--transition-delay': `${index * 24}ms`,
+          '--transition-top':
+            `${(index / TRANSITION_BAND_COUNT) * 100}%`,
+          '--transition-height':
+            `${100 / TRANSITION_BAND_COUNT}%`,          '--transition-delay': `${index * 24}ms`,
           '--transition-reverse-delay':
             `${(TRANSITION_BAND_COUNT - index - 1) * 24}ms`,
         }}
