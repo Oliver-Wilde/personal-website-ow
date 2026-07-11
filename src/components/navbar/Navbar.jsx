@@ -20,18 +20,22 @@ const Navbar = ({ activeSection, onSelectSection }) => {
     <aside className="site-sidebar">
       <div className="sidebar-identity">
         <button
-          className="sidebar-logo"
+          className="sidebar-identity-button sidebar-logo"
           type="button"
           aria-label="Open home panel"
           onClick={() => selectSection('home')}
         >
-          OW
+          LOGO
         </button>
 
-        <div className="sidebar-name">
-          <strong>Oliver Wilde</strong>
-          <span>Software engineer</span>
-        </div>
+        <button
+          className="sidebar-identity-button sidebar-name-button"
+          type="button"
+          aria-label="Open home panel"
+          onClick={() => selectSection('home')}
+        >
+          Oliver Wilde
+        </button>
       </div>
 
       <nav className="sidebar-navigation" aria-label="Primary navigation">
@@ -50,31 +54,36 @@ const Navbar = ({ activeSection, onSelectSection }) => {
                 {item.number}
               </span>
 
-              <span>{item.label}</span>
+              <span className="sidebar-navigation-label">
+                {item.label}
+              </span>
 
               <span className="sidebar-navigation-arrow" aria-hidden="true">
-                →
+                &rarr;
               </span>
             </button>
           );
         })}
-      </nav>
-
-      <div className="sidebar-footer">
-        <p className="sidebar-status">
-          <span className="sidebar-status-dot" aria-hidden="true" />
-          Preparing for 2027 graduate roles
-        </p>
 
         <a
-          className="sidebar-resume-link"
+          className="sidebar-navigation-item sidebar-resume-link"
           href="/cv.jpg"
           download
+          aria-label="Download resume"
         >
-          Download résumé
-          <span aria-hidden="true">↗</span>
+          <span className="sidebar-navigation-number">
+            06
+          </span>
+
+          <span className="sidebar-navigation-label">
+            Resume
+          </span>
+
+          <span className="sidebar-navigation-arrow" aria-hidden="true">
+            &rarr;
+          </span>
         </a>
-      </div>
+      </nav>
     </aside>
   );
 };

@@ -1,3 +1,37 @@
+/* IBM TYPOGRAPHY START */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-ui: 'IBM Plex Sans', Arial, sans-serif;
+  --font-system: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+html,
+body,
+.portfolio-shell,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-ui);
+}
+
+.workspace-eyebrow,
+.workspace-card-label,
+.project-file-index,
+.project-file-status,
+.project-file-category,
+.project-file-action,
+.case-study-toolbar,
+.case-study-meta,
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-system);
+}
+
+/* IBM TYPOGRAPHY END */
 @font-face {
     font-family: 'IBM Plex Sans';
     src: url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');

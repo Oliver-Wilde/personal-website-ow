@@ -1,0 +1,310 @@
+.contact-panel .workspace-heading {
+    max-width: 72rem;
+}
+
+.contact-heading h1 {
+    max-width: 68rem;
+    font-size: clamp(3.5rem, 7.5vw, 8rem);
+}
+
+.contact-console {
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.contact-monitor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-monitor {
+    min-width: 0;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.contact-monitor-dark {
+    color: #ffffff;
+    background: #111111;
+}
+
+.contact-monitor-light {
+    color: #111111;
+    background: #ffffff;
+}
+
+.contact-monitor-header,
+.contact-monitor-footer {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.contact-monitor-dark .contact-monitor-header {
+    border-bottom: 1px solid #555555;
+}
+
+.contact-monitor-light .contact-monitor-header {
+    border-bottom: 1px solid #111111;
+}
+
+.contact-monitor-dark .contact-monitor-footer {
+    color: #bdbdbd;
+    border-top: 1px solid #555555;
+}
+
+.contact-monitor-light .contact-monitor-footer {
+    color: #626262;
+    border-top: 1px solid #111111;
+}
+
+.contact-monitor-lights {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.contact-monitor-lights span {
+    width: 0.55rem;
+    height: 0.55rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+.contact-monitor-lights span:first-child {
+    background: currentColor;
+}
+
+.contact-monitor-screen {
+    display: flex;
+    min-height: clamp(18rem, 33vw, 31rem);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: clamp(1.5rem, 4vw, 4rem);
+}
+
+.contact-monitor-screen p {
+    max-width: 100%;
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: clamp(2.75rem, 7vw, 7.5rem);
+    font-weight: 500;
+    letter-spacing: -0.065em;
+    line-height: 0.9;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contact-channel-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.contact-channel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-width: 0;
+    min-height: 9rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    color: #111111;
+    text-align: left;
+    text-decoration: none;
+    background: #ffffff;
+    border: 0;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.contact-channel:hover,
+.contact-channel:focus-visible,
+.contact-channel.is-active {
+    color: #ffffff;
+    background: #111111;
+}
+
+.contact-channel:focus-visible {
+    position: relative;
+    z-index: 2;
+    outline: 4px solid #111111;
+    outline-offset: -8px;
+}
+
+.contact-channel-icon {
+    display: flex;
+    width: 3.5rem;
+    height: 3.5rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 1.55rem;
+}
+
+.contact-channel-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.contact-channel-copy strong {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.contact-channel-copy > span {
+    color: #626262;
+    font-size: 0.76rem;
+    line-height: 1.35;
+}
+
+.contact-channel:hover .contact-channel-copy > span,
+.contact-channel:focus-visible .contact-channel-copy > span,
+.contact-channel.is-active .contact-channel-copy > span {
+    color: #c9c9c9;
+}
+
+.contact-channel-index {
+    align-self: flex-start;
+    color: #626262;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+.contact-channel:hover .contact-channel-index,
+.contact-channel:focus-visible .contact-channel-index,
+.contact-channel.is-active .contact-channel-index {
+    color: #c9c9c9;
+}
+
+.contact-channel.is-pending {
+    cursor: default;
+}
+
+.contact-channel.is-pending .contact-channel-icon {
+    border-style: dashed;
+}
+
+.contact-lower-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.contact-status-card {
+    min-height: 17rem;
+    padding: clamp(1.25rem, 2.4vw, 2.25rem);
+    background: #ffffff;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.contact-status-card-dark {
+    color: #ffffff;
+    background: #111111;
+}
+
+.contact-module-label {
+    margin: 0;
+    color: #626262;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.contact-status-card-dark .contact-module-label {
+    color: #bdbdbd;
+}
+
+.contact-status-card h2 {
+    margin: 2.5rem 0 0;
+    font-size: clamp(1.5rem, 2.6vw, 2.7rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.contact-status-card > p:last-child {
+    margin: 1.25rem 0 0;
+    color: #4f4f4f;
+    line-height: 1.65;
+}
+
+.contact-status-card-dark > p:last-child {
+    color: #c8c8c8;
+}
+
+.contact-email-note {
+    max-width: 54rem;
+    margin: 1.25rem 0 0;
+    color: #626262;
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+@media screen and (max-width: 1120px) {
+    .contact-channel-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-lower-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-status-card {
+        min-height: auto;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .contact-monitor-grid,
+    .contact-channel-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-monitor-screen {
+        min-height: 15rem;
+    }
+
+    .contact-channel {
+        min-height: 7rem;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .contact-heading h1 {
+        font-size: clamp(3rem, 17vw, 5rem);
+    }
+
+    .contact-monitor-screen p {
+        font-size: clamp(2.5rem, 16vw, 4.5rem);
+    }
+
+    .contact-channel {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .contact-channel-index {
+        display: none;
+    }
+}

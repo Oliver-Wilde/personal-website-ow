@@ -1,0 +1,418 @@
+.about-panel .workspace-heading {
+    max-width: 76rem;
+}
+
+.about-heading h1 {
+    max-width: 76rem;
+    font-size: clamp(3rem, 6.5vw, 7rem);
+}
+
+.about-module-label,
+.about-story-marker,
+.about-section-heading > span,
+.about-route-place,
+.about-route-code,
+.about-principles-grid > article > span,
+.about-interest-grid > article > span {
+    margin: 0;
+    color: #626262;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.about-opening-grid {
+    display: grid;
+    grid-template-columns: minmax(20rem, 5fr) minmax(0, 7fr);
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.about-manifesto,
+.about-story {
+    min-width: 0;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.about-manifesto {
+    display: flex;
+    min-height: 34rem;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+    background: #111111;
+}
+
+.about-manifesto .about-module-label {
+    color: #bdbdbd;
+}
+
+.about-manifesto blockquote {
+    max-width: 36rem;
+    margin: 3rem 0;
+    font-size: clamp(2.2rem, 4.4vw, 4.8rem);
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+}
+
+.about-manifesto > p:last-child {
+    max-width: 34rem;
+    margin: 0;
+    color: #c8c8c8;
+    line-height: 1.7;
+}
+
+.about-story {
+    background: #ffffff;
+}
+
+.about-story-marker {
+    display: inline-flex;
+    padding: 0.45rem 0.65rem;
+    color: #ffffff;
+    background: #111111;
+}
+
+.about-story h2,
+.about-section-heading h2,
+.about-role-card h2,
+.about-now h2 {
+    margin: 1.5rem 0 0;
+    font-size: clamp(1.8rem, 3.5vw, 3.6rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1;
+}
+
+.about-story > p {
+    max-width: 48rem;
+    margin: 1.4rem 0 0;
+    color: #454545;
+    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    line-height: 1.75;
+}
+
+.about-route,
+.about-principles,
+.about-interests {
+    margin-top: clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.about-section-heading {
+    display: flex;
+    min-height: 8rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: #f0f0ec;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.about-section-heading h2 {
+    margin-top: 0.6rem;
+    font-size: clamp(1.7rem, 3vw, 3rem);
+}
+
+.about-section-heading > span {
+    text-align: right;
+}
+
+.about-route-list {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.about-route-list::before {
+    content: '';
+    position: absolute;
+    top: 3.25rem;
+    left: 16.66%;
+    right: 16.66%;
+    height: 1px;
+    background: #111111;
+}
+
+.about-route-list li {
+    position: relative;
+    min-height: 19rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.about-route-code {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: 3.5rem;
+    height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: #111111;
+    border-radius: 50%;
+}
+
+.about-route-place {
+    margin-top: 2.5rem;
+}
+
+.about-route-list h3 {
+    margin: 0.65rem 0 0;
+    font-size: clamp(1.45rem, 2.3vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+}
+
+.about-route-list li > p:last-child {
+    margin: 1rem 0 0;
+    color: #4f4f4f;
+    line-height: 1.65;
+}
+
+.about-role-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.about-role-card {
+    display: flex;
+    min-height: 25rem;
+    flex-direction: column;
+    padding: clamp(1.4rem, 2.5vw, 2.4rem);
+    background: #ffffff;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.about-role-card-product {
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0,
+            transparent 48%,
+            #e0e0db 48%,
+            #e0e0db 52%,
+            transparent 52%,
+            transparent 100%
+        ),
+        #ffffff;
+    background-size: 20px 20px;
+}
+
+.about-role-card-product > * {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.about-role-card-care {
+    color: #ffffff;
+    background: #111111;
+}
+
+.about-role-card-care .about-module-label,
+.about-role-card-care > p,
+.about-role-card-care .about-role-footer {
+    color: #c8c8c8;
+}
+
+.about-role-card > p:not(.about-module-label) {
+    margin: 1.35rem 0 0;
+    color: #4f4f4f;
+    line-height: 1.7;
+}
+
+.about-role-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    color: #626262;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.about-principles-grid,
+.about-interest-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.about-principles-grid > article,
+.about-interest-grid > article {
+    min-height: 17rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.about-principles-grid h3,
+.about-interest-grid h3 {
+    margin: 3rem 0 0;
+    font-size: clamp(1.35rem, 2vw, 2rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1;
+}
+
+.about-principles-grid p,
+.about-interest-grid p {
+    margin: 1rem 0 0;
+    color: #4f4f4f;
+    line-height: 1.65;
+}
+
+.about-now {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(18rem, 7fr);
+    margin-top: clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.about-now-status,
+.about-focus {
+    min-width: 0;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+.about-now-status {
+    color: #ffffff;
+    background: #111111;
+}
+
+.about-now-status .about-module-label,
+.about-now-status > p:last-child {
+    color: #c8c8c8;
+}
+
+.about-now-status > p:last-child {
+    margin: 1.5rem 0 0;
+    line-height: 1.7;
+}
+
+.about-focus {
+    background: #ffffff;
+}
+
+.about-focus ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+}
+
+.about-focus li {
+    min-height: 4.5rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+}
+
+@media screen and (max-width: 1120px) {
+    .about-opening-grid,
+    .about-now {
+        grid-template-columns: 1fr;
+    }
+
+    .about-role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-role-card {
+        min-height: auto;
+    }
+
+    .about-principles-grid,
+    .about-interest-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .about-route-list {
+        grid-template-columns: 1fr;
+    }
+
+    .about-route-list::before {
+        top: 2.5rem;
+        bottom: 2.5rem;
+        left: 3.25rem;
+        right: auto;
+        width: 1px;
+        height: auto;
+    }
+
+    .about-route-list li {
+        min-height: auto;
+        padding-left: 5.75rem;
+    }
+
+    .about-route-code {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+
+    .about-route-place {
+        margin-top: 0;
+    }
+
+    .about-principles-grid,
+    .about-interest-grid,
+    .about-focus ul {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section-heading {
+        min-height: auto;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .about-heading h1 {
+        font-size: clamp(2.6rem, 14vw, 4.5rem);
+    }
+
+    .about-manifesto {
+        min-height: 28rem;
+    }
+
+    .about-manifesto blockquote {
+        font-size: clamp(2.1rem, 11vw, 3.6rem);
+    }
+
+    .about-section-heading {
+        flex-direction: column;
+    }
+
+    .about-section-heading > span {
+        text-align: left;
+    }
+}
