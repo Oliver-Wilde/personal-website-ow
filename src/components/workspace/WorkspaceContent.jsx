@@ -534,184 +534,368 @@ const HomePanel = ({ previewSection = 'home' }) => (
   </section>
 );
 
+const EvidenceIcon = ({ type }) => {
+  const sharedProps = {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.5,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    'aria-hidden': true,
+  };
+
+  if (type === 'repository') {
+    return (
+      <svg {...sharedProps}>
+        <circle cx="5" cy="5" r="2" />
+        <circle cx="19" cy="5" r="2" />
+        <circle cx="12" cy="19" r="2" />
+        <path d="M7 5h10" />
+        <path d="M6.4 6.6 11 17.1" />
+        <path d="m17.6 6.6-4.6 10.5" />
+      </svg>
+    );
+  }
+
+  if (type === 'document') {
+    return (
+      <svg {...sharedProps}>
+        <path d="M6 3h8l4 4v14H6z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 12h6" />
+        <path d="M9 16h6" />
+      </svg>
+    );
+  }
+
+  if (type === 'architecture') {
+    return (
+      <svg {...sharedProps}>
+        <rect x="3" y="4" width="6" height="5" />
+        <rect x="15" y="4" width="6" height="5" />
+        <rect x="9" y="15" width="6" height="5" />
+        <path d="M6 9v3h12V9" />
+        <path d="M12 12v3" />
+      </svg>
+    );
+  }
+
+  if (type === 'results') {
+    return (
+      <svg {...sharedProps}>
+        <path d="M4 4v16h16" />
+        <rect x="7" y="13" width="3" height="5" />
+        <rect x="12" y="9" width="3" height="9" />
+        <rect x="17" y="6" width="3" height="12" />
+      </svg>
+    );
+  }
+
+  if (type === 'product') {
+    return (
+      <svg {...sharedProps}>
+        <rect x="3" y="4" width="18" height="16" rx="1" />
+        <path d="M3 9h18" />
+        <path d="M7 6.5h.01" />
+        <path d="M10 6.5h.01" />
+        <path d="M13 6.5h.01" />
+      </svg>
+    );
+  }
+
+  if (type === 'interface') {
+    return (
+      <svg {...sharedProps}>
+        <rect x="3" y="5" width="12" height="10" rx="1" />
+        <rect x="17" y="8" width="4" height="11" rx="1" />
+        <path d="M7 19h4" />
+        <path d="M9 15v4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...sharedProps}>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M8 12h8" />
+    </svg>
+  );
+};
+
+const OutcomeTray = ({ items = [] }) => (
+  <div
+    className="case-study-outcome-tray"
+    aria-label={`${items.length} demonstrated outcomes`}
+  >
+    <div className="case-study-outcome-tray-header">
+      <span>Outcome tray</span>
+
+      <span>
+        {String(items.length).padStart(2, '0')} items
+      </span>
+    </div>
+
+    <ul className="case-study-outcome-list">
+      {items.map((item, index) => (
+        <li
+          className="case-study-outcome-token"
+          key={item}
+          style={{ '--outcome-index': index }}
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const EvidenceItem = ({ item }) => {
+  const contents = (
+    <>
+      <span className="case-study-evidence-icon">
+        <EvidenceIcon type={item.type} />
+      </span>
+
+      <span className="case-study-evidence-copy">
+        <span className="case-study-evidence-topline">
+          <strong>{item.label}</strong>
+          <span>{item.status}</span>
+        </span>
+
+        <span className="case-study-evidence-detail">
+          {item.detail}
+        </span>
+      </span>
+    </>
+  );
+
+  if (item.href) {
+    return (
+      <a
+        className="case-study-evidence-item is-linked"
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {contents}
+      </a>
+    );
+  }
+
+  return (
+    <div className="case-study-evidence-item">
+      {contents}
+    </div>
+  );
+};
+
+const EvidenceRack = ({ items = [] }) => (
+  <div
+    className="case-study-evidence-rack"
+    aria-label={`${items.length} evidence sources`}
+  >
+    {items.map((item) => (
+      <EvidenceItem
+        item={item}
+        key={`${item.type}-${item.label}`}
+      />
+    ))}
+  </div>
+);
+
 const ProjectCaseStudy = ({
   project,
   onClose,
   detailRef,
   toolbarIconRef,
-}) => (
-  <article
-    ref={detailRef}
-    className="case-study-window"
-    tabIndex="-1"
-    aria-labelledby={`case-study-${project.id}`}
-    onKeyDown={(event) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    }}
-  >
-    <div className="case-study-toolbar">
-      <div className="case-study-file-identity">
-        <span
-          ref={toolbarIconRef}
-          className="case-study-toolbar-file"
-          aria-hidden="true"
+}) => {
+  const outcomeItems =
+    project.outcomes || [project.outcome];
+
+  const evidenceItems =
+    project.evidenceItems || [];
+
+  return (
+    <article
+      ref={detailRef}
+      className="case-study-window"
+      tabIndex="-1"
+      aria-labelledby={`case-study-${project.id}`}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      }}
+    >
+      <div className="case-study-toolbar">
+        <div className="case-study-file-identity">
+          <span
+            ref={toolbarIconRef}
+            className="case-study-toolbar-file"
+            aria-hidden="true"
+          >
+            <FileIcon />
+          </span>
+
+          <span className="case-study-path">
+            <span>WORK</span>
+            <span aria-hidden="true">/</span>
+            <span>{project.title.toUpperCase()}</span>
+          </span>
+        </div>
+
+        <button
+          className="case-study-close"
+          type="button"
+          onClick={onClose}
         >
-          <FileIcon />
-        </span>
-
-        <span className="case-study-path">
-          <span>WORK</span>
-          <span aria-hidden="true">/</span>
-          <span>{project.title.toUpperCase()}</span>
-        </span>
+          <span>Close file</span>
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
-      <button
-        className="case-study-close"
-        type="button"
-        onClick={onClose}
-      >
-        <span>Close file</span>
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+      <header className="case-study-hero">
+        <div className="case-study-title-block">
+          <p className="workspace-eyebrow">
+            {project.category}
+          </p>
 
-    <header className="case-study-hero">
-      <div className="case-study-title-block">
-        <p className="workspace-eyebrow">
-          {project.category}
-        </p>
+          <h2 id={`case-study-${project.id}`}>
+            {project.title}
+          </h2>
+        </div>
 
-        <h2 id={`case-study-${project.id}`}>
-          {project.title}
-        </h2>
-      </div>
+        <p>{project.summary}</p>
+      </header>
 
-      <p>{project.summary}</p>
-    </header>
+      <dl className="case-study-meta">
+        <div>
+          <dt>Status</dt>
+          <dd>{project.status}</dd>
+        </div>
 
-    <dl className="case-study-meta">
-      <div>
-        <dt>Status</dt>
-        <dd>{project.status}</dd>
-      </div>
+        <div>
+          <dt>Context</dt>
+          <dd>{project.period}</dd>
+        </div>
 
-      <div>
-        <dt>Context</dt>
-        <dd>{project.period}</dd>
-      </div>
+        <div>
+          <dt>Role</dt>
+          <dd>{project.role}</dd>
+        </div>
 
-      <div>
-        <dt>Role</dt>
-        <dd>{project.role}</dd>
-      </div>
+        <div>
+          <dt>Technologies</dt>
+          <dd>{project.technologies.join(', ')}</dd>
+        </div>
 
-      <div>
-        <dt>Technologies</dt>
-        <dd>{project.technologies.join(', ')}</dd>
-      </div>
+        <div className="case-study-meta-repository">
+          <dt>Repository</dt>
 
-      <div className="case-study-meta-repository">
-        <dt>Repository</dt>
+          <dd>
+            {project.repositoryUrl ? (
+              <a
+                className="case-study-meta-link"
+                href={project.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>View source</span>
 
-        <dd>
-          {project.repositoryUrl ? (
+                <span
+                  className="case-study-meta-file"
+                  aria-hidden="true"
+                >
+                  <FileIcon />
+                </span>
+              </a>
+            ) : (
+              <span>Not published</span>
+            )}
+          </dd>
+        </div>
+      </dl>
+
+      {(project.liveUrl || project.reportUrl) && (
+        <div
+          className="case-study-actions"
+          aria-label="Additional project links"
+        >
+          {project.liveUrl && (
             <a
-              className="case-study-meta-link"
-              href={project.repositoryUrl}
+              className="case-study-action"
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>View source</span>
-
-              <span
-                className="case-study-meta-file"
-                aria-hidden="true"
-              >
-                <FileIcon />
-              </span>
+              View live project
+              <span aria-hidden="true">&rarr;</span>
             </a>
-          ) : (
-            <span>Not published</span>
           )}
-        </dd>
+
+          {project.reportUrl && (
+            <a
+              className="case-study-action"
+              href={project.reportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read report
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
+        </div>
+      )}
+
+      <div className="case-study-content">
+        <section className="case-study-section">
+          <p className="workspace-card-label">Problem</p>
+          <h3>What needed to be solved</h3>
+          <p>{project.problem}</p>
+        </section>
+
+        <section className="case-study-section">
+          <p className="workspace-card-label">Approach</p>
+          <h3>How the work was structured</h3>
+          <p>{project.approach}</p>
+        </section>
+
+        <section className="case-study-section case-study-section-wide">
+          <p className="workspace-card-label">
+            Engineering decisions
+          </p>
+
+          <h3>Important choices</h3>
+
+          <ol className="case-study-decisions">
+            {project.decisions.map((decision) => (
+              <li key={decision}>{decision}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="case-study-section case-study-outcome-section">
+          <p className="workspace-card-label">Outcome</p>
+          <h3>What the project demonstrates</h3>
+
+          <OutcomeTray items={outcomeItems} />
+        </section>
+
+        <section className="case-study-section case-study-evidence-section">
+          <p className="workspace-card-label">Evidence</p>
+          <h3>How the claims can be verified</h3>
+
+          {evidenceItems.length > 0 ? (
+            <EvidenceRack items={evidenceItems} />
+          ) : (
+            <p>{project.evidence}</p>
+          )}
+        </section>
       </div>
-    </dl>
-
-    {(project.liveUrl || project.reportUrl) && (
-      <div
-        className="case-study-actions"
-        aria-label="Additional project links"
-      >
-        {project.liveUrl && (
-          <a
-            className="case-study-action"
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View live project
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        )}
-
-        {project.reportUrl && (
-          <a
-            className="case-study-action"
-            href={project.reportUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read report
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        )}
-      </div>
-    )}
-
-    <div className="case-study-content">
-      <section className="case-study-section">
-        <p className="workspace-card-label">Problem</p>
-        <h3>What needed to be solved</h3>
-        <p>{project.problem}</p>
-      </section>
-
-      <section className="case-study-section">
-        <p className="workspace-card-label">Approach</p>
-        <h3>How the work was structured</h3>
-        <p>{project.approach}</p>
-      </section>
-
-      <section className="case-study-section case-study-section-wide">
-        <p className="workspace-card-label">
-          Engineering decisions
-        </p>
-
-        <h3>Important choices</h3>
-
-        <ol className="case-study-decisions">
-          {project.decisions.map((decision) => (
-            <li key={decision}>{decision}</li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="case-study-section">
-        <p className="workspace-card-label">Outcome</p>
-        <h3>What the project demonstrates</h3>
-        <p>{project.outcome}</p>
-      </section>
-
-      <section className="case-study-section">
-        <p className="workspace-card-label">Evidence</p>
-        <h3>How the claims can be verified</h3>
-        <p>{project.evidence}</p>
-      </section>
-    </div>
-  </article>
-);
+    </article>
+  );
+};
 
 const ProjectMotionShell = ({
   project,
@@ -1394,6 +1578,7 @@ const SCROLL_REVEAL_SELECTOR = [
   '.about-manifesto',
   '.about-story',
   '.about-section-heading',
+  '.about-route-map',
   '.about-route-list > li',
   '.about-role-card',
   '.about-principles-grid > article',

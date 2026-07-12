@@ -60,6 +60,21 @@ export const education = [
       'Fast learning',
     ],
   },
+  {
+    id: 'isg-jubail',
+    period: 'Seven years',
+    institution: 'ISG Jubail',
+    qualification: 'International schooling',
+    status: 'Completed',
+    summary:
+      'Spent seven years studying in an international school environment in Jubail, Saudi Arabia, before continuing secondary and higher education in the United Kingdom.',
+    highlights: [
+      'Seven years',
+      'Saudi Arabia',
+      'International environment',
+      'Adaptability',
+    ],
+  },
 ];
 
 export const workExperience = [

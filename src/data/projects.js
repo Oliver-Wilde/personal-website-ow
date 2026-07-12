@@ -19,6 +19,43 @@ const projects = [
       'Used defined staging and upload paths to make transfer costs observable rather than accidental.',
       'Structured the project so chunk streaming and upload budgets could be investigated through benchmark-oriented telemetry.',
     ],
+    outcomes: [
+      'Explicit GPU resource ownership',
+      'Defined staging and upload paths',
+      'Chunk-streaming telemetry',
+      'Dissertation-level systems work',
+    ],
+    evidenceItems: [
+      {
+        type: 'repository',
+        label: 'Source repository',
+        status: 'Linked',
+        detail:
+          'Public C++, Vulkan and GLSL implementation.',
+        href: 'https://github.com/Oliver-Wilde/VulkanProject',
+      },
+      {
+        type: 'document',
+        label: 'Dissertation',
+        status: 'On file',
+        detail:
+          'Research report covering design and investigation.',
+      },
+      {
+        type: 'architecture',
+        label: 'Architecture',
+        status: 'Documented',
+        detail:
+          'Resource ownership, staging and streaming structure.',
+      },
+      {
+        type: 'results',
+        label: 'Performance work',
+        status: 'On file',
+        detail:
+          'Benchmark telemetry and upload-budget investigation.',
+      },
+    ],
     outcome:
       'The project provides a working foundation for discussing graphics architecture, resource lifetime, performance investigation, and the trade-offs involved in explicit APIs.',
     evidence:
@@ -49,6 +86,43 @@ const projects = [
       'Kept Shopify and cart behaviour separate from visual experimentation to reduce regression risk.',
       'Applied interaction and motion incrementally after establishing repository health and production behaviour.',
     ],
+    outcomes: [
+      'Headless commerce boundary',
+      'Real product constraints',
+      'Responsive interaction system',
+      'Maintainable frontend structure',
+    ],
+    evidenceItems: [
+      {
+        type: 'repository',
+        label: 'Source repository',
+        status: 'Linked',
+        detail:
+          'Public Next.js and TypeScript storefront implementation.',
+        href: 'https://github.com/Oliver-Wilde/headless-shopify-art-store',
+      },
+      {
+        type: 'product',
+        label: 'Product build',
+        status: 'Implemented',
+        detail:
+          'Commerce-facing storefront built around a real artist.',
+      },
+      {
+        type: 'interface',
+        label: 'Responsive UI',
+        status: 'Implemented',
+        detail:
+          'Desktop and mobile interaction and navigation work.',
+      },
+      {
+        type: 'architecture',
+        label: 'System boundary',
+        status: 'Documented',
+        detail:
+          'Shopify commerce separated from custom presentation.',
+      },
+    ],
     outcome:
       'The project demonstrates client-facing delivery, iterative design work, real product constraints, and the ability to balance visual ambition with maintainable implementation.',
     evidence:
@@ -78,6 +152,44 @@ const projects = [
       'Defined a common strategy interface and factory so strategies could be selected through command-line tokens without coupling them to match execution.',
       'Used configurable random seeds, saveable configurations, and text, CSV, and JSON outputs to make experiments reproducible and inspectable.',
       'Separated tournament, sweep, evolutionary, scoring-adjustment, and output responsibilities into dedicated components.',
+    ],
+    outcomes: [
+      '100/100 assessment result',
+      'Reproducible experiments',
+      'Configurable strategy system',
+      'Text, CSV and JSON output',
+    ],
+    evidenceItems: [
+      {
+        type: 'repository',
+        label: 'Source repository',
+        status: 'Linked',
+        detail:
+          'Public modular C++ simulator implementation.',
+        href:
+          'https://github.com/Oliver-Wilde/Prisoners-Dilemma-Oliver-Wilde',
+      },
+      {
+        type: 'document',
+        label: 'Submitted report',
+        status: 'Submitted',
+        detail:
+          'Coursework report and Strategic Complexity analysis.',
+      },
+      {
+        type: 'results',
+        label: 'Generated results',
+        status: 'Generated',
+        detail:
+          'Text, CSV and JSON datasets from experiments.',
+      },
+      {
+        type: 'architecture',
+        label: 'Component design',
+        status: 'Documented',
+        detail:
+          'Strategies, tournaments, experiments and output separated.',
+      },
     ],
     outcome:
       'The project received 100/100 in assessment. It demonstrates modular C++ design, command-line application development, simulation architecture, reproducible experimentation, and comparative analysis.',

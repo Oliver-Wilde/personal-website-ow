@@ -304,3 +304,20 @@
     overflow-wrap: anywhere;
 }
 /* EXPERIENCE OVERFLOW SAFETY END */
+
+/* EXPERIENCE HEADER ALIGNMENT PASS START */
+.experience-board .experience-group-heading > div {
+    min-width: 0;
+}
+
+.experience-board .experience-group-heading > span {
+    flex: 0 0 auto;
+}
+
+@media screen and (min-width: 1121px) {
+    .experience-board .experience-group-heading {
+        height: 9rem;
+        min-height: 9rem;
+    }
+}
+/* EXPERIENCE HEADER ALIGNMENT PASS END */

@@ -2,26 +2,52 @@ export const journey = [
   {
     code: 'TH',
     place: 'Thailand',
-    title: 'Where the story started',
+    title: 'Where I was born',
+    period: 'Origin',
+    mapLabel: 'TH / ORIGIN',
+    mapX: 78.05,
+    mapY: 41.18,
     description:
-      'Born in Thailand, with an early life shaped by moving between countries and learning to adapt quickly.',
+      'The starting point of a life that would later move across several countries and education systems.',
   },
   {
     code: 'SA',
-    place: 'Saudi Arabia',
-    title: 'International perspective',
+    place: 'Jubail, Saudi Arabia',
+    title: 'Seven years at ISG Jubail',
+    period: 'Seven years',
+    mapLabel: 'SA / JUBAIL',
+    mapX: 63.78,
+    mapY: 35,
     description:
-      'Attended an international school in Saudi Arabia and grew up around people, expectations, and cultures from many different places.',
+      'Studied in an international school environment and learned alongside people from many different backgrounds.',
   },
   {
-    code: 'UK',
-    place: 'United Kingdom',
-    title: 'Education and engineering',
+    code: 'NCL',
+    place: 'Newcastle upon Tyne',
+    title: 'First Class MComp',
+    period: '2022–2026',
+    mapLabel: 'UK / NEWCASTLE',
+    mapX: 49.55,
+    mapY: 19.46,
+    nodeOffsetX: -11,
+    nodeOffsetY: 8,
     description:
-      'Continued school and college in the UK, completed a First Class MComp at Newcastle, and will begin an MSc at Durham.',
+      'Completed four years of Computer Science study, specialising in Game Engineering and building a Vulkan voxel engine dissertation.',
+  },
+  {
+    code: 'DUR',
+    place: 'Durham',
+    title: 'The next stage',
+    period: '2026–2027',
+    mapLabel: 'UK / DURHAM',
+    mapX: 49.56,
+    mapY: 19.57,
+    nodeOffsetX: 11,
+    nodeOffsetY: -8,
+    description:
+      'Beginning an MSc in Advanced Computer Science and continuing to develop toward graduate software engineering work.',
   },
 ];
-
 export const focusAreas = [
   'Backend engineering',
   'Distributed systems',
@@ -36,27 +62,27 @@ export const focusAreas = [
 export const principles = [
   {
     number: '01',
-    title: 'Evidence over claims',
+    title: 'Understand the system',
     description:
-      'A project should show what was built, what changed, how it was tested, and what can actually be verified.',
+      'Before changing code, I try to trace the responsibilities, data flow, and constraints involved.',
   },
   {
     number: '02',
-    title: 'Correctness before cleverness',
+    title: 'Make the work visible',
     description:
-      'I would rather build something understandable and dependable than hide complexity behind an impressive abstraction.',
+      'Tests, reports, benchmarks, diagrams, and readable code make it easier to tell whether something actually works.',
   },
   {
     number: '03',
-    title: 'Deliberate practice',
+    title: 'Explain decisions plainly',
     description:
-      'When I find a gap in my understanding, I return to first principles and practise until the knowledge becomes usable.',
+      'I want to be able to describe what I chose, what I rejected, and which trade-off I accepted.',
   },
   {
     number: '04',
-    title: 'Explain the trade-off',
+    title: 'Keep practising',
     description:
-      'Engineering decisions matter more when the rejected alternatives, constraints, and consequences are made clear.',
+      'When I find a gap in my knowledge, I return to the fundamentals and work through it until I can use it.',
   },
 ];
 
