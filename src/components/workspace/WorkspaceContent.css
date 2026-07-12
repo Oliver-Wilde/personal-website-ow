@@ -1462,3 +1462,387 @@
     }
 }
 /* HOME ICON SCAFFOLDING END */
+
+/* HOME NAV MONITOR START */
+.home-monitor-stage {
+    display: grid;
+    place-items: center;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    cursor: default;
+    user-select: none;
+    touch-action: auto;
+}
+
+.home-monitor-stage::before,
+.home-monitor-stage::after {
+    display: none;
+}
+
+.home-monitor-device {
+    display: grid;
+    width: min(100%, 25.5rem);
+    justify-items: center;
+}
+
+.home-monitor-shell {
+    width: 100%;
+    padding: 1rem 1rem 0.85rem;
+    background: linear-gradient(180deg, #dfd7bc 0%, #c8bea0 100%);
+    border: 1px solid #8a8068;
+    border-radius: 1.3rem 1.3rem 1rem 1rem;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 0 0 1px rgba(17, 17, 17, 0.06);
+}
+
+.home-monitor-shell-top {
+    height: 0.55rem;
+    margin-bottom: 0.8rem;
+    border-radius: 999px;
+    background: repeating-linear-gradient(
+        90deg,
+        #aaa083 0 0.35rem,
+        #d2c9aa 0.35rem 0.55rem
+    );
+    opacity: 0.7;
+}
+
+.home-monitor-bezel {
+    padding: 0.8rem;
+    background: linear-gradient(180deg, #383d34 0%, #141712 100%);
+    border: 1px solid #090909;
+    border-radius: 0.95rem;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.home-monitor-screen {
+    position: relative;
+    display: grid;
+    min-height: 17.8rem;
+    place-items: center;
+    overflow: hidden;
+    color: #72ff84;
+    background: radial-gradient(
+        circle at center,
+        #0d1f0d 0%,
+        #071207 68%,
+        #030603 100%
+    );
+    border: 1px solid #5c6658;
+    border-radius: 1rem;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 0 0 32px rgba(114, 255, 132, 0.08);
+}
+
+.home-monitor-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(114, 255, 132, 0.07) 0 1px,
+            transparent 1px 3px
+        ),
+        radial-gradient(
+            circle at center,
+            transparent 55%,
+            rgba(0, 0, 0, 0.28) 100%
+        );
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.home-monitor-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 100%;
+    min-height: 17.8rem;
+    place-items: center;
+    padding: 1.35rem 1.5rem;
+    visibility: hidden;
+    animation:
+        home-monitor-content-switch
+        240ms
+        steps(1, end)
+        both;
+}
+
+.home-monitor-screen::after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    background: #020402;
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation:
+        home-monitor-signal-switch
+        240ms
+        cubic-bezier(0.76, 0, 0.24, 1)
+        both;
+}
+
+.home-monitor-art {
+    margin: 0;
+    color: #6df58a;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(0.54rem, 0.85vw, 0.76rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.28;
+    white-space: pre;
+    text-shadow: 0 0 6px rgba(109, 245, 138, 0.36);
+}
+
+.home-monitor-donut {
+    font-size: clamp(0.46rem, 0.72vw, 0.66rem);
+    line-height: 1;
+    letter-spacing: 0;
+    text-align: left;
+    text-shadow:
+        0 0 4px rgba(109, 245, 138, 0.42),
+        0 0 9px rgba(109, 245, 138, 0.16);
+}
+
+.home-monitor-panel {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 0.8rem;
+    padding: 0.55rem 0.2rem 0 0.1rem;
+    color: #564c39;
+}
+
+.home-monitor-badge {
+    font-family: var(--font-system);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.home-monitor-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.home-monitor-buttons span {
+    display: block;
+    width: 1.1rem;
+    height: 0.45rem;
+    background: #b7ad92;
+    border: 1px solid #8a8068;
+    border-radius: 999px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.home-monitor-led {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #5eff74;
+    box-shadow:
+        0 0 0 1px #4d5b49,
+        0 0 7px rgba(94, 255, 116, 0.6);
+}
+
+.home-monitor-neck {
+    width: 4.5rem;
+    height: 1.45rem;
+    background: linear-gradient(180deg, #d5cbaa 0%, #b9af93 100%);
+    border-right: 1px solid #8a8068;
+    border-left: 1px solid #8a8068;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.home-monitor-base {
+    width: 11rem;
+    height: 1rem;
+    background: linear-gradient(180deg, #d2c8a9 0%, #b7ac8f 100%);
+    border: 1px solid #8a8068;
+    border-radius: 0.35rem 0.35rem 0.85rem 0.85rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.home-monitor-preview figcaption span:last-child {
+    text-align: right;
+}
+
+@keyframes home-monitor-signal-switch {
+    0% {
+        transform-origin: left center;
+        transform: scaleX(0);
+    }
+
+    45% {
+        transform-origin: left center;
+        transform: scaleX(1);
+    }
+
+    55% {
+        transform-origin: right center;
+        transform: scaleX(1);
+    }
+
+    100% {
+        transform-origin: right center;
+        transform: scaleX(0);
+    }
+}
+
+@keyframes home-monitor-content-switch {
+    0%,
+    49.9% {
+        visibility: hidden;
+    }
+
+    50%,
+    100% {
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .home-monitor-stage {
+        padding: 1rem;
+    }
+
+    .home-monitor-device {
+        width: min(100%, 21.5rem);
+    }
+
+    .home-monitor-screen,
+    .home-monitor-content {
+        min-height: 15rem;
+    }
+
+    .home-monitor-art {
+        font-size: clamp(0.47rem, 2.1vw, 0.64rem);
+    }
+
+    .home-monitor-panel {
+        grid-template-columns: auto auto auto;
+        justify-content: space-between;
+    }
+
+    .home-monitor-base {
+        width: 9rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-monitor-screen::after {
+        display: none;
+        animation: none;
+    }
+
+    .home-monitor-content {
+        visibility: visible;
+        animation: none;
+    }
+}
+/* HOME MONITOR OUTER CHROME REMOVAL START */
+.home-monitor-preview {
+    display: grid;
+    min-height: clamp(26rem, 40vw, 37rem);
+    grid-template-rows: minmax(0, 1fr);
+    place-items: center;
+    margin: 0;
+    background: transparent;
+    border: 0;
+}
+
+.home-monitor-preview .home-monitor-stage {
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+    background: transparent;
+}
+
+.home-monitor-preview .home-monitor-stage::before,
+.home-monitor-preview .home-monitor-stage::after {
+    display: none;
+}
+/* HOME MONITOR OUTER CHROME REMOVAL END */
+/* HOME MONITOR MONOCHROME SHELL START */
+.home-monitor-shell {
+    background: linear-gradient(
+        180deg,
+        #f0f0ed 0%,
+        #ccccca 100%
+    );
+    border-color: #777777;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 0 0 1px rgba(17, 17, 17, 0.08);
+}
+
+.home-monitor-shell-top {
+    background: repeating-linear-gradient(
+        90deg,
+        #8c8c8c 0 0.35rem,
+        #d7d7d4 0.35rem 0.55rem
+    );
+}
+
+.home-monitor-bezel {
+    background: linear-gradient(
+        180deg,
+        #333333 0%,
+        #101010 100%
+    );
+    border-color: #050505;
+}
+
+.home-monitor-panel {
+    color: #444444;
+}
+
+.home-monitor-buttons span {
+    background: #bcbcbc;
+    border-color: #747474;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.home-monitor-led {
+    background: #f5f5f2;
+    border: 1px solid #555555;
+    box-shadow:
+        inset 0 0 0 1px #c5c5c5,
+        0 0 4px rgba(255, 255, 255, 0.45);
+}
+
+.home-monitor-neck {
+    background: linear-gradient(
+        180deg,
+        #e1e1de 0%,
+        #bdbdb9 100%
+    );
+    border-right-color: #777777;
+    border-left-color: #777777;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.home-monitor-base {
+    background: linear-gradient(
+        180deg,
+        #ddddda 0%,
+        #b8b8b5 100%
+    );
+    border-color: #777777;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+/* HOME MONITOR MONOCHROME SHELL END */
+/* HOME NAV MONITOR END */

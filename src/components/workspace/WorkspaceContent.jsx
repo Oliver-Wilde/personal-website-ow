@@ -11,7 +11,361 @@ const FileIcon = () => (
   </span>
 );
 
-const HomePanel = () => (
+const renderAsciiDonut = (angleA, angleB) => {
+  const width = 42;
+  const height = 20;
+  const buffer = Array(width * height).fill(' ');
+  const depthBuffer = Array(width * height).fill(0);
+  const characters = '.,-~:;=!*#$@';
+
+  const sinA = Math.sin(angleA);
+  const cosA = Math.cos(angleA);
+  const sinB = Math.sin(angleB);
+  const cosB = Math.cos(angleB);
+
+  for (
+    let theta = 0;
+    theta < Math.PI * 2;
+    theta += 0.07
+  ) {
+    const cosTheta = Math.cos(theta);
+    const sinTheta = Math.sin(theta);
+
+    for (
+      let phi = 0;
+      phi < Math.PI * 2;
+      phi += 0.02
+    ) {
+      const cosPhi = Math.cos(phi);
+      const sinPhi = Math.sin(phi);
+
+      const circleX = 2 + cosTheta;
+      const circleY = sinTheta;
+
+      const x =
+        circleX *
+          (
+            cosB * cosPhi +
+            sinA * sinB * sinPhi
+          ) -
+        circleY * cosA * sinB;
+
+      const y =
+        circleX *
+          (
+            sinB * cosPhi -
+            sinA * cosB * sinPhi
+          ) +
+        circleY * cosA * cosB;
+
+      const z =
+        5 +
+        cosA * circleX * sinPhi +
+        circleY * sinA;
+
+      const inverseZ = 1 / z;
+
+      const projectedX = Math.floor(
+        (width / 2) +
+        (29 * inverseZ * x)
+      );
+
+      const projectedY = Math.floor(
+        (height / 2) -
+        (14 * inverseZ * y)
+      );
+
+      const luminance =
+        cosPhi * cosTheta * sinB -
+        cosA * cosTheta * sinPhi -
+        sinA * sinTheta +
+        cosB *
+          (
+            cosA * sinTheta -
+            cosTheta * sinA * sinPhi
+          );
+
+      if (
+        luminance <= 0 ||
+        projectedX < 0 ||
+        projectedX >= width ||
+        projectedY < 0 ||
+        projectedY >= height
+      ) {
+        continue;
+      }
+
+      const bufferIndex =
+        projectedX +
+        (width * projectedY);
+
+      if (inverseZ <= depthBuffer[bufferIndex]) {
+        continue;
+      }
+
+      depthBuffer[bufferIndex] = inverseZ;
+
+      const characterIndex = Math.min(
+        characters.length - 1,
+        Math.floor(luminance * 8)
+      );
+
+      buffer[bufferIndex] =
+        characters[characterIndex];
+    }
+  }
+
+  return Array.from(
+    { length: height },
+    (_, rowIndex) => {
+      const rowStart = rowIndex * width;
+
+      return buffer
+        .slice(rowStart, rowStart + width)
+        .join('')
+        .replace(/\s+$/, '');
+    }
+  ).join('\n');
+};
+
+const AsciiDonut = () => {
+  const staticAngleA = 1;
+  const staticAngleB = 0.45;
+
+  const [frame, setFrame] = useState(
+    () => renderAsciiDonut(
+      staticAngleA,
+      staticAngleB
+    )
+  );
+
+  const [motionAllowed, setMotionAllowed] =
+    useState(false);
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+    const updateMotionPreference = () => {
+      setMotionAllowed(!motionQuery.matches);
+    };
+
+    updateMotionPreference();
+
+    if (
+      typeof motionQuery.addEventListener ===
+      'function'
+    ) {
+      motionQuery.addEventListener(
+        'change',
+        updateMotionPreference
+      );
+
+      return () => {
+        motionQuery.removeEventListener(
+          'change',
+          updateMotionPreference
+        );
+      };
+    }
+
+    motionQuery.addListener(
+      updateMotionPreference
+    );
+
+    return () => {
+      motionQuery.removeListener(
+        updateMotionPreference
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!motionAllowed) {
+      setFrame(
+        renderAsciiDonut(
+          staticAngleA,
+          staticAngleB
+        )
+      );
+
+      return undefined;
+    }
+
+    let angleA = staticAngleA;
+    let angleB = staticAngleB;
+
+    const intervalId = window.setInterval(() => {
+      angleA += 0.08;
+      angleB += 0.035;
+
+      setFrame(
+        renderAsciiDonut(angleA, angleB)
+      );
+    }, 75);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [motionAllowed]);
+
+  return (
+    <pre
+      className="home-monitor-art home-monitor-donut"
+      aria-hidden="true"
+    >
+      {frame}
+    </pre>
+  );
+};
+
+const NAV_MONITOR_PREVIEWS = {
+  home: {
+    label: 'HOME / LIVE RENDER',
+    status: 'Torus online',
+    caption: 'Realtime ASCII geometry',
+    art: '',
+  },
+  work: {
+    label: 'WORK / PROJECT FILES',
+    status: 'Three files',
+    caption: 'Systems / product / simulation',
+    art: String.raw`
+      .--------.   .--------.
+      | FILE 1 |   | FILE 2 |
+      |  C++   |   |  TS    |
+      '--------'   '--------'
+
+           .--------.
+           | FILE 3 |
+           |  SIM   |
+           '--------'
+`,
+  },
+  experience: {
+    label: 'EXPERIENCE / TIMELINE',
+    status: 'Record view',
+    caption: 'Education / work / development',
+    art: String.raw`
+      2019  o
+            |
+      2023  o---- COMPUTER SCIENCE
+            |
+      2026  o---- FIRST CLASS MCOMP
+            |
+      NEXT  o---- DURHAM MSC
+`,
+  },
+  about: {
+    label: 'ABOUT / ROUTE',
+    status: 'Four locations',
+    caption: 'Thailand / Jubail / Newcastle / Durham',
+    art: String.raw`
+      THAILAND  o-------->  JUBAIL
+                              |
+                              v
+      NEWCASTLE o-------->  DURHAM
+
+      ONE ROUTE / DIFFERENT SYSTEMS
+`,
+  },
+  contact: {
+    label: 'CONTACT / SIGNAL',
+    status: 'Channels ready',
+    caption: 'Email / GitHub / LinkedIn',
+    art: String.raw`
+        .------.           .------.
+        | SEND |===========| RECV |
+        '------'           '------'
+
+        EMAIL   GITHUB   LINKEDIN
+             SIGNAL AVAILABLE
+`,
+  },
+  resume: {
+    label: 'RESUME / DOCUMENT',
+    status: 'Draft asset',
+    caption: 'Downloadable CV',
+    art: String.raw`
+          .----------------.
+          |  OLIVER WILDE  |
+          |----------------|
+          | EXPERIENCE     |
+          | PROJECTS       |
+          | EDUCATION      |
+          | TECHNICAL WORK |
+          '----------------'
+`,
+  },
+};
+
+const AsciiMonitorPreview = ({ previewSection = 'home' }) => {
+  const previewKey =
+    NAV_MONITOR_PREVIEWS[previewSection]
+      ? previewSection
+      : 'home';
+
+  const preview = NAV_MONITOR_PREVIEWS[previewKey];
+
+  return (
+    <figure
+      className="home-hero-media home-monitor-preview"
+      aria-label="Navigation-controlled CRT preview"
+    >
+      <div className="home-monitor-stage">
+        <div className="home-monitor-device">
+          <div className="home-monitor-shell">
+            <div
+              className="home-monitor-shell-top"
+              aria-hidden="true"
+            />
+
+            <div className="home-monitor-bezel">
+              <div
+                className="home-monitor-screen"
+                key={previewKey}
+                role="img"
+                aria-label={`Navigation preview for ${preview.label}`}
+                aria-live="polite"
+              >
+                <div className="home-monitor-content">
+                  {previewKey === 'home' ? (
+                    <AsciiDonut />
+                  ) : (
+                    <pre
+                      className="home-monitor-art"
+                      aria-hidden="true"
+                    >
+                      {preview.art}
+                    </pre>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="home-monitor-panel" aria-hidden="true">
+              <span className="home-monitor-badge">
+                SYSTEM / 32
+              </span>
+
+              <div className="home-monitor-buttons">
+                <span />
+                <span />
+              </div>
+
+              <span className="home-monitor-led" />
+            </div>
+          </div>
+
+          <div className="home-monitor-neck" aria-hidden="true" />
+          <div className="home-monitor-base" aria-hidden="true" />
+        </div>
+      </div>
+    </figure>
+  );
+};
+const HomePanel = ({ previewSection = 'home' }) => (
   <section
     className="workspace-panel home-panel"
     aria-labelledby="home-panel-title"
@@ -55,27 +409,7 @@ const HomePanel = () => (
         </div>
       </div>
 
-      <figure
-        className="home-hero-media"
-        aria-labelledby="home-hero-media-caption"
-      >
-        <div className="home-hero-media-toolbar">
-          <span>MEDIA SLOT / 01</span>
-          <span>RESERVED</span>
-        </div>
-
-        <div className="home-hero-media-frame">
-          <div className="home-hero-media-message">
-            <strong>Project image reserved</strong>
-            <span>1600 &times; 1000 recommended</span>
-          </div>
-        </div>
-
-        <figcaption id="home-hero-media-caption">
-          <span>Future project evidence</span>
-          <span>Landscape / monochrome</span>
-        </figcaption>
-      </figure>
+      <AsciiMonitorPreview previewSection={previewSection} />
     </header>
 
     <div className="workspace-grid workspace-grid-home">
@@ -600,6 +934,7 @@ const PANELS = {
 const WorkspaceContent = ({
   activeSection,
   activeProjectId,
+  navPreviewSection,
   onOpenProject,
   onCloseProject,
   isTransitioning,
@@ -609,6 +944,12 @@ const WorkspaceContent = ({
     activeProjectId,
     isTransitioning
   );
+
+  if (activeSection === 'home') {
+    return (
+      <HomePanel previewSection={navPreviewSection} />
+    );
+  }
 
   if (activeSection === 'work') {
     return (

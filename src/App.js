@@ -96,6 +96,7 @@ const App = () => {
     () => readRouteFromHash()
   );
   const [transitionPhase, setTransitionPhase] = useState('idle');
+  const [navPreviewSection, setNavPreviewSection] = useState('home');
   const transitionTimersRef = useRef([]);
 
   useEffect(() => {
@@ -190,7 +191,16 @@ const App = () => {
   };
 
   const handleSelectSection = (section) => {
+    setNavPreviewSection('home');
     navigateToHash(section);
+  };
+
+  const handlePreviewSection = (section) => {
+    setNavPreviewSection(section);
+  };
+
+  const handleClearPreview = () => {
+    setNavPreviewSection('home');
   };
 
   const handleOpenProject = (projectId) => {
@@ -207,6 +217,8 @@ const App = () => {
         <Navbar
           activeSection={route.section}
           onSelectSection={handleSelectSection}
+          onPreviewSection={handlePreviewSection}
+          onClearPreview={handleClearPreview}
         />
 
         <main
@@ -218,6 +230,7 @@ const App = () => {
           <WorkspaceContent
             activeSection={route.section}
             activeProjectId={route.projectId}
+            navPreviewSection={navPreviewSection}
             onOpenProject={handleOpenProject}
             onCloseProject={handleCloseProject}
           />
