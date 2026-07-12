@@ -534,7 +534,12 @@ const HomePanel = ({ previewSection = 'home' }) => (
   </section>
 );
 
-const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
+const ProjectCaseStudy = ({
+  project,
+  onClose,
+  detailRef,
+  toolbarIconRef,
+}) => (
   <article
     ref={detailRef}
     className="case-study-window"
@@ -547,24 +552,41 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
     }}
   >
     <div className="case-study-toolbar">
-      <span>
-        WORK / {project.title.toUpperCase()}
-      </span>
+      <div className="case-study-file-identity">
+        <span
+          ref={toolbarIconRef}
+          className="case-study-toolbar-file"
+          aria-hidden="true"
+        >
+          <FileIcon />
+        </span>
+
+        <span className="case-study-path">
+          <span>WORK</span>
+          <span aria-hidden="true">/</span>
+          <span>{project.title.toUpperCase()}</span>
+        </span>
+      </div>
 
       <button
         className="case-study-close"
         type="button"
         onClick={onClose}
       >
-        Close file
-        <span aria-hidden="true">X</span>
+        <span>Close file</span>
+        <span aria-hidden="true">&times;</span>
       </button>
     </div>
 
     <header className="case-study-hero">
-      <div>
-        <p className="workspace-eyebrow">{project.category}</p>
-        <h2 id={`case-study-${project.id}`}>{project.title}</h2>
+      <div className="case-study-title-block">
+        <p className="workspace-eyebrow">
+          {project.category}
+        </p>
+
+        <h2 id={`case-study-${project.id}`}>
+          {project.title}
+        </h2>
       </div>
 
       <p>{project.summary}</p>
@@ -590,22 +612,39 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
         <dt>Technologies</dt>
         <dd>{project.technologies.join(', ')}</dd>
       </div>
+
+      <div className="case-study-meta-repository">
+        <dt>Repository</dt>
+
+        <dd>
+          {project.repositoryUrl ? (
+            <a
+              className="case-study-meta-link"
+              href={project.repositoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>View source</span>
+
+              <span
+                className="case-study-meta-file"
+                aria-hidden="true"
+              >
+                <FileIcon />
+              </span>
+            </a>
+          ) : (
+            <span>Not published</span>
+          )}
+        </dd>
+      </div>
     </dl>
 
-    {(project.repositoryUrl || project.liveUrl || project.reportUrl) && (
-      <div className="case-study-actions" aria-label="Project links">
-        {project.repositoryUrl && (
-          <a
-            className="case-study-action"
-            href={project.repositoryUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View repository
-            <span aria-hidden="true">â†&mdash;</span>
-          </a>
-        )}
-
+    {(project.liveUrl || project.reportUrl) && (
+      <div
+        className="case-study-actions"
+        aria-label="Additional project links"
+      >
         {project.liveUrl && (
           <a
             className="case-study-action"
@@ -614,7 +653,7 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
             rel="noopener noreferrer"
           >
             View live project
-            <span aria-hidden="true">â†&mdash;</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
         )}
 
@@ -626,11 +665,12 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
             rel="noopener noreferrer"
           >
             Read report
-            <span aria-hidden="true">â†&mdash;</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
         )}
       </div>
     )}
+
     <div className="case-study-content">
       <section className="case-study-section">
         <p className="workspace-card-label">Problem</p>
@@ -645,7 +685,10 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
       </section>
 
       <section className="case-study-section case-study-section-wide">
-        <p className="workspace-card-label">Engineering decisions</p>
+        <p className="workspace-card-label">
+          Engineering decisions
+        </p>
+
         <h3>Important choices</h3>
 
         <ol className="case-study-decisions">
@@ -670,126 +713,666 @@ const ProjectCaseStudy = ({ project, onClose, detailRef }) => (
   </article>
 );
 
+const ProjectMotionShell = ({
+  project,
+  destinationRef,
+  placeholderHeight,
+}) => (
+  <article
+    className="case-study-window case-study-motion-shell"
+    aria-hidden="true"
+    style={
+      placeholderHeight > 0
+        ? { minHeight: `${placeholderHeight}px` }
+        : undefined
+    }
+  >
+    <div className="case-study-toolbar">
+      <div className="case-study-file-identity">
+        <span
+          ref={destinationRef}
+          className="case-study-toolbar-file"
+        >
+          <FileIcon />
+        </span>
+
+        <span className="case-study-path">
+          <span>WORK</span>
+          <span>/</span>
+          <span>{project.title.toUpperCase()}</span>
+        </span>
+      </div>
+
+      <span className="case-study-close case-study-motion-close">
+        <span>Close file</span>
+        <span>&times;</span>
+      </span>
+    </div>
+  </article>
+);
+
+const WorkMovingFile = ({ motion }) => (
+  <span
+    className="work-file-motion-layer"
+    aria-hidden="true"
+    style={{
+      '--file-left': `${motion.left}px`,
+      '--file-top': `${motion.top}px`,
+      '--file-start-scale': motion.startScale,
+      '--file-target-x': `${motion.targetX}px`,
+      '--file-target-y': `${motion.targetY}px`,
+      '--file-target-scale': motion.targetScale,
+    }}
+  >
+    <FileIcon />
+  </span>
+);
+
 const WorkPanel = ({
   activeProjectId,
   onOpenProject,
   onCloseProject,
 }) => {
-  const [selectedProject, setSelectedProject] = useState(
-    () =>
-      projects.find(
-        (project) => project.id === activeProjectId
-      ) || null
+  const initialProject =
+    projects.find(
+      (project) => project.id === activeProjectId
+    ) || null;
+
+  const [selectedProject, setSelectedProject] =
+    useState(initialProject);
+
+  const [pendingProject, setPendingProject] =
+    useState(null);
+
+  const [closingProjectId, setClosingProjectId] =
+    useState(null);
+
+  const [motionPhase, setMotionPhase] = useState(
+    initialProject ? 'open' : 'browser'
   );
+
+  const [movingFile, setMovingFile] = useState(null);
+
+  const [motionShellHeight, setMotionShellHeight] =
+    useState(0);
+
   const detailRef = useRef(null);
+  const projectGridRef = useRef(null);
   const triggerRefs = useRef({});
+  const toolbarIconRef = useRef(null);
+  const motionDestinationRef = useRef(null);
+  const motionTimersRef = useRef([]);
+  const scrollFrameRef = useRef(null);
+  const localMotionRef = useRef(false);
 
-  useEffect(() => {
-    if (selectedProject && detailRef.current) {
-      detailRef.current.focus();
+  const cancelScrollTracking = () => {
+    if (scrollFrameRef.current !== null) {
+      window.cancelAnimationFrame(
+        scrollFrameRef.current
+      );
+
+      scrollFrameRef.current = null;
     }
-  }, [selectedProject]);
+  };
+
+  const clearMotionTimers = () => {
+    motionTimersRef.current.forEach((timerId) => {
+      window.clearTimeout(timerId);
+    });
+
+    motionTimersRef.current = [];
+    cancelScrollTracking();
+  };
+
+  const queueMotionTimer = (callback, delay) => {
+    const timerId = window.setTimeout(callback, delay);
+    motionTimersRef.current.push(timerId);
+    return timerId;
+  };
+
+  const focusWithoutScroll = (element) => {
+    if (!element) {
+      return;
+    }
+
+    try {
+      element.focus({ preventScroll: true });
+    } catch {
+      element.focus();
+    }
+  };
+
+  const getExplorerScrollOffset = () => {
+    if (
+      !window.matchMedia(
+        '(max-width: 820px)'
+      ).matches
+    ) {
+      return 16;
+    }
+
+    const navigation =
+      document.querySelector('.site-sidebar');
+
+    const navigationHeight = navigation
+      ? navigation.getBoundingClientRect().height
+      : 0;
+
+    return navigationHeight + 16;
+  };
+
+  const scrollToFileExplorer = (callback) => {
+    cancelScrollTracking();
+
+    const projectGrid = projectGridRef.current;
+
+    if (!projectGrid) {
+      callback();
+      return;
+    }
+
+    const gridRect =
+      projectGrid.getBoundingClientRect();
+
+    const targetTop = Math.max(
+      0,
+      window.scrollY +
+        gridRect.top -
+        getExplorerScrollOffset()
+    );
+
+    if (
+      Math.abs(window.scrollY - targetTop) <= 2
+    ) {
+      callback();
+      return;
+    }
+
+    const startedAt = window.performance.now();
+
+    window.scrollTo({
+      top: targetTop,
+      behavior: 'smooth',
+    });
+
+    const inspectScrollPosition = () => {
+      const reachedTarget =
+        Math.abs(window.scrollY - targetTop) <= 2;
+
+      const timedOut =
+        window.performance.now() - startedAt > 900;
+
+      if (reachedTarget || timedOut) {
+        scrollFrameRef.current = null;
+        callback();
+        return;
+      }
+
+      scrollFrameRef.current =
+        window.requestAnimationFrame(
+          inspectScrollPosition
+        );
+    };
+
+    scrollFrameRef.current =
+      window.requestAnimationFrame(
+        inspectScrollPosition
+      );
+  };
+
+  const prefersReducedMotion = () =>
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+  const getRenderedIconRect = (container) => {
+    if (!container) {
+      return null;
+    }
+
+    const icon =
+      container.matches?.('.project-file-icon')
+        ? container
+        : container.querySelector('.project-file-icon');
+
+    return icon
+      ? icon.getBoundingClientRect()
+      : null;
+  };
+
+  const createMotionState = (rect) => {
+    const rootFontSize =
+      Number.parseFloat(
+        window.getComputedStyle(
+          document.documentElement
+        ).fontSize
+      ) || 16;
+
+    const naturalWidth = 3.25 * rootFontSize;
+
+    return {
+      left: rect.left,
+      top: rect.top,
+      startScale: rect.width / naturalWidth,
+      targetX: 0,
+      targetY: 0,
+      targetScale: rect.width / naturalWidth,
+    };
+  };
 
   useEffect(() => {
+    return () => {
+      clearMotionTimers();
+      cancelScrollTracking();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (localMotionRef.current) {
+      return;
+    }
+
     const nextProject =
       projects.find(
         (project) => project.id === activeProjectId
       ) || null;
 
+    clearMotionTimers();
+    setPendingProject(null);
+    setClosingProjectId(null);
+    setMovingFile(null);
+    setMotionShellHeight(0);
     setSelectedProject(nextProject);
+    setMotionPhase(nextProject ? 'open' : 'browser');
   }, [activeProjectId]);
 
-  const openProject = (project) => {
-    setSelectedProject(project);
-
-    if (onOpenProject) {
-      onOpenProject(project.id);
+  useEffect(() => {
+    if (
+      selectedProject &&
+      motionPhase === 'open' &&
+      detailRef.current
+    ) {
+      focusWithoutScroll(detailRef.current);
     }
+  }, [selectedProject, motionPhase]);
+
+  useLayoutEffect(() => {
+    if (
+      motionPhase === 'opening-shell' &&
+      pendingProject &&
+      movingFile &&
+      motionDestinationRef.current
+    ) {
+      const targetRect = getRenderedIconRect(
+        motionDestinationRef.current
+      );
+
+      if (!targetRect) {
+        setSelectedProject(pendingProject);
+        setMotionPhase('opening-reveal');
+
+        if (onOpenProject) {
+          onOpenProject(pendingProject.id);
+        }
+
+        queueMotionTimer(() => {
+          setMovingFile(null);
+          setPendingProject(null);
+          setMotionShellHeight(0);
+          setMotionPhase('open');
+          localMotionRef.current = false;
+        }, 420);
+
+        return;
+      }
+
+      const rootFontSize =
+        Number.parseFloat(
+          window.getComputedStyle(
+            document.documentElement
+          ).fontSize
+        ) || 16;
+
+      const naturalWidth = 3.25 * rootFontSize;
+
+      setMovingFile((current) => ({
+        ...current,
+        targetX: targetRect.left - current.left,
+        targetY: targetRect.top - current.top,
+        targetScale:
+          targetRect.width / naturalWidth,
+      }));
+
+      setMotionPhase('opening-ready');
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setMotionPhase('opening-flight');
+
+          queueMotionTimer(() => {
+            const projectToOpen = pendingProject;
+
+            setSelectedProject(projectToOpen);
+            setMotionPhase('opening-reveal');
+
+            if (onOpenProject) {
+              onOpenProject(projectToOpen.id);
+            }
+
+            queueMotionTimer(() => {
+              setMovingFile(null);
+              setPendingProject(null);
+              setMotionPhase('open');
+              localMotionRef.current = false;
+            }, 420);
+          }, 460);
+        });
+      });
+    }
+
+    if (
+      motionPhase === 'closing-grid' &&
+      closingProjectId &&
+      movingFile
+    ) {
+      const targetButton =
+        triggerRefs.current[closingProjectId];
+
+      const targetRect = getRenderedIconRect(
+        targetButton
+      );
+
+      if (!targetRect) {
+        setMovingFile(null);
+        setClosingProjectId(null);
+        setMotionPhase('browser');
+        localMotionRef.current = false;
+
+        if (onCloseProject) {
+          onCloseProject();
+        }
+
+        return;
+      }
+
+      const rootFontSize =
+        Number.parseFloat(
+          window.getComputedStyle(
+            document.documentElement
+          ).fontSize
+        ) || 16;
+
+      const naturalWidth = 3.25 * rootFontSize;
+
+      setMovingFile((current) => ({
+        ...current,
+        targetX: targetRect.left - current.left,
+        targetY: targetRect.top - current.top,
+        targetScale:
+          targetRect.width / naturalWidth,
+      }));
+
+      setMotionPhase('closing-ready');
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setMotionPhase('closing-flight');
+
+          queueMotionTimer(() => {
+            setMotionPhase('closing-reveal');
+
+            if (onCloseProject) {
+              onCloseProject();
+            }
+
+            queueMotionTimer(() => {
+              const previousTrigger =
+                triggerRefs.current[closingProjectId];
+
+              setMovingFile(null);
+              setClosingProjectId(null);
+              setMotionPhase('browser');
+              localMotionRef.current = false;
+
+              if (previousTrigger) {
+                previousTrigger.focus();
+              }
+            }, 420);
+          }, 460);
+        });
+      });
+    }
+  }, [
+    motionPhase,
+    pendingProject,
+    closingProjectId,
+    movingFile,
+  ]);
+
+  const openProject = (project) => {
+    if (localMotionRef.current) {
+      return;
+    }
+
+    const trigger = triggerRefs.current[project.id];
+    const sourceRect = getRenderedIconRect(trigger);
+
+    if (
+      prefersReducedMotion() ||
+      !sourceRect
+    ) {
+      setSelectedProject(project);
+      setMotionPhase('open');
+
+      if (onOpenProject) {
+        onOpenProject(project.id);
+      }
+
+      return;
+    }
+
+    clearMotionTimers();
+    localMotionRef.current = true;
+
+    const gridRect =
+      projectGridRef.current
+        ? projectGridRef.current.getBoundingClientRect()
+        : null;
+
+    setMotionShellHeight(
+      gridRect ? gridRect.height : 0
+    );
+
+    setPendingProject(project);
+    setMovingFile(createMotionState(sourceRect));
+    setMotionPhase('opening-hide');
+
+    queueMotionTimer(() => {
+      setMotionPhase('opening-scroll');
+
+      scrollToFileExplorer(() => {
+        setMotionPhase('opening-shell');
+      });
+    }, 280);
   };
 
   const closeProject = () => {
-    const previousProjectId = selectedProject
-      ? selectedProject.id
-      : null;
-
-    setSelectedProject(null);
-
-    if (onCloseProject) {
-      onCloseProject();
+    if (
+      localMotionRef.current ||
+      !selectedProject
+    ) {
+      return;
     }
 
-    if (previousProjectId) {
+    const projectToClose = selectedProject;
+
+    const sourceRect = getRenderedIconRect(
+      toolbarIconRef.current
+    );
+
+    if (
+      prefersReducedMotion() ||
+      !sourceRect
+    ) {
+      setSelectedProject(null);
+      setMotionPhase('browser');
+
+      if (onCloseProject) {
+        onCloseProject();
+      }
+
       window.requestAnimationFrame(() => {
-        const previousTrigger = triggerRefs.current[previousProjectId];
+        const previousTrigger =
+          triggerRefs.current[projectToClose.id];
 
         if (previousTrigger) {
-          previousTrigger.focus();
+          focusWithoutScroll(previousTrigger);
         }
       });
+
+      return;
     }
+
+    clearMotionTimers();
+    localMotionRef.current = true;
+
+    setClosingProjectId(projectToClose.id);
+    setMovingFile(createMotionState(sourceRect));
+    setSelectedProject(null);
+    setMotionPhase('closing-grid');
   };
+
+  const openingShellVisible = [
+    'opening-shell',
+    'opening-ready',
+    'opening-flight',
+  ].includes(motionPhase);
+
+  const openingInProgress = motionPhase.startsWith(
+    'opening-'
+  );
+
+  const closingInProgress = motionPhase.startsWith(
+    'closing-'
+  );
+
+  const browserVisible =
+    !selectedProject &&
+    !openingShellVisible;
 
   return (
     <section
-      className="workspace-panel work-panel"
+      className={`workspace-panel work-panel is-${motionPhase}`}
       aria-labelledby="work-panel-title"
+      aria-busy={
+        openingInProgress ||
+        closingInProgress
+      }
     >
       <header className="workspace-heading">
         <p className="workspace-eyebrow">02 / Work</p>
         <h1 id="work-panel-title">Project files</h1>
+
         <p className="workspace-lead">
           Open a file to inspect the problem, role, technical approach,
           engineering decisions, and evidence behind the work.
         </p>
       </header>
 
-      {selectedProject ? (
+      {selectedProject && (
         <ProjectCaseStudy
           project={selectedProject}
           onClose={closeProject}
           detailRef={detailRef}
+          toolbarIconRef={toolbarIconRef}
         />
-      ) : (
-        <div className="project-file-grid">
-          {projects.filter((project) => !project.hidden).map((project, index) => (
-            <button
-              key={project.id}
-              ref={(element) => {
-                triggerRefs.current[project.id] = element;
-              }}
-              className="project-file"
-              type="button"
-              aria-label={`Open case study for ${project.title}`}
-              onClick={() => openProject(project)}
-            >
-              <div className="project-file-topline">
-                <FileIcon />
+      )}
 
-                <span className="project-file-status">
-                  {project.status}
-                </span>
-              </div>
+      {openingShellVisible && pendingProject && (
+        <ProjectMotionShell
+          project={pendingProject}
+          destinationRef={motionDestinationRef}
+          placeholderHeight={motionShellHeight}
+        />
+      )}
 
-              <div className="project-file-body">
-                <p className="project-file-index">
-                  FILE {String(index + 1).padStart(2, '0')}
-                </p>
+      {browserVisible && (
+        <div
+          ref={projectGridRef}
+          className="project-file-grid"
+        >
+          {projects
+            .filter((project) => !project.hidden)
+            .map((project, index) => {
+              const isMotionSource =
+                openingInProgress &&
+                pendingProject?.id === project.id;
 
-                <p className="project-file-category">
-                  {project.category}
-                </p>
+              const isMotionTarget =
+                closingInProgress &&
+                closingProjectId === project.id;
 
-                <h2>{project.title}</h2>
-                <p>{project.summary}</p>
-              </div>
+              return (
+                <button
+                  key={project.id}
+                  ref={(element) => {
+                    triggerRefs.current[project.id] =
+                      element;
+                  }}
+                  className={[
+                    'project-file',
+                    isMotionSource
+                      ? 'is-motion-source'
+                      : '',
+                    isMotionTarget
+                      ? 'is-motion-target'
+                      : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  type="button"
+                  disabled={motionPhase !== 'browser'}
+                  aria-label={`Open case study for ${project.title}`}
+                  onClick={() => openProject(project)}
+                >
+                  <div className="project-file-topline">
+                    <FileIcon />
 
-              <span className="project-file-action">
-                <span>Open case study</span>
-                <span aria-hidden="true">&rarr;</span>
-              </span>
-            </button>
-          ))}
+                    <span className="project-file-status">
+                      {project.status}
+                    </span>
+                  </div>
+
+                  <div className="project-file-body">
+                    <p className="project-file-index">
+                      FILE {String(index + 1).padStart(2, '0')}
+                    </p>
+
+                    <p className="project-file-category">
+                      {project.category}
+                    </p>
+
+                    <h2>{project.title}</h2>
+                    <p>{project.summary}</p>
+                  </div>
+
+                  <span className="project-file-action">
+                    <span>Open case study</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+
+                  <span
+                    className="project-file-motion-band"
+                    aria-hidden="true"
+                  />
+                </button>
+              );
+            })}
         </div>
+      )}
+
+      {movingFile && (
+        <WorkMovingFile motion={movingFile} />
       )}
     </section>
   );

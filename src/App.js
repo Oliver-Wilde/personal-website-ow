@@ -97,6 +97,7 @@ const App = () => {
   );
   const [transitionPhase, setTransitionPhase] = useState('idle');
   const [navPreviewSection, setNavPreviewSection] = useState('home');
+  const routeRef = useRef(route);
   const transitionTimersRef = useRef([]);
 
   useEffect(() => {
@@ -109,6 +110,7 @@ const App = () => {
     };
 
     const commitRoute = (nextRoute, shouldFocus) => {
+      routeRef.current = nextRoute;
       setRoute(nextRoute);
 
       if (shouldFocus) {
@@ -117,8 +119,13 @@ const App = () => {
     };
 
     const synchroniseRoute = (shouldFocus, shouldAnimate) => {
+      const previousRoute = routeRef.current;
       const nextRoute = readRouteFromHash();
       const canonicalHash = `#${nextRoute.hash}`;
+
+      const isInternalWorkNavigation =
+        previousRoute.section === 'work' &&
+        nextRoute.section === 'work';
 
       if (window.location.hash !== canonicalHash) {
         window.history.replaceState(
@@ -134,9 +141,18 @@ const App = () => {
 
       clearTransitionTimers();
 
-      if (!shouldAnimate || prefersReducedMotion) {
+      if (
+        !shouldAnimate ||
+        prefersReducedMotion ||
+        isInternalWorkNavigation
+      ) {
         setTransitionPhase('idle');
-        commitRoute(nextRoute, shouldFocus);
+
+        commitRoute(
+          nextRoute,
+          shouldFocus && !isInternalWorkNavigation
+        );
+
         return;
       }
 

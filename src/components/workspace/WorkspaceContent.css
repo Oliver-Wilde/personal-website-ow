@@ -1846,3 +1846,456 @@
 }
 /* HOME MONITOR MONOCHROME SHELL END */
 /* HOME NAV MONITOR END */
+
+/* WORK CASE STUDY HIERARCHY PASS START */
+.case-study-toolbar {
+    min-height: 4.25rem;
+    padding-left: 1rem;
+}
+
+.case-study-file-identity {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.case-study-toolbar-file {
+    position: relative;
+    display: block;
+    width: 1.25rem;
+    height: 1.55rem;
+    flex: 0 0 1.25rem;
+    color: #ffffff;
+}
+
+.case-study-toolbar-file .project-file-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3.25rem;
+    height: 4rem;
+    border-color: currentColor;
+    transform:
+        translate(-50%, -50%)
+        scale(0.38);
+    transform-origin: center;
+}
+
+.case-study-toolbar-file .project-file-icon::before {
+    background: #111111;
+    border-color: currentColor;
+}
+
+.case-study-toolbar-file .project-file-icon span,
+.case-study-toolbar-file .project-file-icon span::before,
+.case-study-toolbar-file .project-file-icon span::after {
+    background: currentColor;
+}
+
+.case-study-path {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.45rem;
+    overflow: hidden;
+    font-family: var(--font-system);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+}
+
+.case-study-path > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.case-study-close {
+    min-width: 10.25rem;
+    padding: 0 1.15rem;
+    font-family: var(--font-system);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.case-study-close > span:last-child {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.case-study-title-block {
+    min-width: 0;
+}
+
+.case-study-hero {
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(18rem, 0.85fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    padding: clamp(1.5rem, 3.25vw, 3.25rem);
+}
+
+.case-study-hero h2 {
+    max-width: 44rem;
+    font-size: clamp(2.5rem, 4.6vw, 5rem);
+    letter-spacing: -0.05em;
+    line-height: 0.96;
+}
+
+.case-study-hero > p {
+    max-width: 34rem;
+}
+
+.case-study-meta {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.case-study-meta > div {
+    display: flex;
+    min-height: 7.75rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.1rem;
+    border-right: 1px solid #111111;
+    border-bottom: 0;
+}
+
+.case-study-meta > div:last-child {
+    border-right: 0;
+}
+
+.case-study-meta dd {
+    overflow-wrap: anywhere;
+}
+
+.case-study-meta-repository dd {
+    margin-top: 0.75rem;
+}
+
+.case-study-meta-link {
+    --case-study-link-surface: #ffffff;
+
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 0.7rem;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #111111;
+    text-decoration: none;
+}
+
+.case-study-meta-link:hover,
+.case-study-meta-link:focus-visible {
+    --case-study-link-surface: #111111;
+
+    color: #ffffff;
+    background: #111111;
+    outline: none;
+}
+
+.case-study-meta-link:focus-visible {
+    outline: 3px solid #111111;
+    outline-offset: 3px;
+}
+
+.case-study-meta-file {
+    position: relative;
+    display: block;
+    width: 0.95rem;
+    height: 1.2rem;
+    flex: 0 0 0.95rem;
+    color: currentColor;
+}
+
+.case-study-meta-file .project-file-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3.25rem;
+    height: 4rem;
+    border-color: currentColor;
+    transform:
+        translate(-50%, -50%)
+        scale(0.29);
+    transform-origin: center;
+}
+
+.case-study-meta-file .project-file-icon::before {
+    background: var(--case-study-link-surface);
+    border-color: currentColor;
+}
+
+.case-study-meta-file .project-file-icon span,
+.case-study-meta-file .project-file-icon span::before,
+.case-study-meta-file .project-file-icon span::after {
+    background: currentColor;
+}
+
+.case-study-actions {
+    padding: 1rem;
+    border-bottom: 1px solid #111111;
+}
+
+@media screen and (max-width: 1050px) {
+    .case-study-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .case-study-meta > div {
+        border-right: 1px solid #111111;
+        border-bottom: 1px solid #111111;
+    }
+
+    .case-study-meta > div:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .case-study-meta > div:nth-child(5) {
+        grid-column: 1 / -1;
+        border-right: 0;
+        border-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .case-study-toolbar {
+        min-height: 3.75rem;
+        padding-left: 0.8rem;
+    }
+
+    .case-study-path {
+        font-size: 0.66rem;
+    }
+
+    .case-study-close {
+        min-width: auto;
+        padding: 0 0.8rem;
+    }
+
+    .case-study-close > span:first-child {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+
+    .case-study-hero h2 {
+        font-size: clamp(2.25rem, 10vw, 3.75rem);
+        line-height: 0.98;
+    }
+
+    .case-study-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .case-study-meta > div,
+    .case-study-meta > div:nth-child(2n),
+    .case-study-meta > div:nth-child(5) {
+        grid-column: 1;
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid #111111;
+    }
+
+    .case-study-meta > div:last-child {
+        border-bottom: 0;
+    }
+}
+/* WORK CASE STUDY HIERARCHY PASS END */
+
+/* WORK FILE MOTION PASS START */
+.work-panel {
+    position: relative;
+}
+
+.project-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-file-motion-band {
+    position: absolute;
+    z-index: 20;
+    inset: -1px;
+    background: #111111;
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+.work-panel.is-opening-hide .project-file-motion-band {
+    animation:
+        work-file-local-cover
+        280ms
+        cubic-bezier(0.76, 0, 0.24, 1)
+        both;
+}
+
+.work-panel.is-opening-hide
+.project-file
+> *:not(.project-file-motion-band) {
+    animation:
+        work-file-local-hide
+        280ms
+        steps(1, end)
+        both;
+}
+
+.work-panel.is-opening-hide
+.project-file.is-motion-source
+.project-file-icon {
+    visibility: hidden;
+}
+
+.case-study-motion-shell {
+    min-height: 4.25rem;
+}
+
+.case-study-motion-shell .case-study-path,
+.case-study-motion-shell .case-study-motion-close,
+.case-study-motion-shell .case-study-toolbar-file {
+    visibility: hidden;
+}
+
+.work-panel.is-closing-grid .project-file,
+.work-panel.is-closing-ready .project-file,
+.work-panel.is-closing-flight .project-file {
+    color: #ffffff;
+    background: #111111;
+    pointer-events: none;
+}
+
+.work-panel.is-closing-grid
+.project-file
+> *:not(.project-file-motion-band),
+.work-panel.is-closing-ready
+.project-file
+> *:not(.project-file-motion-band),
+.work-panel.is-closing-flight
+.project-file
+> *:not(.project-file-motion-band) {
+    visibility: hidden;
+}
+
+.work-file-motion-layer {
+    position: fixed;
+    z-index: 120;
+    top: var(--file-top);
+    left: var(--file-left);
+    display: block;
+    width: 3.25rem;
+    height: 4rem;
+    color: #ffffff;
+    pointer-events: none;
+    transform:
+        translate3d(0, 0, 0)
+        scale(var(--file-start-scale));
+    transform-origin: top left;
+    transition:
+        transform
+        460ms
+        cubic-bezier(0.76, 0, 0.24, 1);
+    will-change: transform;
+}
+
+.work-panel.is-opening-flight
+.work-file-motion-layer,
+.work-panel.is-opening-reveal
+.work-file-motion-layer,
+.work-panel.is-closing-flight
+.work-file-motion-layer,
+.work-panel.is-closing-reveal
+.work-file-motion-layer {
+    transform:
+        translate3d(
+            var(--file-target-x),
+            var(--file-target-y),
+            0
+        )
+        scale(var(--file-target-scale));
+}
+
+.work-file-motion-layer .project-file-icon {
+    border-color: currentColor;
+}
+
+.work-file-motion-layer .project-file-icon::before {
+    background: #111111;
+    border-color: currentColor;
+}
+
+.work-file-motion-layer .project-file-icon span,
+.work-file-motion-layer .project-file-icon span::before,
+.work-file-motion-layer .project-file-icon span::after {
+    background: currentColor;
+}
+
+@keyframes work-file-local-cover {
+    0% {
+        transform-origin: left center;
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform-origin: left center;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes work-file-local-hide {
+    0%,
+    49.9% {
+        visibility: visible;
+    }
+
+    50%,
+    100% {
+        visibility: hidden;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-file-motion-band,
+    .work-file-motion-layer {
+        display: none;
+        animation: none;
+        transition: none;
+    }
+}
+/* WORK FILE MOTION PASS END */
+
+/* WORK VIEWPORT COORDINATION START */
+.work-panel.is-opening-scroll .project-file {
+    pointer-events: none;
+}
+
+.work-panel.is-opening-scroll
+.project-file-motion-band {
+    transform: scaleX(1);
+}
+
+.work-panel.is-opening-scroll
+.project-file
+> *:not(.project-file-motion-band) {
+    visibility: hidden;
+}
+
+.work-panel.is-opening-scroll
+.project-file.is-motion-source
+.project-file-icon {
+    visibility: hidden;
+}
+
+.case-study-motion-shell {
+    overflow: hidden;
+}
+/* WORK VIEWPORT COORDINATION END */
