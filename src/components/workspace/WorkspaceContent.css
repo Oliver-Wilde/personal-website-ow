@@ -1295,3 +1295,184 @@
     }
 }
 /* HOME INFORMATION HIERARCHY END */
+
+/* HOME ICON SCAFFOLDING START */
+.home-card-topline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.home-panel-icon-slot {
+    position: relative;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 2.75rem;
+    place-items: center;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #111111;
+}
+
+.home-panel-icon-placeholder {
+    color: #626262;
+}
+
+.home-panel-icon-placeholder::before,
+.home-panel-icon-placeholder::after {
+    content: '';
+    position: absolute;
+    background: #b8b8b3;
+}
+
+.home-panel-icon-placeholder::before {
+    width: 0.85rem;
+    height: 1px;
+}
+
+.home-panel-icon-placeholder::after {
+    width: 1px;
+    height: 0.85rem;
+}
+
+.home-panel-icon-index {
+    position: absolute;
+    right: 0.28rem;
+    bottom: 0.24rem;
+    font-family: var(--font-system);
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1;
+}
+
+.home-action-label,
+.home-project-link-label {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.home-action-label > span:last-child,
+.home-project-link-label > span:last-child {
+    min-width: 0;
+}
+
+.home-file-icon {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+}
+
+.home-file-icon .project-file-icon {
+    width: 1.05rem;
+    height: 1.3rem;
+    border-width: 1px;
+    border-color: currentColor;
+    border-radius: 0.08rem;
+}
+
+.home-file-icon .project-file-icon::before {
+    top: -1px;
+    right: -1px;
+    width: 0.34rem;
+    height: 0.34rem;
+    background: var(--home-icon-surface, #ffffff);
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-color: currentColor;
+}
+
+.home-file-icon .project-file-icon span,
+.home-file-icon .project-file-icon span::before,
+.home-file-icon .project-file-icon span::after {
+    left: 0.21rem;
+    width: 0.44rem;
+    height: 1px;
+    background: currentColor;
+}
+
+.home-file-icon .project-file-icon span {
+    bottom: 0.23rem;
+}
+
+.home-file-icon .project-file-icon span::before {
+    bottom: 0.23rem;
+}
+
+.home-file-icon .project-file-icon span::after {
+    bottom: 0.46rem;
+}
+
+.home-panel-icon-file {
+    --home-icon-surface: #ffffff;
+}
+
+.home-contact-icon {
+    position: relative;
+    display: block;
+    width: 1.2rem;
+    height: 0.84rem;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid currentColor;
+    border-radius: 0.08rem;
+}
+
+.home-contact-icon::before,
+.home-contact-icon::after {
+    content: '';
+    position: absolute;
+    top: 0.13rem;
+    width: 0.68rem;
+    height: 1px;
+    background: currentColor;
+}
+
+.home-contact-icon::before {
+    left: 0.04rem;
+    transform: rotate(31deg);
+    transform-origin: left center;
+}
+
+.home-contact-icon::after {
+    right: 0.04rem;
+    transform: rotate(-31deg);
+    transform-origin: right center;
+}
+
+.home-hero-action,
+.home-project-link,
+.home-contact-link {
+    --home-icon-surface: #ffffff;
+}
+
+.home-hero-action-primary {
+    --home-icon-surface: #111111;
+}
+
+.home-hero-action:hover,
+.home-hero-action:focus-visible,
+.home-project-link:hover,
+.home-project-link:focus-visible,
+.home-contact-link:hover,
+.home-contact-link:focus-visible {
+    --home-icon-surface: #111111;
+}
+
+.home-hero-action-primary:hover,
+.home-hero-action-primary:focus-visible {
+    --home-icon-surface: #ffffff;
+}
+
+@media screen and (max-width: 720px) {
+    .home-panel-icon-slot {
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-basis: 2.5rem;
+    }
+}
+/* HOME ICON SCAFFOLDING END */

@@ -24,6 +24,7 @@ const HomePanel = () => (
           <span className="motion-mask-line">
             <span>Software engineer.</span>
           </span>
+
           <span className="motion-mask-line">
             <span>Systems, products, and tools.</span>
           </span>
@@ -35,14 +36,21 @@ const HomePanel = () => (
         </p>
 
         <div className="home-hero-actions" aria-label="Primary actions">
-          <a className="home-hero-action home-hero-action-primary" href="#work">
-            View selected work
-            <span aria-hidden="true">&rarr;</span>
+          <a
+            className="home-hero-action home-hero-action-primary"
+            href="#work"
+          >
+            <span>View selected work</span>
+
+            <span className="home-file-icon" aria-hidden="true">
+              <FileIcon />
+            </span>
           </a>
 
           <a className="home-hero-action" href="#contact">
-            Contact and profiles
-            <span aria-hidden="true">&rarr;</span>
+            <span>Contact and profiles</span>
+
+            <span className="home-contact-icon" aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -72,20 +80,51 @@ const HomePanel = () => (
 
     <div className="workspace-grid workspace-grid-home">
       <article className="workspace-card home-credential-card">
-        <p className="workspace-card-label">Education</p>
+        <div className="home-card-topline">
+          <p className="workspace-card-label">Education</p>
+
+          <span
+            className="home-panel-icon-slot home-panel-icon-placeholder"
+            aria-hidden="true"
+          >
+            <span className="home-panel-icon-index">01</span>
+          </span>
+        </div>
+
         <h2>First Class MComp</h2>
         <p>Computer Science at Newcastle University.</p>
       </article>
 
       <article className="workspace-card home-credential-card">
-        <p className="workspace-card-label">Next</p>
+        <div className="home-card-topline">
+          <p className="workspace-card-label">Next</p>
+
+          <span
+            className="home-panel-icon-slot home-panel-icon-placeholder"
+            aria-hidden="true"
+          >
+            <span className="home-panel-icon-index">02</span>
+          </span>
+        </div>
+
         <h2>Durham MSc</h2>
         <p>Advanced Computer Science, 2026&ndash;2027.</p>
       </article>
 
       <article className="workspace-card home-credential-card">
-        <p className="workspace-card-label">Direction</p>
+        <div className="home-card-topline">
+          <p className="workspace-card-label">Direction</p>
+
+          <span
+            className="home-panel-icon-slot home-panel-icon-placeholder"
+            aria-hidden="true"
+          >
+            <span className="home-panel-icon-index">03</span>
+          </span>
+        </div>
+
         <h2>Systems and performance</h2>
+
         <p>
           Interested in backend systems, JVM software, databases, and
           performance.
@@ -93,8 +132,21 @@ const HomePanel = () => (
       </article>
 
       <article className="workspace-card workspace-card-featured home-launchpad">
-        <p className="workspace-card-label">Selected work</p>
+        <div className="home-card-topline">
+          <p className="workspace-card-label">Selected work</p>
+
+          <span
+            className="home-panel-icon-slot home-panel-icon-file"
+            aria-hidden="true"
+          >
+            <span className="home-file-icon">
+              <FileIcon />
+            </span>
+          </span>
+        </div>
+
         <h2>Three completed project files</h2>
+
         <p>
           Systems programming, product engineering, simulation, and
           evidence-led technical work.
@@ -109,7 +161,10 @@ const HomePanel = () => (
             href="#work/voxel-engine"
           >
             <span>Vulkan Voxel Engine</span>
-            <span aria-hidden="true">&rarr;</span>
+
+            <span className="home-file-icon" aria-hidden="true">
+              <FileIcon />
+            </span>
           </a>
 
           <a
@@ -117,7 +172,10 @@ const HomePanel = () => (
             href="#work/stnly-storefront"
           >
             <span>STNLY Storefront</span>
-            <span aria-hidden="true">&rarr;</span>
+
+            <span className="home-file-icon" aria-hidden="true">
+              <FileIcon />
+            </span>
           </a>
 
           <a
@@ -125,13 +183,17 @@ const HomePanel = () => (
             href="#work/ipd"
           >
             <span>Iterated Prisoner&apos;s Dilemma</span>
-            <span aria-hidden="true">&rarr;</span>
+
+            <span className="home-file-icon" aria-hidden="true">
+              <FileIcon />
+            </span>
           </a>
         </div>
 
         <a className="home-contact-link" href="#contact">
-          Contact and profiles
-          <span aria-hidden="true">&rarr;</span>
+          <span>Contact and profiles</span>
+
+          <span className="home-contact-icon" aria-hidden="true" />
         </a>
       </article>
     </div>
