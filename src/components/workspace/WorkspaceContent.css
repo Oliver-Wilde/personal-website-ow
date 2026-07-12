@@ -1247,3 +1247,51 @@
     }
 }
 /* VIEWPORT BAND REVEALS END */
+
+/* HOME INFORMATION HIERARCHY START */
+.home-hero-copy h1 {
+    max-width: 42rem;
+    font-size: clamp(2.55rem, 3vw, 3.25rem);
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+}
+
+.home-hero-copy .motion-mask-line > span {
+    display: block;
+}
+
+.home-hero-copy .workspace-lead {
+    max-width: 39rem;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.65;
+}
+
+.home-hero-action {
+    border-radius: 0.3rem;
+}
+
+.workspace-grid-home {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.workspace-grid-home > .home-credential-card {
+    grid-column: span 1;
+}
+
+@media screen and (max-width: 900px) {
+    .workspace-grid-home {
+        grid-template-columns: 1fr;
+    }
+
+    .workspace-grid-home > .home-credential-card,
+    .workspace-grid-home > .home-launchpad {
+        grid-column: 1;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .home-hero-copy h1 {
+        font-size: clamp(2.35rem, 10vw, 3rem);
+    }
+}
+/* HOME INFORMATION HIERARCHY END */

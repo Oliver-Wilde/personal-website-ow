@@ -25,14 +25,13 @@ const HomePanel = () => (
             <span>Software engineer.</span>
           </span>
           <span className="motion-mask-line">
-            <span>Systems-minded builder.</span>
+            <span>Systems, products, and tools.</span>
           </span>
         </h1>
 
         <p className="workspace-lead">
-          First Class MComp Computer Science graduate focused on backend
-          engineering, systems, performance, and reliable software. Incoming
-          MSc Advanced Computer Science student at Durham University.
+          First Class MComp Computer Science graduate from Newcastle University.
+          Incoming MSc Advanced Computer Science student at Durham University.
         </p>
 
         <div className="home-hero-actions" aria-label="Primary actions">
@@ -72,25 +71,25 @@ const HomePanel = () => (
     </header>
 
     <div className="workspace-grid workspace-grid-home">
-      <article className="workspace-card workspace-card-featured">
-        <p className="workspace-card-label">Current direction</p>
-        <h2>Backend, systems, and performance</h2>
-        <p>
-          My work is centred on correctness, maintainability, data,
-          performance, and software that can be explained and defended.
-        </p>
-      </article>
-
-      <article className="workspace-card">
+      <article className="workspace-card home-credential-card">
         <p className="workspace-card-label">Education</p>
         <h2>First Class MComp</h2>
         <p>Computer Science at Newcastle University.</p>
       </article>
 
-      <article className="workspace-card">
+      <article className="workspace-card home-credential-card">
         <p className="workspace-card-label">Next</p>
         <h2>Durham MSc</h2>
-        <p>Advanced Computer Science, 2026-2027.</p>
+        <p>Advanced Computer Science, 2026&ndash;2027.</p>
+      </article>
+
+      <article className="workspace-card home-credential-card">
+        <p className="workspace-card-label">Direction</p>
+        <h2>Systems and performance</h2>
+        <p>
+          Interested in backend systems, JVM software, databases, and
+          performance.
+        </p>
       </article>
 
       <article className="workspace-card workspace-card-featured home-launchpad">
