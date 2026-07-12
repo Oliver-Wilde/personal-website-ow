@@ -263,11 +263,7 @@ const AboutPanel = () => (
       <p className="workspace-eyebrow">04 / About</p>
 
       <h1 id="about-panel-title">
-        I like learning how systems work,
-        <br />
-        building useful things,
-        <br />
-        and getting better at both.
+        A little bit about me
       </h1>
 
       <p className="workspace-lead">

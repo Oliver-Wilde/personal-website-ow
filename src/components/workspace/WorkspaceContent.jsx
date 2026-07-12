@@ -376,17 +376,18 @@ const HomePanel = ({ previewSection = 'home' }) => (
 
         <h1 id="home-panel-title">
           <span className="motion-mask-line">
-            <span>Software engineer.</span>
+            <span>Computer science graduate.</span>
           </span>
 
           <span className="motion-mask-line">
-            <span>Systems, products, and tools.</span>
+            <span>Interested in backend and systems work.</span>
           </span>
         </h1>
 
         <p className="workspace-lead">
-          First Class MComp Computer Science graduate from Newcastle University.
-          Incoming MSc Advanced Computer Science student at Durham University.
+          I completed a First Class MComp in Computer Science at Newcastle
+          University and will begin an MSc in Advanced Computer Science at
+          Durham University in 2026.
         </p>
 
         <div className="home-hero-actions" aria-label="Primary actions">
@@ -447,7 +448,7 @@ const HomePanel = ({ previewSection = 'home' }) => (
 
       <article className="workspace-card home-credential-card">
         <div className="home-card-topline">
-          <p className="workspace-card-label">Direction</p>
+          <p className="workspace-card-label">Current interests</p>
 
           <span
             className="home-panel-icon-slot home-panel-icon-placeholder"
@@ -457,11 +458,11 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </span>
         </div>
 
-        <h2>Systems and performance</h2>
+        <h2>Backend and systems</h2>
 
         <p>
-          Interested in backend systems, JVM software, databases, and
-          performance.
+          I am still deciding where to specialise, but I keep coming back
+          to JVM software, databases, and performance.
         </p>
       </article>
 
@@ -479,11 +480,11 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </span>
         </div>
 
-        <h2>Three completed project files</h2>
+        <h2>Three projects I have worked on</h2>
 
         <p>
-          Systems programming, product engineering, simulation, and
-          evidence-led technical work.
+          A Vulkan voxel engine, a storefront for my brother&apos;s art,
+          and an iterated Prisoner&apos;s Dilemma project.
         </p>
 
         <div
