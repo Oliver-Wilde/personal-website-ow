@@ -263,32 +263,33 @@ const AboutPanel = () => (
       <p className="workspace-eyebrow">04 / About</p>
 
       <h1 id="about-panel-title">
-        A little bit about me
+        Hi, I&apos;m Ollie.
       </h1>
 
       <p className="workspace-lead">
-        I was born in Thailand, spent seven years studying in Jubail,
-        and continued my education in the United Kingdom. I completed
-        a First Class MComp at Newcastle and will begin an MSc at Durham
-        in 2026. I am now looking for a graduate software engineering
-        role where I can keep learning and contribute to real systems.
+        I recently completed a First Class MComp in Computer Science at
+        Newcastle University, specialising in Game Engineering, which
+        involved a lot of C++. In 2026 I will begin an MSc in Advanced
+        Computer Science at Durham. I am now looking for a graduate
+        software engineering role where I can learn quickly, contribute,
+        and build on the foundation I already have.
       </p>
     </header>
 
     <div className="about-opening-grid">
       <article className="about-manifesto">
         <p className="about-module-label">
-          How I like to work
+          How I think through problems
         </p>
 
         <blockquote>
-          I prefer software I can reason about.
+          When I do not understand something, I go back to the structure.
         </blockquote>
 
         <p>
-          Clear responsibilities, visible behaviour, and decisions I can
-          explain. I do not expect to know everything; I want to understand
-          the system, ask useful questions, and improve it carefully.
+          I tend to be methodical, obsessive, and experimental. I break
+          problems down, trace how the pieces fit together, and keep going
+          until I understand enough to make a careful change.
         </p>
       </article>
 
@@ -297,30 +298,33 @@ const AboutPanel = () => (
           PROFILE / 01
         </div>
 
-        <h2>A little context</h2>
+        <h2>Some context</h2>
 
         <p>
-          I was born in Thailand and spent seven years at ISG Jubail in
-          Saudi Arabia before continuing school, college, and university
-          in the United Kingdom. Moving between different environments
-          taught me to adapt quickly and become comfortable learning within
-          unfamiliar systems.
+          I was born in Thailand, spent seven years at ISG Jubail in
+          Saudi Arabia, and then continued school, college, and university
+          in the United Kingdom. My family background is Thai, British,
+          Irish, and Lao, so I have never felt as though I belong neatly
+          to one place. Moving between countries and education systems
+          meant learning how unfamiliar environments worked and adapting
+          each time.
         </p>
 
         <p>
-          At Newcastle University I specialised in Game Engineering and
-          completed my MComp Computer Science degree with First Class
-          Honours. My final-year project was a Vulkan voxel engine, which
-          gave me the opportunity to work deeply with explicit resources,
-          rendering architecture, performance investigation, and difficult
-          technical constraints.
+          At Newcastle University, I specialised in Game Engineering and
+          graduated with First Class Honours. Much of that final stage
+          involved C++ and lower-level work. My dissertation was a Vulkan
+          voxel engine, which forced me to think carefully about memory,
+          resource ownership, rendering, performance, and how complicated
+          systems fit together.
         </p>
 
         <p>
-          I am still deciding exactly where I will specialise. Right now,
-          I am most interested in backend engineering, systems, databases,
-          performance, and reliable software because they offer difficult
-          problems that I can keep learning from.
+          I am at the beginning of my professional career, so I am not
+          pretending to have everything settled. I do have a solid
+          technical base, I learn quickly, and I am willing to put the
+          work in. Right now, I keep coming back to backend engineering,
+          JVM software, databases, systems, and performance.
         </p>
       </article>
     </div>
@@ -329,20 +333,20 @@ const AboutPanel = () => (
 
     <section
       className="about-role-grid"
-      aria-label="The roles that shape my work"
+      aria-label="The parts of my life that shape how I work"
     >
       <article className="about-role-card">
         <p className="about-module-label">
-          Engineering / 01
+          Technical / 01
         </p>
 
-        <h2>Technical work</h2>
+        <h2>What I enjoy technically</h2>
 
         <p>
-          The work I have enjoyed most has involved understanding what
-          happens below the visible interface: resource ownership, data
-          flow, performance, architecture, failure behaviour, and the
-          decisions that keep a system understandable.
+          Most of the technical work I enjoy starts with wanting to know
+          what is happening underneath. I like tracing data, resources,
+          control flow, and performance until I understand why the system
+          behaves the way it does.
         </p>
 
         <div className="about-role-footer">
@@ -352,17 +356,17 @@ const AboutPanel = () => (
 
       <article className="about-role-card about-role-card-product">
         <p className="about-module-label">
-          Product / 02
+          STNLY / 02
         </p>
 
-        <h2>Building for someone else</h2>
+        <h2>Building something real</h2>
 
         <p>
-          I am building STNLY, a headless Shopify storefront around my
-          younger brother Stanley&apos;s original artwork. It combines
-          Next.js, TypeScript, commerce infrastructure, interaction design,
-          repository discipline, and the practical responsibility of
-          delivering something another person will use.
+          STNLY is a storefront I am building around my younger brother
+          Stanley&apos;s original artwork. It has pushed me across frontend
+          development, Shopify, interaction design, and the less glamorous
+          work of keeping a real project organised and usable for someone
+          else.
         </p>
 
         <div className="about-role-footer">
@@ -375,17 +379,18 @@ const AboutPanel = () => (
           Responsibility / 03
         </p>
 
-        <h2>Responsibility outside code</h2>
+        <h2>Being dependable outside code</h2>
 
         <p>
-          I help provide day-to-day care for my younger brother Stanley
-          and handle related benefits administration. That includes
-          practical support, travel, household responsibilities, advocacy,
-          deadlines, and being consistently dependable.
+          I help care for my younger brother Stanley, who is autistic and
+          has learning difficulties, and I assist with his day-to-day
+          administration. It is simply part of my life, but it has made
+          reliability practical: showing up, keeping track of details,
+          handling responsibilities, and adapting when plans change.
         </p>
 
         <div className="about-role-footer">
-          Care / Advocacy / Reliability
+          Care / Administration / Support
         </div>
       </article>
     </section>
@@ -401,11 +406,11 @@ const AboutPanel = () => (
           </p>
 
           <h2 id="about-principles-heading">
-            What I am trying to get better at
+            How I tend to approach things
           </h2>
         </div>
 
-        <span>04 areas</span>
+        <span>04 habits</span>
       </header>
 
       <div className="about-principles-grid">
@@ -436,8 +441,9 @@ const AboutPanel = () => (
 
         <p>
           Incoming MSc Advanced Computer Science student at Durham
-          University, preparing for 2027 graduate software engineering
-          roles in the UK.
+          University, preparing for graduate software engineering roles
+          starting in 2027. I want to join a team where I can learn
+          quickly, contribute, and become useful.
         </p>
       </div>
 

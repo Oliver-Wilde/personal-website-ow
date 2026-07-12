@@ -8,62 +8,306 @@
 }
 
 .contact-console {
+    position: relative;
+    overflow: hidden;
+    margin-top: clamp(2rem, 4vw, 4rem);
+    border: 1px solid #111111;
+    background: #d8d8d2;
+}
+
+.contact-scene {
+    position: relative;
+    min-height: clamp(58rem, 78vw, 76rem);
+    overflow: hidden;
+    perspective: 1450px;
+    perspective-origin: 50% 38%;
+    background:
+        linear-gradient(
+            180deg,
+            #efefe9 0%,
+            #e4e4de 55%,
+            #c9c9c2 100%
+        );
+    isolation: isolate;
+}
+
+.contact-scene-wall {
+    position: absolute;
+    z-index: 0;
+    inset: 0 0 39% 0;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 50% 20%,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0) 56%
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 9.9%,
+            rgba(17, 17, 17, 0.035) 10%
+        ),
+        linear-gradient(
+            180deg,
+            #f5f5f0 0%,
+            #deded8 100%
+        );
+    border-bottom: 1px solid rgba(17, 17, 17, 0.28);
+}
+
+.contact-scene-wall::before {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.08),
+            transparent 12%,
+            transparent 88%,
+            rgba(0, 0, 0, 0.08)
+        );
+    content: '';
+}
+
+.contact-scene-wall::after {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 0;
+    height: 16rem;
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            rgba(0, 0, 0, 0.16) 0%,
+            transparent 70%
+        );
+    content: '';
+    filter: blur(1.25rem);
+}
+
+.contact-desk-surface {
+    position: absolute;
+    z-index: 1;
+    left: -8%;
+    right: -8%;
+    bottom: 4.8rem;
+    height: 33rem;
+    transform: rotateX(67deg) translateZ(-5rem);
+    transform-origin: 50% 100%;
+    background:
+        repeating-linear-gradient(
+            88deg,
+            transparent 0,
+            transparent 6rem,
+            rgba(17, 17, 17, 0.07) 6.08rem,
+            transparent 6.16rem
+        ),
+        repeating-linear-gradient(
+            4deg,
+            transparent 0,
+            transparent 3rem,
+            rgba(255, 255, 255, 0.28) 3.08rem,
+            transparent 3.16rem
+        ),
+        linear-gradient(
+            180deg,
+            #c5c5bd 0%,
+            #a7a79f 100%
+        );
     border-top: 1px solid #111111;
-    border-left: 1px solid #111111;
+    box-shadow:
+        0 -1.6rem 3rem rgba(0, 0, 0, 0.14),
+        inset 0 1px rgba(255, 255, 255, 0.62);
+}
+
+.contact-desk-front {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 7rem;
+    background:
+        linear-gradient(
+            180deg,
+            #96968f 0%,
+            #73736d 100%
+        );
+    border-top: 1px solid #111111;
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.28),
+        inset 0 -1.5rem 2.8rem rgba(0, 0, 0, 0.18);
+}
+
+.contact-desk-front::before {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 1.1rem;
+    height: 1px;
+    background: rgba(17, 17, 17, 0.34);
+    content: '';
 }
 
 .contact-monitor-grid {
+    position: absolute;
+    z-index: 4;
+    top: clamp(3rem, 6vw, 6rem);
+    left: 50%;
     display: grid;
+    width: min(90%, 82rem);
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    gap: clamp(2.5rem, 5vw, 6rem);
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
 }
 
 .contact-monitor {
+    position: relative;
     min-width: 0;
-    border-right: 1px solid #111111;
-    border-bottom: 1px solid #111111;
+    padding-bottom: 1.25rem;
+    transform-style: preserve-3d;
+}
+
+.contact-monitor:first-child {
+    transform:
+        rotateY(5.5deg)
+        rotateX(1.3deg)
+        translateZ(1.5rem);
+    transform-origin: 100% 100%;
+}
+
+.contact-monitor:last-child {
+    transform:
+        rotateY(-5.5deg)
+        rotateX(1.3deg)
+        translateZ(1.5rem);
+    transform-origin: 0 100%;
+}
+
+.contact-monitor-body {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+    min-width: 0;
+    padding: clamp(0.8rem, 1.5vw, 1.25rem);
+    border: 1px solid #111111;
+    border-radius:
+        clamp(1rem, 1.8vw, 1.65rem)
+        clamp(1rem, 1.8vw, 1.65rem)
+        clamp(1.4rem, 2vw, 2rem)
+        clamp(1.4rem, 2vw, 2rem);
+    transform-style: preserve-3d;
+}
+
+.contact-monitor-body::before {
+    position: absolute;
+    z-index: -1;
+    top: 1rem;
+    right: -1.05rem;
+    width: 1.05rem;
+    height: calc(100% - 2rem);
+    background:
+        linear-gradient(
+            90deg,
+            #777771 0%,
+            #4e4e4a 100%
+        );
+    border: 1px solid #111111;
+    border-left: 0;
+    content: '';
+    transform: skewY(-25deg);
+    transform-origin: left top;
+}
+
+.contact-monitor-body::after {
+    position: absolute;
+    z-index: -1;
+    top: -0.6rem;
+    left: 1.05rem;
+    width: calc(100% - 2.1rem);
+    height: 0.6rem;
+    background:
+        linear-gradient(
+            180deg,
+            #f9f9f4 0%,
+            #a9a9a2 100%
+        );
+    border: 1px solid #111111;
+    border-bottom: 0;
+    content: '';
+    transform: skewX(-28deg);
+    transform-origin: left bottom;
 }
 
 .contact-monitor-dark {
-    color: #ffffff;
-    background: #111111;
+    color: #f4f4ef;
+}
+
+.contact-monitor-dark .contact-monitor-body {
+    background:
+        linear-gradient(
+            145deg,
+            #30302f 0%,
+            #171717 55%,
+            #090909 100%
+        );
+    box-shadow:
+        1.3rem 1.8rem 2.4rem rgba(0, 0, 0, 0.3),
+        inset 0 1px rgba(255, 255, 255, 0.16),
+        inset 0 -1.2rem 2rem rgba(0, 0, 0, 0.38);
+}
+
+.contact-monitor-dark .contact-monitor-body::after {
+    background:
+        linear-gradient(
+            180deg,
+            #62625e 0%,
+            #292927 100%
+        );
 }
 
 .contact-monitor-light {
     color: #111111;
-    background: #ffffff;
+}
+
+.contact-monitor-light .contact-monitor-body {
+    background:
+        linear-gradient(
+            145deg,
+            #f2f2ec 0%,
+            #d4d4cd 58%,
+            #a8a8a1 100%
+        );
+    box-shadow:
+        -1.1rem 1.8rem 2.4rem rgba(0, 0, 0, 0.22),
+        inset 0 1px rgba(255, 255, 255, 0.86),
+        inset 0 -1.3rem 2.2rem rgba(0, 0, 0, 0.14);
 }
 
 .contact-monitor-header,
 .contact-monitor-footer {
     display: flex;
-    min-height: 3rem;
+    min-height: 2.65rem;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0 1rem;
-    font-size: 0.7rem;
+    padding: 0 0.35rem;
+    font-size: 0.66rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     line-height: 1;
     text-transform: uppercase;
 }
 
-.contact-monitor-dark .contact-monitor-header {
-    border-bottom: 1px solid #555555;
-}
-
-.contact-monitor-light .contact-monitor-header {
-    border-bottom: 1px solid #111111;
-}
-
 .contact-monitor-dark .contact-monitor-footer {
     color: #bdbdbd;
-    border-top: 1px solid #555555;
 }
 
 .contact-monitor-light .contact-monitor-footer {
-    color: #626262;
-    border-top: 1px solid #111111;
+    color: #555555;
 }
 
 .contact-monitor-lights {
@@ -72,10 +316,12 @@
 }
 
 .contact-monitor-lights span {
-    width: 0.55rem;
-    height: 0.55rem;
+    width: 0.52rem;
+    height: 0.52rem;
     border: 1px solid currentColor;
     border-radius: 50%;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .contact-monitor-lights span:first-child {
@@ -83,19 +329,111 @@
 }
 
 .contact-monitor-screen {
+    position: relative;
     display: flex;
-    min-height: clamp(18rem, 33vw, 31rem);
+    min-height: clamp(17rem, 24vw, 25rem);
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: clamp(1.5rem, 4vw, 4rem);
+    margin: 0.35rem 0 0.45rem;
+    padding: clamp(1.5rem, 3.5vw, 3.5rem);
+    border: clamp(0.65rem, 1.2vw, 1rem) solid currentColor;
+    border-radius: 12% / 9%;
+    isolation: isolate;
+    box-shadow:
+        0 0 0 1px #111111,
+        inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+        inset 0 0 3.6rem rgba(0, 0, 0, 0.55),
+        0 0.8rem 1.2rem rgba(0, 0, 0, 0.18);
+}
+
+.contact-monitor-dark .contact-monitor-screen {
+    color: #6dff85;
+    background:
+        radial-gradient(
+            ellipse at 50% 46%,
+            #18311b 0%,
+            #08170b 56%,
+            #010502 100%
+        );
+    border-color: #080808;
+}
+
+.contact-monitor-light .contact-monitor-screen {
+    color: #111111;
+    background:
+        radial-gradient(
+            ellipse at 50% 46%,
+            #ffffff 0%,
+            #e8e8e3 58%,
+            #bdbdb6 100%
+        );
+    border-color: #c1c1ba;
+}
+
+.contact-monitor-screen::before {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 3px,
+            rgba(127, 127, 127, 0.13) 4px,
+            transparent 5px
+        );
+    content: '';
+    pointer-events: none;
+}
+
+.contact-monitor-screen::after {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(255, 255, 255, 0.14) 0%,
+            transparent 22%,
+            transparent 72%,
+            rgba(0, 0, 0, 0.24) 100%
+        ),
+        radial-gradient(
+            ellipse at center,
+            transparent 43%,
+            rgba(0, 0, 0, 0.38) 100%
+        );
+    content: '';
+    pointer-events: none;
+}
+
+.contact-monitor-display {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 2vw, 1.8rem);
+    text-shadow: 0 0 0.8rem currentColor;
+}
+
+.contact-monitor-display-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(3.8rem, 8vw, 7.5rem);
+    line-height: 1;
 }
 
 .contact-monitor-screen p {
     max-width: 100%;
     margin: 0;
     overflow-wrap: anywhere;
-    font-size: clamp(2.75rem, 7vw, 7.5rem);
+    font-size: clamp(2.5rem, 5.8vw, 6.25rem);
     font-weight: 500;
     letter-spacing: -0.065em;
     line-height: 0.9;
@@ -103,102 +441,560 @@
     text-transform: uppercase;
 }
 
-.contact-channel-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+.contact-monitor-platform .contact-monitor-screen p {
+    font-size: clamp(2.4rem, 5.2vw, 5.75rem);
 }
 
-.contact-channel {
+.contact-monitor-destination .contact-monitor-screen p {
+    font-size: clamp(1.5rem, 3vw, 3.35rem);
+    letter-spacing: -0.045em;
+    text-transform: none;
+}
+
+.contact-monitor-neck {
+    position: relative;
+    z-index: 1;
+    width: 24%;
+    height: clamp(2.4rem, 3.5vw, 3.5rem);
+    margin: -0.2rem auto 0;
+    background:
+        linear-gradient(
+            90deg,
+            #777771 0%,
+            #d0d0c8 48%,
+            #666660 100%
+        );
+    border: 1px solid #111111;
+    border-top: 0;
+    box-shadow:
+        inset 0 -0.7rem 0.9rem rgba(0, 0, 0, 0.16);
+}
+
+.contact-monitor-dark .contact-monitor-neck {
+    background:
+        linear-gradient(
+            90deg,
+            #080808 0%,
+            #3a3a38 48%,
+            #050505 100%
+        );
+}
+
+.contact-monitor-base {
+    position: relative;
+    z-index: 3;
+    width: 56%;
+    height: clamp(1.4rem, 2.2vw, 2rem);
+    margin: -0.15rem auto 0;
+    background:
+        linear-gradient(
+            180deg,
+            #deded6 0%,
+            #777771 100%
+        );
+    border: 1px solid #111111;
+    border-radius: 50%;
+    transform: rotateX(62deg);
+    box-shadow:
+        0 1.4rem 1.4rem rgba(0, 0, 0, 0.27),
+        inset 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.contact-monitor-dark .contact-monitor-base {
+    background:
+        linear-gradient(
+            180deg,
+            #3d3d3a 0%,
+            #080808 100%
+        );
+}
+
+.contact-channel-grid {
+    position: absolute;
+    z-index: 6;
+    left: 50%;
+    bottom: clamp(7.5rem, 10vw, 10rem);
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    width: min(86%, 70rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: clamp(1.4rem, 3vw, 3.5rem);
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
+}
+
+.contact-signal-monitor {
+    --signal-x: 50%;
+    --signal-y: 50%;
+    --signal-tilt: 0deg;
+
+    position: relative;
+    display: block;
     min-width: 0;
-    min-height: 9rem;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
+    padding: 0;
     color: #111111;
     text-align: left;
     text-decoration: none;
-    background: #ffffff;
+    background: transparent;
     border: 0;
-    border-right: 1px solid #111111;
-    border-bottom: 1px solid #111111;
     border-radius: 0;
     cursor: pointer;
+    touch-action: manipulation;
+    transform-style: preserve-3d;
 }
 
-.contact-channel:hover,
-.contact-channel:focus-visible,
-.contact-channel.is-active {
-    color: #ffffff;
-    background: #111111;
+.contact-signal-monitor:nth-child(1) {
+    transform:
+        rotateY(11deg)
+        rotateZ(-1.4deg)
+        translateY(1rem);
+    transform-origin: 100% 100%;
 }
 
-.contact-channel:focus-visible {
+.contact-signal-monitor:nth-child(2) {
+    transform:
+        translateZ(2.4rem)
+        translateY(-1rem);
+}
+
+.contact-signal-monitor:nth-child(3) {
+    transform:
+        rotateY(-11deg)
+        rotateZ(1.4deg)
+        translateY(1rem);
+    transform-origin: 0 100%;
+}
+
+.contact-signal-monitor:focus-visible {
+    z-index: 10;
+    outline: 3px solid #111111;
+    outline-offset: 0.5rem;
+}
+
+.contact-signal-body {
     position: relative;
     z-index: 2;
-    outline: 4px solid #111111;
-    outline-offset: -8px;
+    display: grid;
+    min-width: 0;
+    min-height: 17rem;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: visible;
+    color: inherit;
+    background:
+        linear-gradient(
+            145deg,
+            #eeeeE8 0%,
+            #c8c8c1 58%,
+            #969690 100%
+        );
+    border: 1px solid #111111;
+    border-radius: 1rem 1rem 1.35rem 1.35rem;
+    box-shadow:
+        0.9rem 1.25rem 1.6rem rgba(0, 0, 0, 0.27),
+        inset 0 1px rgba(255, 255, 255, 0.85),
+        inset 0 -1rem 1.6rem rgba(0, 0, 0, 0.12);
 }
 
-.contact-channel-icon {
+.contact-signal-body::before {
+    position: absolute;
+    z-index: -1;
+    top: 0.75rem;
+    right: -0.7rem;
+    width: 0.7rem;
+    height: calc(100% - 1.5rem);
+    background:
+        linear-gradient(
+            90deg,
+            #777771 0%,
+            #4f4f4a 100%
+        );
+    border: 1px solid #111111;
+    border-left: 0;
+    content: '';
+    transform: skewY(-24deg);
+    transform-origin: left top;
+}
+
+.contact-signal-body::after {
+    position: absolute;
+    z-index: -1;
+    top: -0.42rem;
+    left: 0.75rem;
+    width: calc(100% - 1.5rem);
+    height: 0.42rem;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #b4b4ad 100%
+        );
+    border: 1px solid #111111;
+    border-bottom: 0;
+    content: '';
+    transform: skewX(-25deg);
+    transform-origin: left bottom;
+}
+
+.contact-signal-monitor:hover .contact-signal-body,
+.contact-signal-monitor:focus-visible .contact-signal-body,
+.contact-signal-monitor.is-active .contact-signal-body {
+    color: #f4f4ef;
+    background:
+        linear-gradient(
+            145deg,
+            #30302f 0%,
+            #151515 58%,
+            #050505 100%
+        );
+}
+
+.contact-signal-header,
+.contact-signal-footer {
     display: flex;
-    width: 3.5rem;
-    height: 3.5rem;
+    min-width: 0;
+    min-height: 2.45rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+.contact-signal-footer {
+    color: #555555;
+}
+
+.contact-signal-footer > span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.contact-signal-footer > span:last-child {
     flex: 0 0 auto;
+}
+
+.contact-signal-monitor:hover .contact-signal-footer,
+.contact-signal-monitor:focus-visible .contact-signal-footer,
+.contact-signal-monitor.is-active .contact-signal-footer {
+    color: #bdbdbd;
+}
+
+.contact-signal-screen {
+    position: relative;
+    display: flex;
+    min-height: 10.5rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    font-size: 1.55rem;
+    overflow: hidden;
+    margin: 0 0.7rem;
+    color: #6dff85;
+    background:
+        radial-gradient(
+            ellipse at 50% 46%,
+            #18311b 0%,
+            #08170b 56%,
+            #010502 100%
+        );
+    border: 0.65rem solid #6e6e68;
+    border-radius: 13% / 10%;
+    isolation: isolate;
+    box-shadow:
+        0 0 0 1px #111111,
+        inset 0 0 2.7rem rgba(0, 0, 0, 0.74),
+        0 0.6rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.contact-channel-copy {
+.contact-signal-monitor:hover .contact-signal-screen,
+.contact-signal-monitor:focus-visible .contact-signal-screen,
+.contact-signal-monitor.is-active .contact-signal-screen {
+    color: #111111;
+    background:
+        radial-gradient(
+            ellipse at 50% 46%,
+            #ffffff 0%,
+            #e5e5df 60%,
+            #b4b4ad 100%
+        );
+    border-color: #050505;
+}
+
+.contact-signal-screen::before {
+    position: absolute;
+    z-index: 3;
+    inset: -45%;
+    background:
+        repeating-radial-gradient(
+            ellipse 88% 28% at var(--signal-x) var(--signal-y),
+            transparent 0,
+            transparent 6px,
+            currentColor 7px,
+            transparent 9px,
+            transparent 14px
+        ),
+        repeating-linear-gradient(
+            calc(90deg + var(--signal-tilt)),
+            transparent 0,
+            transparent 7px,
+            currentColor 8px,
+            transparent 10px,
+            transparent 17px
+        );
+    content: '';
+    opacity: 0;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    transform: rotate(var(--signal-tilt)) scale(1.15);
+    transform-origin:
+        var(--signal-x)
+        var(--signal-y);
+}
+
+.contact-signal-screen::after {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 2px,
+            rgba(255, 255, 255, 0.16) 3px,
+            rgba(0, 0, 0, 0.22) 4px
+        ),
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.18) 48%,
+            rgba(0, 0, 0, 0.28) 52%,
+            transparent 100%
+        );
+    background-size:
+        100% 5px,
+        220% 100%;
+    content: '';
+    opacity: 0.24;
+    pointer-events: none;
+}
+
+.contact-signal-monitor.is-disturbed
+.contact-signal-screen::before {
+    opacity: 0.94;
+    animation:
+        contact-signal-wave 420ms
+        steps(9, end)
+        infinite;
+}
+
+.contact-signal-monitor.is-disturbed
+.contact-signal-screen::after {
+    opacity: 0.72;
+    animation:
+        contact-signal-sweep 180ms
+        steps(3, end)
+        infinite;
+}
+
+.contact-signal-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    padding: 1rem;
+    text-align: center;
+    text-shadow: 0 0 0.7rem currentColor;
+}
+
+.contact-signal-monitor.is-disturbed
+.contact-signal-content {
+    animation:
+        contact-signal-jitter 110ms
+        steps(2, end)
+        infinite;
+}
+
+.contact-signal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2.5rem, 4vw, 4.2rem);
+    line-height: 1;
+}
+
+.contact-signal-copy {
     display: flex;
     min-width: 0;
     flex-direction: column;
-    gap: 0.35rem;
+    align-items: center;
+    gap: 0.4rem;
 }
 
-.contact-channel-copy strong {
-    font-size: 1rem;
+.contact-signal-copy strong {
+    font-size: clamp(1rem, 1.7vw, 1.5rem);
     font-weight: 600;
     line-height: 1;
     text-transform: uppercase;
 }
 
-.contact-channel-copy > span {
-    color: #626262;
-    font-size: 0.76rem;
+.contact-signal-copy span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 0.72rem;
     line-height: 1.35;
 }
 
-.contact-channel:hover .contact-channel-copy > span,
-.contact-channel:focus-visible .contact-channel-copy > span,
-.contact-channel.is-active .contact-channel-copy > span {
-    color: #c9c9c9;
+.contact-signal-neck {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 26%;
+    height: 1.7rem;
+    margin: -0.1rem auto 0;
+    background:
+        linear-gradient(
+            90deg,
+            #777771 0%,
+            #d0d0c8 48%,
+            #666660 100%
+        );
+    border: 1px solid #111111;
+    border-top: 0;
 }
 
-.contact-channel-index {
-    align-self: flex-start;
-    color: #626262;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+.contact-signal-base {
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: 58%;
+    height: 1.3rem;
+    margin: -0.1rem auto 0;
+    background:
+        linear-gradient(
+            180deg,
+            #deded6 0%,
+            #777771 100%
+        );
+    border: 1px solid #111111;
+    border-radius: 50%;
+    transform: rotateX(62deg);
+    box-shadow:
+        0 1.05rem 1rem rgba(0, 0, 0, 0.25),
+        inset 0 1px rgba(255, 255, 255, 0.7);
 }
 
-.contact-channel:hover .contact-channel-index,
-.contact-channel:focus-visible .contact-channel-index,
-.contact-channel.is-active .contact-channel-index {
-    color: #c9c9c9;
+.contact-signal-monitor:hover .contact-signal-neck,
+.contact-signal-monitor:focus-visible .contact-signal-neck,
+.contact-signal-monitor.is-active .contact-signal-neck {
+    background:
+        linear-gradient(
+            90deg,
+            #050505 0%,
+            #3a3a38 48%,
+            #050505 100%
+        );
 }
 
-.contact-channel.is-pending {
+.contact-signal-monitor:hover .contact-signal-base,
+.contact-signal-monitor:focus-visible .contact-signal-base,
+.contact-signal-monitor.is-active .contact-signal-base {
+    background:
+        linear-gradient(
+            180deg,
+            #3d3d3a 0%,
+            #080808 100%
+        );
+}
+
+.contact-signal-monitor.is-pending {
     cursor: default;
 }
 
-.contact-channel.is-pending .contact-channel-icon {
-    border-style: dashed;
+@keyframes contact-signal-wave {
+    0% {
+        background-position:
+            0 0,
+            0 0;
+        transform:
+            rotate(var(--signal-tilt))
+            scale(1.08, 1.2);
+    }
+
+    33% {
+        background-position:
+            17px -11px,
+            -13px 5px;
+        transform:
+            rotate(calc(var(--signal-tilt) * -1))
+            scale(1.24, 0.94);
+    }
+
+    66% {
+        background-position:
+            -9px 16px,
+            19px -7px;
+        transform:
+            rotate(var(--signal-tilt))
+            scale(0.98, 1.28);
+    }
+
+    100% {
+        background-position:
+            0 0,
+            0 0;
+        transform:
+            rotate(calc(var(--signal-tilt) * -0.5))
+            scale(1.16, 1.05);
+    }
+}
+
+@keyframes contact-signal-sweep {
+    0% {
+        background-position:
+            0 0,
+            0 0;
+    }
+
+    50% {
+        background-position:
+            0 3px,
+            110% 0;
+    }
+
+    100% {
+        background-position:
+            0 0,
+            220% 0;
+    }
+}
+
+@keyframes contact-signal-jitter {
+    0% {
+        transform: translate(0, 0) skewX(0deg);
+    }
+
+    25% {
+        transform: translate(-3px, 1px) skewX(-1deg);
+    }
+
+    50% {
+        transform: translate(2px, -1px) skewX(1.5deg);
+    }
+
+    75% {
+        transform: translate(-1px, 2px) skewX(-0.5deg);
+    }
+
+    100% {
+        transform: translate(0, 0) skewX(0deg);
+    }
 }
 
 .contact-lower-grid {
@@ -254,17 +1050,77 @@
     color: #c8c8c8;
 }
 
-.contact-email-note {
-    max-width: 54rem;
-    margin: 1.25rem 0 0;
-    color: #626262;
-    font-size: 0.78rem;
-    line-height: 1.55;
-}
+@media screen and (max-width: 980px) {
+    .contact-scene {
+        min-height: auto;
+        padding:
+            clamp(3rem, 7vw, 5rem)
+            clamp(1rem, 3vw, 2rem)
+            9rem;
+        perspective: 1200px;
+    }
 
-@media screen and (max-width: 1120px) {
+    .contact-scene-wall {
+        bottom: 30%;
+    }
+
+    .contact-desk-surface {
+        left: -15%;
+        right: -15%;
+        bottom: 2rem;
+        height: 38%;
+        transform: rotateX(72deg) translateZ(-6rem);
+    }
+
+    .contact-desk-front {
+        height: 5rem;
+    }
+
+    .contact-monitor-grid {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        gap: clamp(1.5rem, 4vw, 3rem);
+        transform: none;
+    }
+
     .contact-channel-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: clamp(4rem, 8vw, 6rem);
+        gap: clamp(1rem, 2.5vw, 2rem);
+        transform: none;
+    }
+
+    .contact-monitor:first-child {
+        transform:
+            rotateY(3deg)
+            rotateX(1deg);
+    }
+
+    .contact-monitor:last-child {
+        transform:
+            rotateY(-3deg)
+            rotateX(1deg);
+    }
+
+    .contact-signal-monitor:nth-child(1) {
+        transform:
+            rotateY(5deg)
+            rotateZ(-0.8deg);
+    }
+
+    .contact-signal-monitor:nth-child(2) {
+        transform: translateY(-0.7rem);
+    }
+
+    .contact-signal-monitor:nth-child(3) {
+        transform:
+            rotateY(-5deg)
+            rotateZ(0.8deg);
     }
 
     .contact-lower-grid {
@@ -277,17 +1133,50 @@
 }
 
 @media screen and (max-width: 760px) {
+    .contact-scene {
+        padding:
+            3rem
+            1rem
+            7rem;
+    }
+
     .contact-monitor-grid,
     .contact-channel-grid {
         grid-template-columns: 1fr;
     }
 
+    .contact-monitor-grid {
+        gap: 3rem;
+    }
+
+    .contact-channel-grid {
+        gap: 2.5rem;
+    }
+
+    .contact-monitor,
+    .contact-monitor:first-child,
+    .contact-monitor:last-child,
+    .contact-signal-monitor:nth-child(1),
+    .contact-signal-monitor:nth-child(2),
+    .contact-signal-monitor:nth-child(3) {
+        transform: none;
+    }
+
     .contact-monitor-screen {
+        min-height: 15rem;
+        padding: 1.25rem;
+    }
+
+    .contact-signal-body {
         min-height: 15rem;
     }
 
-    .contact-channel {
-        min-height: 7rem;
+    .contact-signal-screen {
+        min-height: 9rem;
+    }
+
+    .contact-desk-surface {
+        height: 52%;
     }
 }
 
@@ -296,53 +1185,41 @@
         font-size: clamp(3rem, 17vw, 5rem);
     }
 
-    .contact-monitor-screen p {
-        font-size: clamp(2.5rem, 16vw, 4.5rem);
+    .contact-monitor-body {
+        padding: 0.75rem;
     }
 
-    .contact-channel {
-        grid-template-columns: auto minmax(0, 1fr);
+    .contact-monitor-platform .contact-monitor-screen p {
+        font-size: clamp(2.3rem, 13vw, 4.2rem);
     }
 
-    .contact-channel-index {
-        display: none;
+    .contact-monitor-destination .contact-monitor-screen p {
+        font-size: clamp(1.35rem, 7.5vw, 2.6rem);
     }
-}
-/* CONTACT RESPONSIVE ACCESSIBILITY START */
-.contact-channel-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
 
-.contact-channel {
-    min-width: 0;
-    min-height: 5.5rem;
-    touch-action: manipulation;
-}
-
-.contact-channel:focus-visible {
-    outline: 3px solid #ffffff;
-    outline-offset: -7px;
-}
-
-.contact-channel-copy strong,
-.contact-channel-copy > span {
-    overflow-wrap: anywhere;
-}
-
-@media screen and (max-width: 1120px) {
-    .contact-channel-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    .contact-monitor-header,
+    .contact-monitor-footer {
+        font-size: 0.56rem;
     }
 }
 
-@media screen and (max-width: 760px) {
-    .contact-channel-grid {
-        grid-template-columns: 1fr;
+@media (prefers-reduced-motion: reduce) {
+    .contact-signal-monitor.is-disturbed
+    .contact-signal-screen::before,
+    .contact-signal-monitor.is-disturbed
+    .contact-signal-screen::after,
+    .contact-signal-monitor.is-disturbed
+    .contact-signal-content {
+        animation: none;
     }
 
-    .contact-monitor-screen {
-        min-height: 12rem;
-        padding: 1.25rem;
+    .contact-signal-monitor.is-disturbed
+    .contact-signal-screen::before {
+        opacity: 0;
+    }
+
+    .contact-signal-monitor.is-disturbed
+    .contact-signal-screen::after {
+        opacity: 0.24;
     }
 }
-/* CONTACT RESPONSIVE ACCESSIBILITY END */

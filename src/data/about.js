@@ -2,24 +2,24 @@ export const journey = [
   {
     code: 'TH',
     place: 'Thailand',
-    title: 'Where I was born',
-    period: 'Origin',
+    title: 'Where I started',
+    period: 'Born in Thailand',
     mapLabel: 'TH / ORIGIN',
     mapX: 78.05,
     mapY: 41.18,
     description:
-      'The starting point of a life that would later move across several countries and education systems.',
+      'I was born in Thailand. My family background is Thai, British, Irish and Lao, so my idea of home has always been spread across more than one place.',
   },
   {
     code: 'SA',
     place: 'Jubail, Saudi Arabia',
-    title: 'Seven years at ISG Jubail',
+    title: 'Growing up internationally',
     period: 'Seven years',
     mapLabel: 'SA / JUBAIL',
     mapX: 63.78,
     mapY: 35,
     description:
-      'Studied in an international school environment and learned alongside people from many different backgrounds.',
+      'I spent seven years at ISG Jubail, studying with people from many different countries and learning early how to adapt to unfamiliar environments.',
   },
   {
     code: 'NCL',
@@ -32,12 +32,12 @@ export const journey = [
     nodeOffsetX: -11,
     nodeOffsetY: 8,
     description:
-      'Completed four years of Computer Science study, specialising in Game Engineering and building a Vulkan voxel engine dissertation.',
+      'I studied Computer Science for four years, specialised in Game Engineering, and graduated with a First Class MComp after building a Vulkan voxel engine for my dissertation.',
   },
   {
     code: 'DUR',
     place: 'Durham',
-    title: 'The next stage',
+    title: 'What comes next',
     period: '2026–2027',
     mapLabel: 'UK / DURHAM',
     mapX: 49.56,
@@ -45,44 +45,45 @@ export const journey = [
     nodeOffsetX: 11,
     nodeOffsetY: -8,
     description:
-      'Beginning an MSc in Advanced Computer Science and continuing to develop toward graduate software engineering work.',
+      'I will begin an MSc in Advanced Computer Science, broaden what I know, and prepare properly for graduate software engineering work.',
   },
 ];
+
 export const focusAreas = [
   'Backend engineering',
-  'Distributed systems',
   'Java and the JVM',
-  'Databases and transactions',
+  'Databases',
+  'Systems programming',
   'Performance',
-  'Reliable software',
   'Developer tooling',
-  'Regulated systems',
+  'Reliable software',
+  'How large systems fit together',
 ];
 
 export const principles = [
   {
     number: '01',
-    title: 'Understand the system',
+    title: 'Go back to structure',
     description:
-      'Before changing code, I try to trace the responsibilities, data flow, and constraints involved.',
+      'When I get stuck, I return to the responsibilities, data flow, and constraints until the problem makes sense again.',
   },
   {
     number: '02',
-    title: 'Make the work visible',
+    title: 'Work methodically',
     description:
-      'Tests, reports, benchmarks, diagrams, and readable code make it easier to tell whether something actually works.',
+      'I break difficult work into smaller parts, check assumptions, and keep track of what changed.',
   },
   {
     number: '03',
-    title: 'Explain decisions plainly',
+    title: 'Experiment properly',
     description:
-      'I want to be able to describe what I chose, what I rejected, and which trade-off I accepted.',
+      'I like trying different approaches, but I want the result to be testable rather than based on a hunch.',
   },
   {
     number: '04',
-    title: 'Keep practising',
+    title: 'Stay with the problem',
     description:
-      'When I find a gap in my knowledge, I return to the fundamentals and work through it until I can use it.',
+      'I tend to stay with difficult problems until I understand them well enough to explain what is happening.',
   },
 ];
 
@@ -91,24 +92,24 @@ export const interests = [
     number: '01',
     title: 'Photography',
     description:
-      'Composition, observation, visual structure, and documenting places and people.',
+      'I like photographing places and people, especially when travelling or walking. It makes me slow down and notice how things are framed.',
   },
   {
     number: '02',
     title: 'Music production',
     description:
-      'Experimentation, layering, iteration, and learning how small changes affect a complete piece.',
+      'I enjoy building tracks by layering small ideas, experimenting, and repeatedly changing things until the whole piece begins to work.',
   },
   {
     number: '03',
     title: 'Fellwalking',
     description:
-      'Time outdoors, endurance, and continuing steadily when the route becomes difficult.',
+      'I like long walks and being somewhere quiet enough to think. It also rewards the same thing most difficult work does: continuing steadily.',
   },
   {
     number: '04',
     title: 'Guitar',
     description:
-      'A quieter creative practice built around repetition, listening, and gradual improvement.',
+      'A slower and more personal hobby built around listening, repetition, and getting slightly better over time.',
   },
 ];

@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {
   FiGithub,
   FiLinkedin,
@@ -13,39 +17,175 @@ const ICONS = {
   linkedin: FiLinkedin,
 };
 
-const ContactControl = ({
+const ContactSignalMonitor = ({
   method,
+  index,
   isActive,
   onActivate,
 }) => {
   const Icon = ICONS[method.icon];
+  const disturbanceTimerRef = useRef(null);
+  const [isDisturbed, setIsDisturbed] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (disturbanceTimerRef.current) {
+        window.clearTimeout(disturbanceTimerRef.current);
+      }
+    };
+  }, []);
+
+  const triggerDisturbance = () => {
+    setIsDisturbed(true);
+
+    if (disturbanceTimerRef.current) {
+      window.clearTimeout(disturbanceTimerRef.current);
+    }
+
+    disturbanceTimerRef.current = window.setTimeout(() => {
+      setIsDisturbed(false);
+    }, 260);
+  };
+
+  const setSignalOrigin = (element, clientX, clientY) => {
+    const bounds = element.getBoundingClientRect();
+
+    if (!bounds.width || !bounds.height) {
+      return;
+    }
+
+    const x = ((clientX - bounds.left) / bounds.width) * 100;
+    const y = ((clientY - bounds.top) / bounds.height) * 100;
+
+    const clampedX = Math.min(100, Math.max(0, x));
+    const clampedY = Math.min(100, Math.max(0, y));
+    const tilt = ((clampedX - 50) / 50) * 4;
+
+    element.style.setProperty(
+      '--signal-x',
+      `${clampedX}%`
+    );
+
+    element.style.setProperty(
+      '--signal-y',
+      `${clampedY}%`
+    );
+
+    element.style.setProperty(
+      '--signal-tilt',
+      `${tilt}deg`
+    );
+  };
+
+  const activate = () => {
+    onActivate();
+    triggerDisturbance();
+  };
+
+  const handlePointerMove = (event) => {
+    if (event.pointerType === 'touch') {
+      return;
+    }
+
+    setSignalOrigin(
+      event.currentTarget,
+      event.clientX,
+      event.clientY
+    );
+
+    onActivate();
+    triggerDisturbance();
+  };
+
+  const handlePointerDown = (event) => {
+    setSignalOrigin(
+      event.currentTarget,
+      event.clientX,
+      event.clientY
+    );
+
+    activate();
+  };
+
+  const handleFocus = (event) => {
+    event.currentTarget.style.setProperty(
+      '--signal-x',
+      '50%'
+    );
+
+    event.currentTarget.style.setProperty(
+      '--signal-y',
+      '50%'
+    );
+
+    event.currentTarget.style.setProperty(
+      '--signal-tilt',
+      '0deg'
+    );
+
+    activate();
+  };
+
+  const className = [
+    'contact-signal-monitor',
+    isActive ? 'is-active' : '',
+    isDisturbed ? 'is-disturbed' : '',
+    method.pending ? 'is-pending' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   const content = (
     <>
-      <span className="contact-channel-icon" aria-hidden="true">
-        <Icon />
+      <span className="contact-signal-body">
+        <span className="contact-signal-header">
+          <span>
+            CHANNEL {String(index + 1).padStart(2, '0')}
+          </span>
+
+          <span>{isActive ? 'LOCKED' : 'STANDBY'}</span>
+        </span>
+
+        <span className="contact-signal-screen">
+          <span className="contact-signal-content">
+            <span
+              className="contact-signal-icon"
+              aria-hidden="true"
+            >
+              <Icon />
+            </span>
+
+            <span className="contact-signal-copy">
+              <strong>{method.label}</strong>
+              <span>{method.value}</span>
+            </span>
+          </span>
+        </span>
+
+        <span className="contact-signal-footer">
+          <span>{method.detail}</span>
+          <span>{isActive ? 'SELECTED' : 'OPEN'}</span>
+        </span>
       </span>
 
-      <span className="contact-channel-copy">
-        <strong>{method.label}</strong>
-        <span>{method.detail}</span>
-      </span>
+      <span
+        className="contact-signal-neck"
+        aria-hidden="true"
+      />
 
-      <span className="contact-channel-index" aria-hidden="true">
-        {String(
-          contactMethods.findIndex((item) => item.id === method.id) + 1
-        ).padStart(2, '0')}
-      </span>
+      <span
+        className="contact-signal-base"
+        aria-hidden="true"
+      />
     </>
   );
 
   const sharedProps = {
-    className:
-      `contact-channel${isActive ? ' is-active' : ''}` +
-      `${method.pending ? ' is-pending' : ''}`,
-    onMouseEnter: onActivate,
-    onFocus: onActivate,
-    onPointerDown: onActivate,
+    className,
+    onPointerEnter: activate,
+    onPointerMove: handlePointerMove,
+    onPointerDown: handlePointerDown,
+    onFocus: handleFocus,
   };
 
   if (!method.href) {
@@ -54,7 +194,7 @@ const ContactControl = ({
         {...sharedProps}
         type="button"
         aria-pressed={isActive}
-        onClick={onActivate}
+        onClick={activate}
       >
         {content}
       </button>
@@ -75,30 +215,61 @@ const ContactControl = ({
   );
 };
 
-const ContactMonitor = ({
+const ContactDisplayMonitor = ({
   eyebrow,
   value,
   variant,
+  icon: Icon,
+  displayType,
 }) => (
-  <section className={`contact-monitor contact-monitor-${variant}`}>
-    <header className="contact-monitor-header">
-      <span>{eyebrow}</span>
+  <section
+    className={[
+      'contact-monitor',
+      `contact-monitor-${variant}`,
+      `contact-monitor-${displayType}`,
+    ].join(' ')}
+  >
+    <div className="contact-monitor-body">
+      <header className="contact-monitor-header">
+        <span>{eyebrow}</span>
 
-      <div className="contact-monitor-lights" aria-hidden="true">
-        <span />
-        <span />
-        <span />
+        <div className="contact-monitor-lights" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </header>
+
+      <div className="contact-monitor-screen">
+        <div className="contact-monitor-display">
+          {Icon ? (
+            <span
+              className="contact-monitor-display-icon"
+              aria-hidden="true"
+            >
+              <Icon />
+            </span>
+          ) : null}
+
+          <p>{value}</p>
+        </div>
       </div>
-    </header>
 
-    <div className="contact-monitor-screen">
-      <p>{value}</p>
+      <footer className="contact-monitor-footer">
+        <span>OW / CONTACT SYSTEM</span>
+        <span>SIGNAL LOCKED</span>
+      </footer>
     </div>
 
-    <footer className="contact-monitor-footer">
-      <span>OW / CONTACT SYSTEM</span>
-      <span>READY</span>
-    </footer>
+    <div
+      className="contact-monitor-neck"
+      aria-hidden="true"
+    />
+
+    <div
+      className="contact-monitor-base"
+      aria-hidden="true"
+    />
   </section>
 );
 
@@ -108,8 +279,11 @@ const ContactPanel = () => {
   );
 
   const activeMethod =
-    contactMethods.find((method) => method.id === activeMethodId) ||
-    contactMethods[0];
+    contactMethods.find(
+      (method) => method.id === activeMethodId
+    ) || contactMethods[0];
+
+  const ActiveIcon = ICONS[activeMethod.icon];
 
   return (
     <section
@@ -126,45 +300,69 @@ const ContactPanel = () => {
         </h1>
 
         <p className="workspace-lead">
-          Hover, focus, or tap a channel to update the displays. Open my
-          professional profiles or contact me directly by email.
+          Move across a channel screen to disturb its signal. Hover,
+          focus, or tap a monitor to select it, then open the profile
+          or contact me directly.
         </p>
       </header>
 
       <div
         className="contact-console"
-        aria-label="Interactive contact console"
+        aria-label="Five-monitor contact desk"
       >
-        <div
-          className="contact-monitor-grid"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <ContactMonitor
-            eyebrow="Channel"
-            value={activeMethod.label}
-            variant="dark"
+        <div className="contact-scene">
+          <div
+            className="contact-scene-wall"
+            aria-hidden="true"
           />
 
-          <ContactMonitor
-            eyebrow="Destination"
-            value={activeMethod.value}
-            variant="light"
+          <div
+            className="contact-desk-surface"
+            aria-hidden="true"
           />
-        </div>
 
-        <div
-          className="contact-channel-grid"
-          aria-label="Contact methods"
-        >
-          {contactMethods.map((method) => (
-            <ContactControl
-              key={method.id}
-              method={method}
-              isActive={method.id === activeMethod.id}
-              onActivate={() => setActiveMethodId(method.id)}
+          <div
+            className="contact-desk-front"
+            aria-hidden="true"
+          />
+
+          <div
+            className="contact-monitor-grid"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <ContactDisplayMonitor
+              eyebrow="Selected channel"
+              value={activeMethod.label}
+              variant="dark"
+              icon={ActiveIcon}
+              displayType="platform"
             />
-          ))}
+
+            <ContactDisplayMonitor
+              eyebrow="Username / address"
+              value={activeMethod.value}
+              variant="light"
+              displayType="destination"
+            />
+          </div>
+
+          <div
+            className="contact-channel-grid"
+            aria-label="Contact channel monitors"
+          >
+            {contactMethods.map((method, index) => (
+              <ContactSignalMonitor
+                key={method.id}
+                method={method}
+                index={index}
+                isActive={method.id === activeMethod.id}
+                onActivate={() => {
+                  setActiveMethodId(method.id);
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -202,7 +400,6 @@ const ContactPanel = () => {
           </p>
         </article>
       </div>
-
     </section>
   );
 };

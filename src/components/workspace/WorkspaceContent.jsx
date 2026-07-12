@@ -259,7 +259,7 @@ const NAV_MONITOR_PREVIEWS = {
   },
   about: {
     label: 'ABOUT / ROUTE',
-    status: 'Four locations',
+    status: 'Four places',
     caption: 'Thailand / Jubail / Newcastle / Durham',
     art: String.raw`
       THAILAND  o-------->  JUBAIL
@@ -267,10 +267,9 @@ const NAV_MONITOR_PREVIEWS = {
                               v
       NEWCASTLE o-------->  DURHAM
 
-      ONE ROUTE / DIFFERENT SYSTEMS
+      ONE LIFE / FOUR PLACES
 `,
-  },
-  contact: {
+  },  contact: {
     label: 'CONTACT / SIGNAL',
     status: 'Channels ready',
     caption: 'Email / GitHub / LinkedIn',
