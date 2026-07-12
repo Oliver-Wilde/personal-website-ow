@@ -1,5 +1,166 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
+
+const renderAsciiEarth = (rotation) => {
+  const width = 15;
+  const height = 9;
+  const centreX = (width - 1) / 2;
+  const centreY = (height - 1) / 2;
+  const rows = [];
+
+  for (let y = 0; y < height; y += 1) {
+    const normalisedY =
+      (y - centreY) / centreY;
+
+    let row = '';
+
+    for (let x = 0; x < width; x += 1) {
+      const normalisedX =
+        (x - centreX) / centreX;
+
+      const radiusSquared =
+        (normalisedX * normalisedX) +
+        (normalisedY * normalisedY);
+
+      if (radiusSquared > 1) {
+        row += ' ';
+        continue;
+      }
+
+      const depth = Math.sqrt(
+        Math.max(0, 1 - radiusSquared)
+      );
+
+      const longitude =
+        Math.atan2(normalisedX, depth) +
+        rotation;
+
+      const latitude = Math.asin(
+        Math.max(
+          -1,
+          Math.min(1, normalisedY)
+        )
+      );
+
+      const landSignal =
+        Math.sin(
+          (longitude * 2.1) +
+          (Math.cos(latitude * 3) * 0.8)
+        ) +
+        (
+          0.58 *
+          Math.cos(
+            (longitude * 4.7) -
+            (latitude * 2.2)
+          )
+        ) +
+        (
+          0.32 *
+          Math.sin(
+            (longitude * 7.1) +
+            (latitude * 5.1)
+          )
+        );
+
+      const distanceFromEdge =
+        1 - radiusSquared;
+
+      if (distanceFromEdge < 0.16) {
+        row += '.';
+      } else if (landSignal > 0.78) {
+        row += '#';
+      } else if (landSignal > 0.34) {
+        row += '+';
+      } else if (
+        landSignal > 0.08 &&
+        depth < 0.72
+      ) {
+        row += ':';
+      } else {
+        row += ' ';
+      }
+    }
+
+    rows.push(row.replace(/\s+$/, ''));
+  }
+
+  return rows.join('\n');
+};
+
+const AsciiEarthLogo = () => {
+  const [frame, setFrame] = useState(0);
+  const [motionAllowed, setMotionAllowed] =
+    useState(false);
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+    const updateMotionPreference = () => {
+      setMotionAllowed(!motionQuery.matches);
+    };
+
+    updateMotionPreference();
+
+    if (
+      typeof motionQuery.addEventListener ===
+      'function'
+    ) {
+      motionQuery.addEventListener(
+        'change',
+        updateMotionPreference
+      );
+
+      return () => {
+        motionQuery.removeEventListener(
+          'change',
+          updateMotionPreference
+        );
+      };
+    }
+
+    motionQuery.addListener(
+      updateMotionPreference
+    );
+
+    return () => {
+      motionQuery.removeListener(
+        updateMotionPreference
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!motionAllowed) {
+      setFrame(0);
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(
+      () => {
+        setFrame(
+          (currentFrame) =>
+            (currentFrame + 1) % 35
+        );
+      },
+      140
+    );
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [motionAllowed]);
+
+  return (
+    <pre
+      className="sidebar-ascii-earth"
+      aria-hidden="true"
+    >
+      {renderAsciiEarth(frame * 0.18)}
+    </pre>
+  );
+};
 
 const NAVIGATION_ITEMS = [
   { id: 'home', label: 'Home', number: '01' },
@@ -54,7 +215,7 @@ const Navbar = ({
           onFocus={() => previewSection('home')}
           onClick={() => selectSection('home')}
         >
-          LOGO
+          <AsciiEarthLogo />
         </button>
 
         <button
