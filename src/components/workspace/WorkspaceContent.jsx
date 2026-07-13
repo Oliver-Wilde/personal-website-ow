@@ -12,6 +12,75 @@ const FileIcon = () => (
   </span>
 );
 
+const HomeCardMark = ({
+  variant,
+  index,
+}) => {
+  let mark = null;
+
+  if (variant === 'education') {
+    mark = (
+      <svg
+        viewBox="0 0 32 32"
+        focusable="false"
+      >
+        <path d="M4 11L16 5l12 6-12 6L4 11Z" />
+        <path d="M8 14v7c4 3 12 3 16 0v-7" />
+        <path d="M28 11v9" />
+      </svg>
+    );
+  }
+
+  if (variant === 'next') {
+    mark = (
+      <svg
+        viewBox="0 0 32 32"
+        focusable="false"
+      >
+        <circle cx="7" cy="24" r="2" />
+        <circle cx="16" cy="16" r="2" />
+        <path d="M9 23c2-1 3-5 5-6" />
+        <path d="M18 15c3-1 5-4 7-7" />
+        <path d="M20 8h5v5" />
+      </svg>
+    );
+  }
+
+  if (variant === 'systems') {
+    mark = (
+      <svg
+        viewBox="0 0 32 32"
+        focusable="false"
+      >
+        <rect x="5" y="5" width="22" height="6" />
+        <rect x="5" y="13" width="22" height="6" />
+        <rect x="5" y="21" width="22" height="6" />
+        <path d="M9 8h2M15 8h8" />
+        <path d="M9 16h2M15 16h8" />
+        <path d="M9 24h2M15 24h8" />
+      </svg>
+    );
+  }
+
+  return (
+    <span
+      className={
+        'home-panel-icon-slot ' +
+        'home-panel-icon-mark ' +
+        'home-panel-icon-mark-' +
+        variant
+      }
+      aria-hidden="true"
+    >
+      {mark}
+
+      <span className="home-panel-icon-index">
+        {index}
+      </span>
+    </span>
+  );
+};
+
 const renderAsciiDonut = (angleA, angleB) => {
   const width = 42;
   const height = 20;
@@ -230,57 +299,60 @@ const NAV_MONITOR_PREVIEWS = {
   },
   work: {
     label: 'WORK / PROJECT FILES',
-    status: 'Three files',
-    caption: 'Systems / product / simulation',
+    status: 'Three visible files',
+    caption: 'Voxel engine / storefront / IPD',
     art: String.raw`
-      .--------.   .--------.
-      | FILE 1 |   | FILE 2 |
-      |  C++   |   |  TS    |
-      '--------'   '--------'
+      .------------.   .------------.
+      | VOXEL / VK |   | STNLY / TS |
+      '------------'   '------------'
 
-           .--------.
-           | FILE 3 |
-           |  SIM   |
-           '--------'
+            .----------------.
+            | IPD / C++ SIM  |
+            '----------------'
 `,
   },
   experience: {
     label: 'EXPERIENCE / TIMELINE',
-    status: 'Record view',
-    caption: 'Education / work / development',
+    status: 'Eight recorded entries',
+    caption: 'Five education / three work',
     art: String.raw`
-      2019  o
-            |
-      2023  o---- COMPUTER SCIENCE
-            |
-      2026  o---- FIRST CLASS MCOMP
-            |
-      NEXT  o---- DURHAM MSC
+      2017 o---- ASPIRE / ST JOHN
+           |
+      2019 o---- HOLY CROSS / A LEVELS
+           |
+      2020 o---- DENTAL PLACEMENT
+           |
+      2022 o---- NEWCASTLE / MCOMP
+           |
+      2023 o---- BARTENDER
+           |
+      2026 o---- FIRST CLASS / DURHAM NEXT
 `,
   },
   about: {
     label: 'ABOUT / ROUTE',
-    status: 'Four places',
-    caption: 'Thailand / Jubail / Newcastle / Durham',
+    status: 'Seven stops',
+    caption: 'Thailand / Saudi Arabia / United Kingdom',
     art: String.raw`
-      THAILAND  o-------->  JUBAIL
+      THAILAND o-------> JUBAIL
+                         |
+                         v
+      BLACKPOOL -> COLLEGE -> GAP YEAR
                               |
                               v
-      NEWCASTLE o-------->  DURHAM
+                   NEWCASTLE -> DURHAM
 
-      ONE LIFE / FOUR PLACES
+      SEVEN STOPS / THREE COUNTRIES
 `,
-  },  contact: {
-    label: 'CONTACT / SIGNAL',
-    status: 'Channels ready',
-    caption: 'Email / GitHub / LinkedIn',
+  },
+  contact: {
+    label: 'CONTACT / LINKS',
+    status: 'Three direct links',
+    caption: 'GitHub / Email / LinkedIn',
     art: String.raw`
-        .------.           .------.
-        | SEND |===========| RECV |
-        '------'           '------'
-
-        EMAIL   GITHUB   LINKEDIN
-             SIGNAL AVAILABLE
+      [ GITHUB ]  [ EMAIL ]  [ LINKEDIN ]
+            \         |         /
+                 GET IN TOUCH
 `,
   },
   resume: {
@@ -415,16 +487,14 @@ const HomePanel = ({ previewSection = 'home' }) => (
     </header>
 
     <div className="workspace-grid workspace-grid-home">
-      <article className="workspace-card home-credential-card">
+      <article className="workspace-card home-credential-card home-credential-card-primary">
         <div className="home-card-topline">
           <p className="workspace-card-label">{homeContent.cards.education.label}</p>
 
-          <span
-            className="home-panel-icon-slot home-panel-icon-placeholder"
-            aria-hidden="true"
-          >
-            <span className="home-panel-icon-index">01</span>
-          </span>
+          <HomeCardMark
+            variant="education"
+            index="01"
+          />
         </div>
 
         <h2>{homeContent.cards.education.title}</h2>
@@ -435,12 +505,10 @@ const HomePanel = ({ previewSection = 'home' }) => (
         <div className="home-card-topline">
           <p className="workspace-card-label">{homeContent.cards.next.label}</p>
 
-          <span
-            className="home-panel-icon-slot home-panel-icon-placeholder"
-            aria-hidden="true"
-          >
-            <span className="home-panel-icon-index">02</span>
-          </span>
+          <HomeCardMark
+            variant="next"
+            index="02"
+          />
         </div>
 
         <h2>{homeContent.cards.next.title}</h2>
@@ -451,12 +519,10 @@ const HomePanel = ({ previewSection = 'home' }) => (
         <div className="home-card-topline">
           <p className="workspace-card-label">{homeContent.cards.interests.label}</p>
 
-          <span
-            className="home-panel-icon-slot home-panel-icon-placeholder"
-            aria-hidden="true"
-          >
-            <span className="home-panel-icon-index">03</span>
-          </span>
+          <HomeCardMark
+            variant="systems"
+            index="03"
+          />
         </div>
 
         <h2>{homeContent.cards.interests.title}</h2>

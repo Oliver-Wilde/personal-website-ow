@@ -1316,26 +1316,45 @@
     border: 1px solid #111111;
 }
 
-.home-panel-icon-placeholder {
-    color: #626262;
+/* HOME FINAL CARD MARKS START */
+.home-panel-icon-mark {
+    color: #111111;
 }
 
-.home-panel-icon-placeholder::before,
-.home-panel-icon-placeholder::after {
-    content: '';
-    position: absolute;
-    background: #b8b8b3;
+.home-panel-icon-mark svg {
+    width: 1.7rem;
+    height: 1.7rem;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.45;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
 }
 
-.home-panel-icon-placeholder::before {
-    width: 0.85rem;
-    height: 1px;
+.home-credential-card-primary {
+    color: #ffffff;
+    background: #111111;
 }
 
-.home-panel-icon-placeholder::after {
-    width: 1px;
-    height: 0.85rem;
+.home-credential-card-primary
+.workspace-card-label,
+.home-credential-card-primary > p {
+    color: #c8c8c8;
 }
+
+.home-credential-card-primary
+.home-panel-icon-slot {
+    color: #ffffff;
+    background: #111111;
+    border-color: #ffffff;
+}
+
+.home-credential-card-primary
+.home-panel-icon-index {
+    color: #bdbdbd;
+}
+/* HOME FINAL CARD MARKS END */
 
 .home-panel-icon-index {
     position: absolute;
