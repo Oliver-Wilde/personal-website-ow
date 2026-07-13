@@ -249,6 +249,7 @@ const App = () => {
             navPreviewSection={navPreviewSection}
             onOpenProject={handleOpenProject}
             onCloseProject={handleCloseProject}
+            isTransitioning={transitionPhase !== 'idle'}
           />
         </main>
       </div>

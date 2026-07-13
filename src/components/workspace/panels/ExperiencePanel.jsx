@@ -98,7 +98,7 @@ const ExperiencePanel = () => (
 
       <article className="experience-snapshot-card">
         <span>Beyond university</span>
-        <strong>4 roles</strong>
+        <strong>{workExperience.length} roles</strong>
         <p>
           Hospitality, healthcare
           observation, and first-aid training.
