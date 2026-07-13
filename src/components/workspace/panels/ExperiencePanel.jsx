@@ -147,10 +147,7 @@ const ExperiencePanel = () => (
           ))}
         </div>
 
-        <p className="experience-care-note">
-          Alongside my studies and work, I also help care for my younger
-          brother Stanley and support his day-to-day administration.
-        </p>
+        
       </section>
     </div>
   </section>
