@@ -4,6 +4,7 @@ import ExperiencePanel from './panels/ExperiencePanel';
 import AboutPanel from './panels/AboutPanel';
 import ContactPanel from './panels/ContactPanel';
 import projects from '../../data/projects';
+import homeContent from '../../data/home';
 
 const FileIcon = () => (
   <span className="project-file-icon" aria-hidden="true">
@@ -371,38 +372,39 @@ const HomePanel = ({ previewSection = 'home' }) => (
   >
     <header className="home-hero">
       <div className="workspace-heading workspace-heading-large home-hero-copy">
-        <p className="workspace-eyebrow">01 / Home &mdash; Oliver Wilde</p>
+        <p className="workspace-eyebrow">{homeContent.eyebrow}</p>
 
         <h1 id="home-panel-title">
           <span className="motion-mask-line">
-            <span>Computer science graduate.</span>
+            <span>{homeContent.headline[0]}</span>
           </span>
 
           <span className="motion-mask-line">
-            <span>Interested in backend and systems work.</span>
+            <span>{homeContent.headline[1]}</span>
           </span>
         </h1>
 
         <p className="workspace-lead">
-          I completed a First Class MComp in Computer Science at Newcastle
-          University and will begin an MSc in Advanced Computer Science at
-          Durham University in 2026.
+          {homeContent.introduction}
         </p>
 
         <div className="home-hero-actions" aria-label="Primary actions">
           <a
             className="home-hero-action home-hero-action-primary"
-            href="#work"
+            href={homeContent.actions.work.href}
           >
-            <span>View selected work</span>
+            <span>{homeContent.actions.work.label}</span>
 
             <span className="home-file-icon" aria-hidden="true">
               <FileIcon />
             </span>
           </a>
 
-          <a className="home-hero-action" href="#contact">
-            <span>Contact and profiles</span>
+          <a
+            className="home-hero-action"
+            href={homeContent.actions.contact.href}
+          >
+            <span>{homeContent.actions.contact.label}</span>
 
             <span className="home-contact-icon" aria-hidden="true" />
           </a>
@@ -415,7 +417,7 @@ const HomePanel = ({ previewSection = 'home' }) => (
     <div className="workspace-grid workspace-grid-home">
       <article className="workspace-card home-credential-card">
         <div className="home-card-topline">
-          <p className="workspace-card-label">Education</p>
+          <p className="workspace-card-label">{homeContent.cards.education.label}</p>
 
           <span
             className="home-panel-icon-slot home-panel-icon-placeholder"
@@ -425,13 +427,13 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </span>
         </div>
 
-        <h2>First Class MComp</h2>
-        <p>Computer Science at Newcastle University.</p>
+        <h2>{homeContent.cards.education.title}</h2>
+        <p>{homeContent.cards.education.description}</p>
       </article>
 
       <article className="workspace-card home-credential-card">
         <div className="home-card-topline">
-          <p className="workspace-card-label">Next</p>
+          <p className="workspace-card-label">{homeContent.cards.next.label}</p>
 
           <span
             className="home-panel-icon-slot home-panel-icon-placeholder"
@@ -441,13 +443,13 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </span>
         </div>
 
-        <h2>Durham MSc</h2>
-        <p>Advanced Computer Science, 2026&ndash;2027.</p>
+        <h2>{homeContent.cards.next.title}</h2>
+        <p>{homeContent.cards.next.description}</p>
       </article>
 
       <article className="workspace-card home-credential-card">
         <div className="home-card-topline">
-          <p className="workspace-card-label">Current interests</p>
+          <p className="workspace-card-label">{homeContent.cards.interests.label}</p>
 
           <span
             className="home-panel-icon-slot home-panel-icon-placeholder"
@@ -457,17 +459,16 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </span>
         </div>
 
-        <h2>Backend and systems</h2>
+        <h2>{homeContent.cards.interests.title}</h2>
 
         <p>
-          I am still deciding where to specialise, but I keep coming back
-          to JVM software, databases, and performance.
+          {homeContent.cards.interests.description}
         </p>
       </article>
 
       <article className="workspace-card workspace-card-featured home-launchpad">
         <div className="home-card-topline">
-          <p className="workspace-card-label">Selected work</p>
+          <p className="workspace-card-label">{homeContent.selectedWork.label}</p>
 
           <span
             className="home-panel-icon-slot home-panel-icon-file"
@@ -479,11 +480,10 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </span>
         </div>
 
-        <h2>Three projects I have worked on</h2>
+        <h2>{homeContent.selectedWork.title}</h2>
 
         <p>
-          A Vulkan voxel engine, a storefront for my brother&apos;s art,
-          and an iterated Prisoner&apos;s Dilemma project.
+          {homeContent.selectedWork.description}
         </p>
 
         <div
@@ -492,9 +492,11 @@ const HomePanel = ({ previewSection = 'home' }) => (
         >
           <a
             className="home-project-link"
-            href="#work/voxel-engine"
+            href={homeContent.selectedWork.projects.voxelEngine.href}
           >
-            <span>Vulkan Voxel Engine</span>
+            <span>
+              {homeContent.selectedWork.projects.voxelEngine.label}
+            </span>
 
             <span className="home-file-icon" aria-hidden="true">
               <FileIcon />
@@ -503,9 +505,11 @@ const HomePanel = ({ previewSection = 'home' }) => (
 
           <a
             className="home-project-link"
-            href="#work/stnly-storefront"
+            href={homeContent.selectedWork.projects.stnlyStorefront.href}
           >
-            <span>STNLY Storefront</span>
+            <span>
+              {homeContent.selectedWork.projects.stnlyStorefront.label}
+            </span>
 
             <span className="home-file-icon" aria-hidden="true">
               <FileIcon />
@@ -514,9 +518,11 @@ const HomePanel = ({ previewSection = 'home' }) => (
 
           <a
             className="home-project-link"
-            href="#work/ipd"
+            href={homeContent.selectedWork.projects.ipd.href}
           >
-            <span>Iterated Prisoner&apos;s Dilemma</span>
+            <span>
+              {homeContent.selectedWork.projects.ipd.label}
+            </span>
 
             <span className="home-file-icon" aria-hidden="true">
               <FileIcon />
@@ -524,8 +530,11 @@ const HomePanel = ({ previewSection = 'home' }) => (
           </a>
         </div>
 
-        <a className="home-contact-link" href="#contact">
-          <span>Contact and profiles</span>
+        <a
+          className="home-contact-link"
+          href={homeContent.selectedWork.contactHref}
+        >
+          <span>{homeContent.selectedWork.contactLabel}</span>
 
           <span className="home-contact-icon" aria-hidden="true" />
         </a>
