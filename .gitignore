@@ -26,3 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 apply-*.ps1
 *-section-inspection.txt
+
+# generated local project inventories
+/project-tree*.txt
+/project-code.txt
