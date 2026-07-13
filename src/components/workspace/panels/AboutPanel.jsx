@@ -269,7 +269,7 @@ const AboutPanel = () => (
       <p className="workspace-lead">
         I recently completed a First Class MComp in Computer Science at
         Newcastle University, specialising in Game Engineering, which
-        involved a lot of C++. In 2026 I will begin an MSc in Advanced
+        involved a lot of C++. In October of 2026 I will begin an MSc in Advanced
         Computer Science at Durham. I am now looking for a graduate
         software engineering role where I can learn quickly, contribute,
         and build on the foundation I already have.

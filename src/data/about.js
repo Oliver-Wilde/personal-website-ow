@@ -92,24 +92,24 @@ export const interests = [
     number: '01',
     title: 'Photography',
     description:
-      'I like photographing places and people, especially when travelling or walking. It makes me slow down and notice how things are framed.',
+      'Proud owner of a Fujifilm XT-200. I have been photographing my cats and nature in general while I go for walks or hikes!',
   },
   {
     number: '02',
     title: 'Music production',
     description:
-      'I enjoy building tracks by layering small ideas, experimenting, and repeatedly changing things until the whole piece begins to work.',
+      'I like to tweak around with online effects pedals and create soundscapes of my own with my Arturia Minilab 3 among other MIDI instruments :)',
   },
   {
     number: '03',
     title: 'Fellwalking',
     description:
-      'I like long walks and being somewhere quiet enough to think. It also rewards the same thing most difficult work does: continuing steadily.',
+      'I was apart of the Fellwalking Society @ Newcastle University, and it has become one of my staple hobbies.',
   },
   {
     number: '04',
     title: 'Guitar',
     description:
-      'A slower and more personal hobby built around listening, repetition, and getting slightly better over time.',
+      'I am a huge fan of Eric Clapton, and my first song was Tears in Heaven. I mostly play fingerstyle songs!',
   },
 ];
