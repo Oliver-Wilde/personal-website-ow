@@ -791,7 +791,7 @@ const MobileGlobeNavigation = ({
         handleKeyDown
       );
     };
-  }, [isOpen]);
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (transitionPhase === 'idle') {
