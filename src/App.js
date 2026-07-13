@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import WorkspaceContent from './components/workspace/WorkspaceContent';
 import projects from './data/projects';
@@ -194,7 +194,7 @@ const App = () => {
     };
   }, []);
 
-  const navigateToHash = (hash) => {
+  const navigateToHash = useCallback((hash) => {
     const targetHash = `#${hash}`;
 
     if (window.location.hash === targetHash) {
@@ -204,7 +204,7 @@ const App = () => {
     }
 
     window.location.hash = hash;
-  };
+  }, []);
 
   const handleSelectSection = (section) => {
     setNavPreviewSection('home');
@@ -219,13 +219,13 @@ const App = () => {
     setNavPreviewSection('home');
   };
 
-  const handleOpenProject = (projectId) => {
+  const handleOpenProject = useCallback((projectId) => {
     navigateToHash(`work/${projectId}`);
-  };
+  }, [navigateToHash]);
 
-  const handleCloseProject = () => {
+  const handleCloseProject = useCallback(() => {
     navigateToHash('work');
-  };
+  }, [navigateToHash]);
 
   return (
     <>

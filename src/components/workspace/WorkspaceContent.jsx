@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './WorkspaceContent.css';
 import ExperiencePanel from './panels/ExperiencePanel';
 import AboutPanel from './panels/AboutPanel';
@@ -989,7 +989,7 @@ const WorkPanel = ({
   const scrollFrameRef = useRef(null);
   const localMotionRef = useRef(false);
 
-  const cancelScrollTracking = () => {
+  const cancelScrollTracking = useCallback(() => {
     if (scrollFrameRef.current !== null) {
       window.cancelAnimationFrame(
         scrollFrameRef.current
@@ -997,16 +997,16 @@ const WorkPanel = ({
 
       scrollFrameRef.current = null;
     }
-  };
+  }, []);
 
-  const clearMotionTimers = () => {
+  const clearMotionTimers = useCallback(() => {
     motionTimersRef.current.forEach((timerId) => {
       window.clearTimeout(timerId);
     });
 
     motionTimersRef.current = [];
     cancelScrollTracking();
-  };
+  }, [cancelScrollTracking]);
 
   const queueMotionTimer = (callback, delay) => {
     const timerId = window.setTimeout(callback, delay);
@@ -1147,9 +1147,8 @@ const WorkPanel = ({
   useEffect(() => {
     return () => {
       clearMotionTimers();
-      cancelScrollTracking();
     };
-  }, []);
+  }, [clearMotionTimers]);
 
   useEffect(() => {
     if (localMotionRef.current) {
@@ -1168,7 +1167,7 @@ const WorkPanel = ({
     setMotionShellHeight(0);
     setSelectedProject(nextProject);
     setMotionPhase(nextProject ? 'open' : 'browser');
-  }, [activeProjectId]);
+  }, [activeProjectId, clearMotionTimers]);
 
   useEffect(() => {
     if (
@@ -1331,6 +1330,8 @@ const WorkPanel = ({
     pendingProject,
     closingProjectId,
     movingFile,
+    onCloseProject,
+    onOpenProject,
   ]);
 
   const openProject = (project) => {
