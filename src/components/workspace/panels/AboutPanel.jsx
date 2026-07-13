@@ -3,7 +3,6 @@ import {
   focusAreas,
   interests,
   journey,
-  principles,
 } from '../../../data/about';
 import './AboutPanel.css';
 
@@ -87,7 +86,7 @@ const AboutRouteMap = ({ stops }) => {
           </h2>
         </div>
 
-        <span>TH / SA / NCL / DUR</span>
+        <span>TH / SA / BPL / COL / GAP / NCL / DUR</span>
       </header>
 
       <div className="about-route-map">
@@ -277,21 +276,6 @@ const AboutPanel = () => (
     </header>
 
     <div className="about-opening-grid">
-      <article className="about-manifesto">
-        <p className="about-module-label">
-          How I think through problems
-        </p>
-
-        <blockquote>
-          When I do not understand something, I go back to the structure.
-        </blockquote>
-
-        <p>
-          I tend to be methodical, obsessive, and experimental. I break
-          problems down, trace how the pieces fit together, and keep going
-          until I understand enough to make a careful change.
-        </p>
-      </article>
 
       <article className="about-story">
         <div className="about-story-marker">
@@ -303,9 +287,7 @@ const AboutPanel = () => (
         <p>
           I was born in Thailand, spent seven years at ISG Jubail in
           Saudi Arabia, and then continued school, college, and university
-          in the United Kingdom. My family background is Thai, English,
-          Irish, and Lao, so I have never felt as though I belong neatly
-          to one place. Moving between countries and education systems
+          in the United Kingdom. Moving between countries and education systems
           meant learning how unfamiliar environments worked and adapting
           each time.
         </p>
@@ -320,109 +302,17 @@ const AboutPanel = () => (
         </p>
 
         <p>
-          I am at the beginning of my professional career, so I am not
-          pretending to have everything settled. I do have a solid
-          technical base, I learn quickly, and I am willing to put the
-          work in. Right now, I keep coming back to backend engineering,
-          JVM software, databases, systems, and performance.
+          I am early in my professional career,
+            with a strong technical foundation and a clear interest
+            in building reliable, well engineered software. 
+            My work is increasingly focused on backend engineering, 
+            JVM technologies, databases, systems design, and performance.
+
         </p>
       </article>
     </div>
 
     <AboutRouteMap stops={journey} />
-
-    <section
-      className="about-role-grid"
-      aria-label="The parts of my life that shape how I work"
-    >
-      <article className="about-role-card">
-        <p className="about-module-label">
-          Technical / 01
-        </p>
-
-        <h2>What I enjoy technically</h2>
-
-        <p>
-          Most of the technical work I enjoy starts with wanting to know
-          what is happening underneath. I like tracing data, resources,
-          control flow, and performance until I understand why the system
-          behaves the way it does.
-        </p>
-
-        <div className="about-role-footer">
-          Vulkan / C++ / Java / SQL
-        </div>
-      </article>
-
-      <article className="about-role-card about-role-card-product">
-        <p className="about-module-label">
-          STNLY / 02
-        </p>
-
-        <h2>Building something real</h2>
-
-        <p>
-          STNLY is a storefront I am building around my younger brother
-          Stanley&apos;s original artwork. It has pushed me across frontend
-          development, Shopify, interaction design, and the less glamorous
-          work of keeping a real project organised and usable for someone
-          else.
-        </p>
-
-        <div className="about-role-footer">
-          Next.js / TypeScript / Shopify
-        </div>
-      </article>
-
-      <article className="about-role-card about-role-card-care">
-        <p className="about-module-label">
-          Responsibility / 03
-        </p>
-
-        <h2>Being dependable outside code</h2>
-
-        <p>
-          I help care for my younger brother Stanley, who is autistic and
-          has learning difficulties, and I assist with his day-to-day
-          administration. It is simply part of my life, but it has made
-          reliability practical: showing up, keeping track of details,
-          handling responsibilities, and adapting when plans change.
-        </p>
-
-        <div className="about-role-footer">
-          Care / Administration / Support
-        </div>
-      </article>
-    </section>
-
-    <section
-      className="about-principles"
-      aria-labelledby="about-principles-heading"
-    >
-      <header className="about-section-heading">
-        <div>
-          <p className="about-module-label">
-            Learning and working
-          </p>
-
-          <h2 id="about-principles-heading">
-            How I tend to approach things
-          </h2>
-        </div>
-
-        <span>04 habits</span>
-      </header>
-
-      <div className="about-principles-grid">
-        {principles.map((principle) => (
-          <article key={principle.number}>
-            <span>{principle.number}</span>
-            <h3>{principle.title}</h3>
-            <p>{principle.description}</p>
-          </article>
-        ))}
-      </div>
-    </section>
 
     <section
       className="about-now"

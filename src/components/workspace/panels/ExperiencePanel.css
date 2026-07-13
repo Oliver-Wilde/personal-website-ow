@@ -321,3 +321,16 @@
     }
 }
 /* EXPERIENCE HEADER ALIGNMENT PASS END */
+
+
+/* EXPERIENCE CARE NOTE START */
+.experience-care-note {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    color: #454545;
+    background: #f0f0ec;
+    border-top: 1px solid #111111;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+/* EXPERIENCE CARE NOTE END */

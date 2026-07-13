@@ -147,36 +147,13 @@ const ExperiencePanel = () => (
             <WorkEntry key={entry.id} entry={entry} />
           ))}
         </div>
+
+        <p className="experience-care-note">
+          Alongside my studies and work, I also help care for my younger
+          brother Stanley and support his day-to-day administration.
+        </p>
       </section>
     </div>
-
-    <section
-      className="experience-interests"
-      aria-labelledby="interests-heading"
-    >
-      <header className="experience-group-heading">
-        <div>
-          <p>Beyond engineering</p>
-          <h2 id="interests-heading">Other parts of the picture</h2>
-        </div>
-      </header>
-
-      <div className="experience-interest-grid">
-        {interests.map((interest, index) => (
-          <article
-            className="experience-interest"
-            key={interest.title}
-          >
-            <span>
-              {String(index + 1).padStart(2, '0')}
-            </span>
-
-            <h3>{interest.title}</h3>
-            <p>{interest.description}</p>
-          </article>
-        ))}
-      </div>
-    </section>
   </section>
 );
 

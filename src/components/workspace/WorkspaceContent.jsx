@@ -1688,9 +1688,7 @@ const SCROLL_REVEAL_SELECTOR = [
   '.about-now-status',
   '.about-focus',
   '.about-interest-grid > article',
-  '.contact-monitor',
-  '.contact-channel',
-  '.contact-status-card',
+  '.contact-icon-link',
 ].join(', ');
 
 const useScrollReveal = (
