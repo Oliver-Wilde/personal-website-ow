@@ -83,7 +83,7 @@ export const principles = [
     number: '04',
     title: 'Stay with the problem',
     description:
-      'I tend to stay with difficult problems until I understand them well enough to explain what is happening.',
+      'I tend to stay with difficult problems until I understa  nd them well enough to explain what is happening.',
   },
 ];
 

@@ -303,7 +303,7 @@ const AboutPanel = () => (
         <p>
           I was born in Thailand, spent seven years at ISG Jubail in
           Saudi Arabia, and then continued school, college, and university
-          in the United Kingdom. My family background is Thai, British,
+          in the United Kingdom. My family background is Thai, English,
           Irish, and Lao, so I have never felt as though I belong neatly
           to one place. Moving between countries and education systems
           meant learning how unfamiliar environments worked and adapting

@@ -218,3 +218,9 @@ svg {
     }
 }
 /* ROUTE TRANSITION BANDS END */
+
+/* PERSISTENT SYSTEM RAIL STACK START */
+.page-transition {
+    z-index: 200;
+}
+/* PERSISTENT SYSTEM RAIL STACK END */

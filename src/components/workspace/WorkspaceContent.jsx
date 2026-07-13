@@ -944,8 +944,9 @@ const ProjectMotionShell = ({
   </article>
 );
 
-const WorkMovingFile = ({ motion }) => (
+const WorkMovingFile = ({ motion, layerRef }) => (
   <span
+    ref={layerRef}
     className="work-file-motion-layer"
     aria-hidden="true"
     style={{
@@ -994,6 +995,7 @@ const WorkPanel = ({
   const triggerRefs = useRef({});
   const toolbarIconRef = useRef(null);
   const motionDestinationRef = useRef(null);
+  const movingFileLayerRef = useRef(null);
   const motionTimersRef = useRef([]);
   const scrollFrameRef = useRef(null);
   const localMotionRef = useRef(false);
@@ -1017,11 +1019,11 @@ const WorkPanel = ({
     cancelScrollTracking();
   }, [cancelScrollTracking]);
 
-  const queueMotionTimer = (callback, delay) => {
+  const queueMotionTimer = useCallback((callback, delay) => {
     const timerId = window.setTimeout(callback, delay);
     motionTimersRef.current.push(timerId);
     return timerId;
-  };
+  }, []);
 
   const focusWithoutScroll = (element) => {
     if (!element) {
@@ -1054,12 +1056,30 @@ const WorkPanel = ({
     return navigationHeight + 16;
   };
 
-  const scrollToFileExplorer = (callback) => {
+  const scrollToFileExplorer = (
+    sourceElement,
+    callback
+  ) => {
     cancelScrollTracking();
 
     const projectGrid = projectGridRef.current;
 
     if (!projectGrid) {
+      callback();
+      return;
+    }
+
+    const viewportTop = getExplorerScrollOffset();
+    const viewportBottom = window.innerHeight - 16;
+    const sourceRect =
+      getRenderedIconRect(sourceElement);
+
+    const sourceIsFullyVisible =
+      sourceRect &&
+      sourceRect.top >= viewportTop &&
+      sourceRect.bottom <= viewportBottom;
+
+    if (sourceIsFullyVisible) {
       callback();
       return;
     }
@@ -1071,7 +1091,7 @@ const WorkPanel = ({
       0,
       window.scrollY +
         gridRect.top -
-        getExplorerScrollOffset()
+        viewportTop
     );
 
     if (
@@ -1240,24 +1260,6 @@ const WorkPanel = ({
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
           setMotionPhase('opening-flight');
-
-          queueMotionTimer(() => {
-            const projectToOpen = pendingProject;
-
-            setSelectedProject(projectToOpen);
-            setMotionPhase('opening-reveal');
-
-            if (onOpenProject) {
-              onOpenProject(projectToOpen.id);
-            }
-
-            queueMotionTimer(() => {
-              setMovingFile(null);
-              setPendingProject(null);
-              setMotionPhase('open');
-              localMotionRef.current = false;
-            }, 420);
-          }, 460);
         });
       });
     }
@@ -1309,28 +1311,6 @@ const WorkPanel = ({
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
           setMotionPhase('closing-flight');
-
-          queueMotionTimer(() => {
-            setMotionPhase('closing-reveal');
-
-            if (onCloseProject) {
-              onCloseProject();
-            }
-
-            queueMotionTimer(() => {
-              const previousTrigger =
-                triggerRefs.current[closingProjectId];
-
-              setMovingFile(null);
-              setClosingProjectId(null);
-              setMotionPhase('browser');
-              localMotionRef.current = false;
-
-              if (previousTrigger) {
-                previousTrigger.focus();
-              }
-            }, 420);
-          }, 460);
         });
       });
     }
@@ -1341,6 +1321,116 @@ const WorkPanel = ({
     movingFile,
     onCloseProject,
     onOpenProject,
+    queueMotionTimer,
+  ]);
+
+  useEffect(() => {
+    const flightIsActive =
+      motionPhase === 'opening-flight' ||
+      motionPhase === 'closing-flight';
+
+    if (!flightIsActive) {
+      return undefined;
+    }
+
+    const motionLayer = movingFileLayerRef.current;
+    let flightCompleted = false;
+
+    const finishFlight = () => {
+      if (flightCompleted) {
+        return;
+      }
+
+      flightCompleted = true;
+
+      if (
+        motionPhase === 'opening-flight' &&
+        pendingProject
+      ) {
+        const projectToOpen = pendingProject;
+
+        setSelectedProject(projectToOpen);
+        setMotionPhase('opening-reveal');
+
+        if (onOpenProject) {
+          onOpenProject(projectToOpen.id);
+        }
+
+        queueMotionTimer(() => {
+          setMovingFile(null);
+          setPendingProject(null);
+          setMotionShellHeight(0);
+          setMotionPhase('open');
+          localMotionRef.current = false;
+        }, 420);
+
+        return;
+      }
+
+      if (
+        motionPhase === 'closing-flight' &&
+        closingProjectId
+      ) {
+        setMotionPhase('closing-reveal');
+
+        if (onCloseProject) {
+          onCloseProject();
+        }
+
+        queueMotionTimer(() => {
+          const previousTrigger =
+            triggerRefs.current[closingProjectId];
+
+          setMovingFile(null);
+          setClosingProjectId(null);
+          setMotionPhase('browser');
+          localMotionRef.current = false;
+
+          if (previousTrigger) {
+            previousTrigger.focus();
+          }
+        }, 420);
+      }
+    };
+
+    const handleTransitionEnd = (event) => {
+      if (
+        event.target === motionLayer &&
+        event.propertyName === 'transform'
+      ) {
+        finishFlight();
+      }
+    };
+
+    if (motionLayer) {
+      motionLayer.addEventListener(
+        'transitionend',
+        handleTransitionEnd
+      );
+    }
+
+    const fallbackTimer = window.setTimeout(
+      finishFlight,
+      620
+    );
+
+    return () => {
+      window.clearTimeout(fallbackTimer);
+
+      if (motionLayer) {
+        motionLayer.removeEventListener(
+          'transitionend',
+          handleTransitionEnd
+        );
+      }
+    };
+  }, [
+    motionPhase,
+    pendingProject,
+    closingProjectId,
+    onCloseProject,
+    onOpenProject,
+    queueMotionTimer,
   ]);
 
   const openProject = (project) => {
@@ -1384,7 +1474,7 @@ const WorkPanel = ({
     queueMotionTimer(() => {
       setMotionPhase('opening-scroll');
 
-      scrollToFileExplorer(() => {
+      scrollToFileExplorer(trigger, () => {
         setMotionPhase('opening-shell');
       });
     }, 280);
@@ -1566,7 +1656,10 @@ const WorkPanel = ({
       )}
 
       {movingFile && (
-        <WorkMovingFile motion={movingFile} />
+        <WorkMovingFile
+          motion={movingFile}
+          layerRef={movingFileLayerRef}
+        />
       )}
     </section>
   );
@@ -1606,10 +1699,6 @@ const useScrollReveal = (
   isTransitioning
 ) => {
   useLayoutEffect(() => {
-    if (isTransitioning) {
-      return undefined;
-    }
-
     const panel = document.querySelector(
       '#workspace-main .workspace-panel'
     );
@@ -1641,6 +1730,10 @@ const useScrollReveal = (
 
       target.dataset.scrollRevealDelay = String(delayMs);
     });
+
+    if (isTransitioning) {
+      return undefined;
+    }
 
     if (prefersReducedMotion || !canObserve) {
       targets.forEach((target) => {

@@ -232,6 +232,10 @@ const App = () => {
       <div className="portfolio-shell">
         <Navbar
           activeSection={route.section}
+          transitionPhase={transitionPhase}
+          transitionDurationMs={
+            TRANSITION_END_DELAY_MS
+          }
           onSelectSection={handleSelectSection}
           onPreviewSection={handlePreviewSection}
           onClearPreview={handleClearPreview}

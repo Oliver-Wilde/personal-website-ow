@@ -1847,6 +1847,90 @@
 /* HOME MONITOR MONOCHROME SHELL END */
 /* HOME NAV MONITOR END */
 
+/* WORK FILE BROWSER DENSITY PASS START */
+@media screen and (min-width: 721px) {
+    .work-panel > .workspace-heading {
+        max-width: 54rem;
+        padding-bottom: clamp(1.1rem, 2vw, 1.75rem);
+    }
+
+    .work-panel > .workspace-heading h1 {
+        margin-top: 0.5rem;
+        font-size: clamp(2.35rem, 3.4vw, 3.65rem);
+        line-height: 0.98;
+    }
+
+    .work-panel > .workspace-heading .workspace-lead {
+        max-width: 48rem;
+        margin-top: 0.8rem;
+        font-size: clamp(0.92rem, 1vw, 1.02rem);
+        line-height: 1.45;
+    }
+
+    .project-file {
+        min-height: clamp(13.75rem, 23vh, 15rem);
+        padding: clamp(0.85rem, 1.2vw, 1.15rem);
+    }
+
+    .project-file-topline {
+        gap: 0.75rem;
+    }
+
+    .project-file-topline .project-file-icon {
+        width: 2.35rem;
+        height: 2.9rem;
+    }
+
+    .project-file-status {
+        max-width: 9rem;
+        font-size: 0.66rem;
+    }
+
+    .project-file-body {
+        margin-top: 0.85rem;
+    }
+
+    .project-file-index {
+        margin-bottom: 0.4rem;
+        font-size: 0.66rem;
+    }
+
+    .project-file-category {
+        font-size: 0.66rem;
+    }
+
+    .project-file h2 {
+        margin-top: 0.4rem;
+        font-size: clamp(1.25rem, 1.65vw, 1.75rem);
+        letter-spacing: -0.035em;
+        line-height: 1.02;
+    }
+
+    .project-file-body > p:last-child {
+        display: -webkit-box;
+        max-width: 30rem;
+        margin-top: 0.55rem;
+        overflow: hidden;
+        color: #4f4f4f;
+        font-size: 0.82rem;
+        line-height: 1.4;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    .project-file-action {
+        margin-top: 0.75rem;
+        padding-top: 0.55rem;
+        font-size: 0.72rem;
+    }
+}
+
+@media screen and (min-width: 1121px) {
+    .project-file-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+/* WORK FILE BROWSER DENSITY PASS END */
 /* WORK CASE STUDY HIERARCHY PASS START */
 .case-study-toolbar {
     min-height: 4.25rem;
@@ -2300,6 +2384,158 @@
 }
 /* WORK VIEWPORT COORDINATION END */
 
+/* WORK MOTION REFINEMENT PASS START */
+.project-file-grid {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.project-file-grid::after {
+    content: '';
+    position: absolute;
+    z-index: 45;
+    inset: -1px;
+    background: #111111;
+    backface-visibility: hidden;
+    pointer-events: none;
+    transform:
+        translate3d(0, 0, 0)
+        scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+}
+
+.work-panel.is-opening-hide
+.project-file-grid::after {
+    animation:
+        work-grid-cover
+        280ms
+        cubic-bezier(0.76, 0, 0.24, 1)
+        both;
+}
+
+.work-panel.is-opening-scroll
+.project-file-grid::after,
+.work-panel.is-closing-grid
+.project-file-grid::after,
+.work-panel.is-closing-ready
+.project-file-grid::after,
+.work-panel.is-closing-flight
+.project-file-grid::after {
+    transform:
+        translate3d(0, 0, 0)
+        scaleX(1.006);
+}
+
+.work-panel.is-closing-reveal
+.project-file-grid::after {
+    animation:
+        work-grid-reveal
+        420ms
+        cubic-bezier(0.76, 0, 0.24, 1)
+        both;
+}
+
+.work-panel.is-opening-hide
+.project-file-motion-band,
+.work-panel.is-opening-scroll
+.project-file-motion-band {
+    transform: scaleX(0);
+    animation: none;
+}
+
+.work-panel.is-opening-hide
+.project-file
+> *:not(.project-file-motion-band) {
+    visibility: visible;
+    animation: none;
+}
+
+.work-panel.is-opening-hide
+.project-file.is-motion-source
+.project-file-icon {
+    visibility: hidden;
+}
+
+.work-file-motion-layer {
+    color: #111111;
+    transition:
+        transform
+        460ms
+        cubic-bezier(0.22, 1, 0.36, 1),
+        color
+        140ms
+        linear;
+}
+
+.work-panel.is-opening-scroll
+.work-file-motion-layer,
+.work-panel.is-opening-shell
+.work-file-motion-layer,
+.work-panel.is-opening-ready
+.work-file-motion-layer,
+.work-panel.is-opening-flight
+.work-file-motion-layer,
+.work-panel.is-opening-reveal
+.work-file-motion-layer,
+.work-panel.is-closing-grid
+.work-file-motion-layer,
+.work-panel.is-closing-ready
+.work-file-motion-layer,
+.work-panel.is-closing-flight
+.work-file-motion-layer {
+    color: #ffffff;
+}
+
+.work-panel.is-closing-reveal
+.work-file-motion-layer {
+    color: #111111;
+}
+
+@keyframes work-grid-cover {
+    from {
+        transform-origin: left center;
+        transform:
+            translate3d(0, 0, 0)
+            scaleX(0);
+    }
+
+    to {
+        transform-origin: left center;
+        transform:
+            translate3d(0, 0, 0)
+            scaleX(1.006);
+    }
+}
+
+@keyframes work-grid-reveal {
+    from {
+        transform-origin: right center;
+        transform:
+            translate3d(0, 0, 0)
+            scaleX(1.006);
+    }
+
+    to {
+        transform-origin: right center;
+        transform:
+            translate3d(0, 0, 0)
+            scaleX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-file-grid::after {
+        display: none;
+        animation: none;
+    }
+
+    .work-file-motion-layer {
+        transition: none;
+    }
+}
+/* WORK MOTION REFINEMENT PASS END */
 /* WORK EVIDENCE WIDGETS START */
 .case-study-outcome-tray,
 .case-study-evidence-rack {

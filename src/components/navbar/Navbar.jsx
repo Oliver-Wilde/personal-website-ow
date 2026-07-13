@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
 
 const renderAsciiEarth = (rotation) => {
@@ -87,10 +87,48 @@ const renderAsciiEarth = (rotation) => {
   return rows.join('\n');
 };
 
-const AsciiEarthLogo = () => {
-  const [frame, setFrame] = useState(0);
+const EARTH_ROTATION_DIRECTION = -1;
+
+const IDLE_EARTH_ROTATION_PER_MS =
+  EARTH_ROTATION_DIRECTION *
+  (0.18 / 140);
+
+const FULL_EARTH_ROTATION =
+  Math.PI * 2;
+
+const EARTH_DECELERATION_MS = 180;
+
+const AsciiEarthLogo = ({
+  isTransitioning = false,
+  transitionDurationMs = 920,
+}) => {
+  const [rotation, setRotation] = useState(0);
   const [motionAllowed, setMotionAllowed] =
     useState(false);
+
+  const rotationRef = useRef(0);
+  const rotationSpeedRef = useRef(
+    IDLE_EARTH_ROTATION_PER_MS
+  );
+
+  const transitionStateRef = useRef(
+    isTransitioning
+  );
+
+  const transitionDurationRef = useRef(
+    transitionDurationMs
+  );
+
+  useEffect(() => {
+    transitionStateRef.current =
+      isTransitioning;
+
+    transitionDurationRef.current =
+      transitionDurationMs;
+  }, [
+    isTransitioning,
+    transitionDurationMs,
+  ]);
 
   useEffect(() => {
     const motionQuery = window.matchMedia(
@@ -133,22 +171,87 @@ const AsciiEarthLogo = () => {
 
   useEffect(() => {
     if (!motionAllowed) {
-      setFrame(0);
+      rotationRef.current = 0;
+
+      rotationSpeedRef.current =
+        IDLE_EARTH_ROTATION_PER_MS;
+
+      setRotation(0);
       return undefined;
     }
 
-    const intervalId = window.setInterval(
-      () => {
-        setFrame(
-          (currentFrame) =>
-            (currentFrame + 1) % 35
+    let animationFrameId = null;
+    let previousTimestamp =
+      window.performance.now();
+
+    const animateEarth = (timestamp) => {
+      const elapsedMs = Math.min(
+        timestamp - previousTimestamp,
+        64
+      );
+
+      previousTimestamp = timestamp;
+
+      const safeTransitionDuration = Math.max(
+        1,
+        transitionDurationRef.current
+      );
+
+      const transitionRotationPerMs =
+        EARTH_ROTATION_DIRECTION *
+        (
+          FULL_EARTH_ROTATION /
+          safeTransitionDuration
         );
-      },
-      140
-    );
+
+      if (transitionStateRef.current) {
+        rotationSpeedRef.current =
+          transitionRotationPerMs;
+      } else {
+        const decelerationProgress =
+          1 -
+          Math.exp(
+            -elapsedMs /
+            EARTH_DECELERATION_MS
+          );
+
+        rotationSpeedRef.current +=
+          (
+            IDLE_EARTH_ROTATION_PER_MS -
+            rotationSpeedRef.current
+          ) *
+          decelerationProgress;
+      }
+
+      rotationRef.current =
+        (
+          rotationRef.current +
+          (
+            rotationSpeedRef.current *
+            elapsedMs
+          )
+        ) %
+        FULL_EARTH_ROTATION;
+
+      setRotation(rotationRef.current);
+
+      animationFrameId =
+        window.requestAnimationFrame(
+          animateEarth
+        );
+    };
+
+    animationFrameId =
+      window.requestAnimationFrame(
+        animateEarth
+      );
 
     return () => {
-      window.clearInterval(intervalId);
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(
+          animationFrameId
+        );
+      }
     };
   }, [motionAllowed]);
 
@@ -157,7 +260,7 @@ const AsciiEarthLogo = () => {
       className="sidebar-ascii-earth"
       aria-hidden="true"
     >
-      {renderAsciiEarth(frame * 0.18)}
+      {renderAsciiEarth(rotation)}
     </pre>
   );
 };
@@ -172,6 +275,8 @@ const NAVIGATION_ITEMS = [
 
 const Navbar = ({
   activeSection,
+  transitionPhase = 'idle',
+  transitionDurationMs = 920,
   onSelectSection,
   onPreviewSection,
   onClearPreview,
@@ -200,9 +305,28 @@ const Navbar = ({
     }
   };
 
+  const activeNavigationItem =
+    NAVIGATION_ITEMS.find(
+      (item) => item.id === activeSection
+    ) || NAVIGATION_ITEMS[0];
+
+  const isTransitioning =
+    transitionPhase !== 'idle';
+
+  let transitionStatus = 'System online';
+
+  if (transitionPhase === 'covering') {
+    transitionStatus = 'Routing / cover';
+  }
+
+  if (transitionPhase === 'revealing') {
+    transitionStatus = 'Routing / reveal';
+  }
+
   return (
     <aside
-      className="site-sidebar"
+      className={`site-sidebar${isTransitioning ? ' is-transitioning' : ''}`}
+      aria-busy={isTransitioning}
       onMouseLeave={clearPreview}
       onBlur={handleSidebarBlur}
     >
@@ -215,7 +339,21 @@ const Navbar = ({
           onFocus={() => previewSection('home')}
           onClick={() => selectSection('home')}
         >
-          <AsciiEarthLogo />
+          <span className="sidebar-logo-viewport">
+            <AsciiEarthLogo
+              isTransitioning={isTransitioning}
+              transitionDurationMs={
+                transitionDurationMs
+              }
+            />
+          </span>
+
+          <span
+            className="sidebar-logo-label"
+            aria-hidden="true"
+          >
+            World / live
+          </span>
         </button>
 
         <button
@@ -226,8 +364,36 @@ const Navbar = ({
           onFocus={() => previewSection('home')}
           onClick={() => selectSection('home')}
         >
-          Oliver Wilde
+          <span className="sidebar-name-kicker">
+            Portfolio system
+          </span>
+
+          <span className="sidebar-name">
+            Oliver Wilde
+          </span>
+
+          <span className="sidebar-system-state">
+            <span
+              className="sidebar-system-state-dot"
+              aria-hidden="true"
+            />
+
+            {transitionStatus}
+          </span>
         </button>
+      </div>
+
+      <div
+        className="sidebar-route-status"
+        aria-live="polite"
+      >
+        <span>Current route</span>
+
+        <strong>
+          {activeNavigationItem.number}
+          {' / '}
+          {activeNavigationItem.label}
+        </strong>
       </div>
 
       <nav className="sidebar-navigation" aria-label="Primary navigation">
@@ -280,6 +446,14 @@ const Navbar = ({
           </span>
         </a>
       </nav>
+
+      <div
+        className="sidebar-footer"
+        aria-hidden="true"
+      >
+        <span>OW / Portfolio</span>
+        <span>UK / 2026</span>
+      </div>
     </aside>
   );
 };

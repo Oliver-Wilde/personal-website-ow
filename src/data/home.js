@@ -1,5 +1,5 @@
 const homeContent = {
-  eyebrow: '01 / Home ? Oliver Wilde',
+  eyebrow: '01 / Home / Oliver Wilde',
 
   headline: [
     'Computer science graduate.',
